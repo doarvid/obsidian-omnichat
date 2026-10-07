@@ -1,0 +1,11063 @@
+// ==UserScript==
+// @name         AfterChat — LLM Chat Exporter
+// @name:zh-CN   AfterChat — LLM 对话导出器
+// @name:zh-TW   AfterChat — LLM 對話匯出器
+// @name:ja      AfterChat — LLM チャット書き出しツール
+// @name:ko      AfterChat — LLM 채팅 내보내기
+// @name:es      AfterChat — Exportador de chats de LLM
+// @name:fr      AfterChat — Exportateur de conversations LLM
+// @name:de      AfterChat — LLM-Chat-Exporter
+// @name:pt-BR   AfterChat — Exportador de Chats de LLM
+// @name:ru      AfterChat — экспортёр чатов LLM
+// @name:it      AfterChat — Esportatore di chat LLM
+// @name:vi      AfterChat — Trình xuất khẩu hội thoại LLM
+// @name:id      AfterChat — Eksportir Chat LLM
+// @name:th      AfterChat — เครื่องมือส่งออกแชท LLM
+// @name:tr      AfterChat — LLM Sohbet Dışa Aktarıcı
+// @name:ar      AfterChat — مصدِّر محادثات LLM
+// @namespace    https://github.com/AfterThink
+// @version      1.22.1
+// @description  Export chat history from ChatGPT, Claude, Gemini, Google AI Mode, Grok, DeepSeek, Microsoft Copilot, M365 Copilot, Perplexity, Kimi, Doubao, ChatGLM, Z.ai, Qwen, Qianwen, Poe, Tencent Yuanbao, Tencent Hunyuan, MiniMax, Mistral, Monica, Google AI Studio, DuckDuckGo AI Chat, Tencent IMA, Sakana AI, Arena AI, Dola, StepFun
+// @description:zh-CN  一键导出 ChatGPT、Claude、Gemini、Google AI Mode、Grok、DeepSeek、Microsoft Copilot、M365 Copilot、Perplexity、Kimi、豆包、智谱清言、Z.ai、通义千问、千问、Poe、腾讯元宝、腾讯混元、MiniMax、Mistral、Monica、Google AI Studio、DuckDuckGo AI Chat、腾讯 ima、Sakana AI、Arena AI、Dola、阶跃星辰 StepFun 的聊天记录
+// @description:zh-TW  一鍵匯出 ChatGPT、Claude、Gemini、Google AI Mode、Grok、DeepSeek、Microsoft Copilot、M365 Copilot、Perplexity、Kimi、豆包、智譜清言、Z.ai、通義千問、千問、Poe、騰訊元寶、騰訊混元、MiniMax、Mistral、Monica、Google AI Studio、DuckDuckGo AI Chat、騰訊 ima、Sakana AI、Arena AI、Dola、階躍星辰 StepFun 的聊天記錄
+// @description:ja  ChatGPT、Claude、Gemini、Google AI Mode、Grok、DeepSeek、Microsoft Copilot、M365 Copilot、Perplexity、Kimi、Doubao、ChatGLM、Z.ai、Qwen、Qianwen、Poe、Tencent Yuanbao、Tencent Hunyuan、MiniMax、Mistral、Monica、Google AI Studio、DuckDuckGo AI Chat、Tencent IMA、Sakana AI、Arena AI、Dola、StepFun などのチャット履歴をワンクリックで書き出し
+// @description:ko  ChatGPT、Claude、Gemini、Google AI Mode、Grok、DeepSeek、Microsoft Copilot、M365 Copilot、Perplexity、Kimi、Doubao、ChatGLM、Z.ai、Qwen、Qianwen、Poe、Tencent Yuanbao、Tencent Hunyuan、MiniMax、Mistral、Monica、Google AI Studio、DuckDuckGo AI Chat、Tencent IMA、Sakana AI、Arena AI、Dola, StepFun  등 LLM 채팅 기록을 원클릭으로 내보내기
+// @description:es  Exporta con un clic el historial de chat de ChatGPT, Claude, Gemini, Google AI Mode, Grok, DeepSeek, Microsoft Copilot, M365 Copilot, Perplexity, Kimi, Doubao, ChatGLM, Z.ai, Qwen, Qianwen, Poe, Tencent Yuanbao, Tencent Hunyuan, MiniMax, Mistral, Monica, Google AI Studio, DuckDuckGo AI Chat, Tencent IMA, Sakana AI, Arena AI, Dola y StepFun
+// @description:fr  Exportez en un clic l'historique de vos conversations ChatGPT, Claude, Gemini, Google AI Mode, Grok, DeepSeek, Microsoft Copilot, M365 Copilot, Perplexity, Kimi, Doubao, ChatGLM, Z.ai, Qwen, Qianwen, Poe, Tencent Yuanbao, Tencent Hunyuan, MiniMax, Mistral, Monica, Google AI Studio, DuckDuckGo AI Chat, Tencent IMA, Sakana AI, Arena AI, Dola et StepFun
+// @description:de  Chatverläufe von ChatGPT, Claude, Gemini, Google AI Mode, Grok, DeepSeek, Microsoft Copilot, M365 Copilot, Perplexity, Kimi, Doubao, ChatGLM, Z.ai, Qwen, Qianwen, Poe, Tencent Yuanbao, Tencent Hunyuan, MiniMax, Mistral, Monica, Google AI Studio, DuckDuckGo AI Chat, Tencent IMA, Sakana AI, Arena AI, Dola und StepFun mit einem Klick exportieren
+// @description:pt-BR  Exporte com um clique o histórico de chats do ChatGPT, Claude, Gemini, Google AI Mode, Grok, DeepSeek, Microsoft Copilot, M365 Copilot, Perplexity, Kimi, Doubao, ChatGLM, Z.ai, Qwen, Qianwen, Poe, Tencent Yuanbao, Tencent Hunyuan, MiniMax, Mistral, Monica, Google AI Studio, DuckDuckGo AI Chat, Tencent IMA, Sakana AI, Arena AI, Dola e StepFun
+// @description:ru  Экспортируйте в один клик историю чатов ChatGPT, Claude, Gemini, Google AI Mode, Grok, DeepSeek, Microsoft Copilot, M365 Copilot, Perplexity, Kimi, Doubao, ChatGLM, Z.ai, Qwen, Qianwen, Poe, Tencent Yuanbao, Tencent Hunyuan, MiniMax, Mistral, Monica, Google AI Studio, DuckDuckGo AI Chat, Tencent IMA, Sakana AI, Arena AI, Dola и StepFun
+// @description:it  Esporta con un clic la cronologia delle chat di ChatGPT, Claude, Gemini, Google AI Mode, Grok, DeepSeek, Microsoft Copilot, M365 Copilot, Perplexity, Kimi, Doubao, ChatGLM, Z.ai, Qwen, Qianwen, Poe, Tencent Yuanbao, Tencent Hunyuan, MiniMax, Mistral, Monica, Google AI Studio, DuckDuckGo AI Chat, Tencent IMA, Sakana AI, Arena AI, Dola e StepFun
+// @description:vi  Xuất lịch sử trò chuyện từ ChatGPT, Claude, Gemini, Google AI Mode, Grok, DeepSeek, Microsoft Copilot, M365 Copilot, Perplexity, Kimi, Doubao, ChatGLM, Z.ai, Qwen, Qianwen, Poe, Tencent Yuanbao, Tencent Hunyuan, MiniMax, Mistral, Monica, Google AI Studio, DuckDuckGo AI Chat, Tencent IMA, Sakana AI, Arena AI, Dola và StepFun chỉ với một cú nhấp chuột
+// @description:id  Ekspor riwayat chat dari ChatGPT, Claude, Gemini, Google AI Mode, Grok, DeepSeek, Microsoft Copilot, M365 Copilot, Perplexity, Kimi, Doubao, ChatGLM, Z.ai, Qwen, Qianwen, Poe, Tencent Yuanbao, Tencent Hunyuan, MiniMax, Mistral, Monica, Google AI Studio, DuckDuckGo AI Chat, Tencent IMA, Sakana AI, Arena AI, Dola, dan StepFun dengan sekali klik
+// @description:th  ส่งออกประวัติแชทจาก ChatGPT, Claude, Gemini, Google AI Mode, Grok, DeepSeek, Microsoft Copilot, M365 Copilot, Perplexity, Kimi, Doubao, ChatGLM, Z.ai, Qwen, Qianwen, Poe, Tencent Yuanbao, Tencent Hunyuan, MiniMax, Mistral, Monica, Google AI Studio, DuckDuckGo AI Chat, Tencent IMA, Sakana AI, Arena AI, Dola และ StepFun ด้วยคลิกเดียว
+// @description:tr  ChatGPT, Claude, Gemini, Google AI Mode, Grok, DeepSeek, Microsoft Copilot, M365 Copilot, Perplexity, Kimi, Doubao, ChatGLM, Z.ai, Qwen, Qianwen, Poe, Tencent Yuanbao, Tencent Hunyuan, MiniMax, Mistral, Monica, Google AI Studio, DuckDuckGo AI Chat, Tencent IMA, Sakana AI, Arena AI, Dola ve StepFun sohbet geçmişini tek tıkla dışa aktarın
+// @description:ar  صدّر سجل المحادثات من ChatGPT وClaude وGemini وGrok وDeepSeek وMicrosoft Copilot وM365 Copilot وPerplexity وKimi وDoubao وChatGLM وZ.ai وQwen وQianwen وPoe وTencent Yuanbao وTencent Hunyuan وMiniMax وMistral وMonica وGoogle AI Studio وDuckDuckGo AI Chat وTencent IMA وSakana AI وArena AI وDola وStepFun بنقرة واحدة
+// @author       AfterThink Studio
+// @license      AGPL-3.0
+// @match        https://chatgpt.com/*
+// @match        https://claude.ai/*
+// @match        https://claude.com/*
+// @match        https://gemini.google.com/*
+// @match        https://www.google.com/search*
+// @match        https://www.google.com/ai*
+// @match        https://x.com/*
+// @match        https://grok.com/*
+// @match        https://chat.deepseek.com/*
+// @match        https://copilot.microsoft.com/*
+// @match        https://copilot.cloud.microsoft/*
+// @match        https://m365.cloud.microsoft/*
+// @match        https://www.perplexity.ai/*
+// @match        https://www.kimi.com/*
+// @match        https://www.doubao.com/*
+// @match        https://chatglm.cn/*
+// @match        https://chat.z.ai/*
+// @match        https://chat.qwen.ai/*
+// @match        https://www.qianwen.com/*
+// @match        https://poe.com/*
+// @match        https://yuanbao.tencent.com/*
+// @match        https://agent.minimax.io/*
+// @match        https://agent.minimaxi.com/*
+// @match        https://chat.mistral.ai/*
+// @match        https://monica.im/*
+// @match        https://aistudio.google.com/*
+// @match        https://aistudio.tencent.com/*
+// @match        https://aistudio.tencent.ai/*
+// @match        https://duck.ai/*
+// @match        https://ima.qq.com/*
+// @match        https://chat.sakana.ai/*
+// @match        https://arena.ai/*
+// @match        https://www.dola.com/*
+// @match        https://studio.stepfun.ai/*
+// @match        https://studio.stepfun.com/*
+// @match        https://chat.stepfun.com/*
+// @icon         https://avatars.githubusercontent.com/u/266756423?s=400&u=d38fce2849e95af734f50228d5195fcdf1c7719e&v=4
+// @grant        none
+// @run-at       document-idle
+// @downloadURL https://update.greasyfork.org/scripts/589622/AfterChat%20%E2%80%94%20LLM%20%E5%AF%B9%E8%AF%9D%E5%AF%BC%E5%87%BA%E5%99%A8.user.js
+// @updateURL https://update.greasyfork.org/scripts/589622/AfterChat%20%E2%80%94%20LLM%20%E5%AF%B9%E8%AF%9D%E5%AF%BC%E5%87%BA%E5%99%A8.meta.js
+// ==/UserScript==
+
+// AfterChat — LLM Chat Exporter
+// Copyright (C) 2026 AfterThink Studio
+// SPDX-License-Identifier: AGPL-3.0
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, version 3 of the License.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+// =============================================================
+//  📜 Changelog 
+// =============================================================
+//  1.22.1 (2026-09-29)
+//    - 修复 duck.ai 带图片会话导出报错（(intermediate value).trim is not a function）：
+//      带图用户消息的 content 是 { text, images[] } 对象而非字符串，新增 _contentText() 统一取正文
+//      图片按约定不导出（本地 IndexedDB chat-images 无云端 URL）；仅带 http(s) URL 时内嵌 ![name](url)
+//  1.22.0 (2026-09-28)
+//    - 引入项目层级导出（Project Scope Export）三态架构：
+//      收敛为纯粹极简的三态交互（单会话 Leaf / 项目文件夹 Branch / 全局 Root）
+//      修复 ChatGPT 与 Claude 在项目内单会话被误判为全部导出的正则路径匹配
+//      ChatGPT 支持 /g/g-p-.../project 项目页探测、项目元信息拉取与项目专属 ZIP 导出
+//      Claude 支持 /project/{uuid} 项目页探测、项目元信息与项目会话批量打包
+//      Qwen 支持 /p/{id} 项目文件夹探测与 /api/v2/chats/?project_id={id} 分页拉取
+//      Kimi（www.kimi.com）支持 /project/{uuid} 项目页探测、ProjectService/GetProject 元数据与 FeedService/ListFeeds 项目会话打包
+//      Perplexity（www.perplexity.ai）支持 /projects/{id}（及 collections/spaces）主页探测、get_collection 元数据与 list_collection_threads 会话打包
+//      Grok（grok.com）支持 /project/{uuid} 主页探测、/rest/workspaces 元数据与 app-chat/conversations?workspaceId 项目会话打包，支持 ?chat={id} 项目内单会话
+//      MiniMax（agent.minimax.io / agent.minimaxi.com）支持 ?project={id} 项目页探测、/v1/project 与 sidebar/session 分页打包
+//      Mistral（chat.mistral.ai）修复项目页被误判为单会话 projects 的缺陷，支持 /chat/projects/{id} 识别与 project.byId 会话打包
+//      豆包（www.doubao.com）支持 ?project={id} 识别与 /im/project/list 项目专属会话打包
+//      千问（www.qianwen.com）支持 /group/{id} 分组识别与 /api/v2/session/page/list group_id 会话分页打包
+//      腾讯元宝（yuanbao.tencent.com）支持 ?projectId={id} 识别与 project-home-page 元数据及 conversation/v3/list 会话分页打包
+//      Google Gemini（gemini.google.com）支持 /notebook/{id} 项目主页识别，对接 HcT8bb 与 MaZiqc RPC 批量导出 Notebook 会话
+//      Google AI Mode（gaim）支持 ?ajid={b64} 项目主页识别，对接 AimThreadsService/GetJourney 获取项目元数据与 Threads 会话
+//      ZIP 文件独立命名标记为 chat-export-{platform}-project-{projectName}-{timestamp}.zip
+//      全局增量时间锚点实现作用域隔离保护，项目导出不污染全局增量时间线
+//  1.21.0 (2026-09-27)
+//    - 全平台搜索引用格式标准化与重构收敛（RFC 1.0.0-draft）：
+//      沉淀通用 ReferenceCollector / normalizeRefUrl / formatRefLine / parseRefEntry 辅助体系
+//      文末 References 统一三级标题 ### References，空行自然承接彻底移除 --- 分隔线
+//      列表项全面标准化为标准 Markdown 链接 - [N] [标题](URL)（无标题时为 [URL](URL)）
+//      全面消除平台内部错位（Gemini / Grok / Sakana 错置单回合助手体内改为全文末汇总）
+//      全平台跨回合 URL 规范化全局去重与单调递增编号映射（ChatGPT / Perplexity /
+//      DeepSeek / 豆包 / 腾讯元宝 / 腾讯混元 / Kimi / 智谱清言 / Z.ai / 千问 / Mistral /
+//      Monica / DuckDuckGo / Arena / StepFun 等 20+ 平台 100% 满分合规对齐）
+//  1.20.0 (2026-09-27)
+//    - 新增 StepFun Chat（阶跃 AI 对话端 chat.stepfun.com）适配器：
+//      与 Studio 是两套独立应用（本适配器 id 为 stepfunchat，appid 10200）
+//      Connect RPC /api/agent/capy.agent.v1.AgentService/<Method>
+//      列表 ListChatSessions（pageToken 翻页）+ 单条 GetChatSessionByID
+//      + 消息 ListMessages（pageToken 翻页；页序最新在前、页内升序，汇总后按
+//      messageId 升序还原时间正序）
+//      思考链取自 assistantMessage.qa.pipeSteps[PIPE_STEP_TYPE_REASONING]
+//      （qa.reasoningContent 常为空）；搜索来源取自 qa.indexReferences，
+//      汇总到文末 ### References；认证走 localStorage 'oasis-token'
+//  1.19.0 (2026-09-27)
+//    - 新增 StepFun AI Studio（阶跃星辰）适配器：国际版 studio.stepfun.ai
+//      + 国内版 studio.stepfun.com（API 同构）。Connect 风格 RPC，统一前缀
+//      /api/step.openapi.devcenter.Dashboard/<Method>
+//      列表 ListConversations（cursor 翻页）+ 消息 ListMessages（cursor 翻页）
+//      + 正文 BatchGetMessages（messageIds 分批）；block.type 1=TEXT 2=THINKING
+//      3=TOOL_CALL 4=ASSETS，role 1=user 2=assistant 3=system
+//      支持思考链；工具调用块不输出正文；认证走同源 Cookie（oasis-* 头仅标记）
+//  1.1.0 (2026-08-05)
+//    - 新增 arena.ai 适配器：battle / side-by-side / direct-chat / agent
+//      四种模式（含投票、引用、思维链；格式规范见 docs/ChatFormat.arena.md）
+//    - 时间格式：全平台 UTC → 本地时间 + 时区偏移（如 16:00:53 +08:00）
+//    - 修复 aistudio 多账号切换（/u/<n>/ 前缀）后的导出
+//  1.2.0 (2026-08-06)
+//    - 新增腾讯 ima 适配器：列表 get_history_list（cursor 翻页）+ 详情 get_session
+//      认证走 localStorage accountInfo → x-ima-cookie；支持思考链、引用重编号
+//      注意：get_session 仅返回最近 20 轮（服务端上限，无翻页）
+//  1.3.0 (2026-08-06)
+//    - 新增 Z.ai 适配器：列表 get chats（页码翻页）+ 详情两步走
+//      （消息树 + messages/batch 批量正文）；支持思考链、引用重编号
+//      消息树含全部消息 id，长对话也能完整导出
+//  1.4.0 (2026-08-06)
+//    - 新增智谱清言 chatglm.cn 适配器：列表 recent_list + 详情 messages
+//      认证走 cookie chatglm_token；请求需 x-sign 签名（md5(ts-nonce-盐)）
+//      支持思考链（原样保留）、引用重编号
+//  1.5.0 (2026-08-06)
+//    - 新增 duck.ai 适配器：无后端 API，直接读写浏览器 IndexedDB（savedAIChatData/saved-chats）
+//      支持思考链、搜索引用（<citation src> → [N]）；无会话 URL，仅全部导出
+//  1.6.0 (2026-08-08)
+//    - 新增 Perplexity 适配器：列表 /rest/thread/list_recent + 详情 /rest/thread/{uuid}
+//      （schematized 响应 blocks 分块）；每条 entry 一轮问答，正文 [N] 引用按
+//      web_results[N-1].url 汇总到末尾 References；详情接口游标翻页
+//  1.7.0 (2026-08-12)
+//    - 新增腾讯混元适配器（aistudio.tencent.com + 海外站 aistudio.tencent.ai）：
+//      列表 /api/new-portal/chat/conversation/list（offset 翻页）
+//      + 详情 /api/new-portal/user/agent/conversation/v1/detail（lastId 游标翻页，整轮返回）
+//      URL /chat/<agentId>/<conversationId>，支持思考链、搜索引用汇总 References
+//      海外站 API 域自动切到 api.hy.tencent.ai（路径与国内站一致）
+//  1.7.1 (2026-08-12)
+//    - 修复 chatgpt.com 等站点按钮消失：应用挂载后会重建 body/html 顶层子节点，
+//      把按钮容器一并清掉；新增 ensureUIAlive 自愈观察器，被移除后自动重建
+//  1.8.0 (2026-08-12)
+//    - 新增 Mistral Le Chat 适配器：列表 tRPC chat.last（cursor 翻页）
+//      + 详情 Next.js RSC 流（提取 initialMessages，支持搜索引用）
+//  1.9.0 (2026-08-12)
+//    - 新增 Sakana AI 适配器：列表 /api/v2/conversations + 详情 /api/v2/conversations/<id>
+//      content 里 <plan>/<think> 思考 → Thought Process，<answer> → Response
+//      <source-chip title url /> 搜索引用 → [标题](链接)
+//  1.10.0 (2026-08-13)
+//    - Dola（豆包国际版 www.dola.com）：与豆包 API 同构，按 hunyuan 模式并入 doubao 适配器
+//      一站双域（_siteHost 区分 aid/region/导出 URL/Model 兜底），README 拆分为独立平台
+//    - 新增 MiniMax 适配器（agent.minimax.io + 国内版 agent.minimaxi.com，API 同构）：
+//      列表 /minimax-cloud/api/v1/sidebar/session/tree + 详情 /session/{id} + /session/{id}/message
+//      认证 token 头+query（localStorage _token）；x-signature = md5(x-timestamp + 固定盐 + body)
+//      （盐与算法从页面 webpack 逆向，cURL 交叉验证）；yy 头实测不校验；msg_type 2 中间消息跳过
+//      国内版仅前端代码确认同构，消息接口未实测（无账号）
+//  1.10.1 (2026-08-14)
+//    - 修复 AI Studio 下载按钮空白：页面 CSP require-trusted-types-for 拦截 innerHTML 写入，
+//      新增 setInnerHTML 走 trustedTypes policy，无 Trusted Types 的平台自动回退普通赋值
+//  1.11.0 (2026-08-14)
+//    - 全部导出改为增量：记录上次导出的时间锚点（localStorage 仅存时间戳，无对话内容），
+//      下次跳过 updatedAt ≤ 锚点的会话，只导新增/更新的；全部成功才推进锚点（有失败保留旧锚点）
+//    - Shift+左键点击按钮 = 强制全量导出（先把锚点重置到最早，走普通流程；失败时锚点保持为空下次仍全量重试）
+//    - ZIP 文件名改时间前缀 YYYYMMDD-HHMMSS-标题.md（本地时间），跨平台/跨批次混排按时间排序；
+//      ZIP 内顺序改为降序（最新在前）；无时间会话回退序号前缀
+//    - AI Studio 列表接口补提取时间戳（item[4][4][0]）；getConversationSortTime 补 kimi/ima/duck 时间字段
+//      锚点缺失或时间拿不到的会话宁重复不漏，始终导出；全跳过时提示“已是最新”
+//  1.12.0 (2026-09-07)
+//    - 新增 Claude（claude.ai/claude.com）适配器:
+//      列表 GET /api/organizations/{orgId}/chat_conversations_v2?limit&offset（offset 翻页，has_more 判断）
+//      + 详情 GET .../chat_conversations/{id}?tree=True&rendering_mode=messages&render_all_tools=true&include_inline_comparison=true&consistency=strong
+//      支持思考链、Widget/artifact/file 工具块、附件；tool_use.input 为 JSON 字符串需 parse
+//  1.13.0 (2026-09-07)
+//    - 新增 Poe（poe.com）适配器:
+//      列表 gql chatsHistoryPageQuery + ChatHistoryListWithMessageSearchPaginationQuery（cursor 分页）
+//      + 详情 gql ChatPageQuery（chatCode，消息即 UI 所渲染部分）；请求需 poe-queryname/poe-tag-id 头
+//      会话内捕获 poe-formkey/tchannel/revision；实测 revision 不校验值、formkey/tchannel 可省略
+//  1.14.0 (2026-09-07)
+//    - 新增 Monica（monica.im）适配器:
+//      列表 agent_v1/session.v1.SessionService/ListSessions（limit，返回即全量）
+//      + 详情 api/custom_bot/get_chat_item_list_v2（conversation_id；item_list 倒序按 seq 排；next_offset 翻页）
+//      认证走 session_id cookie；item_type question/reply 区分角色，welcome 哨兵跳过
+//  1.15.0 (2026-09-07)
+//    - 增量导出升级：把隐式锚点显式化、可点改起点
+//      hover 气泡 = “从 {上次导出时刻} 起导出”，点时间可改成任意起点（回导/重导）
+//      单击=按当前起点导出；Shift+单击=全量快键（本次起点=最早，不再删除锚点）
+//      锚点推进到 max(本次下载时刻, 列表最新会话时间)，零新增也推进；有失败保留旧锚点
+//      起点改动一次性、成功自愈；完成汇报复用气泡（详见 docs/start-anchor-export-spec.md）
+//  1.16.0 (2026-09-07)
+//    - duck.ai 支持单条导出：打开会话时 document.title = 会话标题，取它当定位串反查
+//      IndexedDB（saved-chats 按 title 对齐匹配，多条同名取 lastEdit 最新）→ 单条 .md；
+//      首页/未开会话（固定站点标题）仍走全部导出；定位不到报错，绝不静默全量
+//  1.17.0 (2026-09-08)
+//    - 新增 Google AI Mode（www.google.com/ai → /search?udm=50 AI 模式）适配器：
+//      列表 AimThreadsService/ListThreads（mtid + mstk + q 元数据）
+//      + 详情隐藏 iframe 导航线程页（fetch 拿不到个性化内容，必须真导航）+ DOM 提取
+//      （段落/小节标题/嵌套列表/表格/引用 chip→[N] References）；支持单条/全部导出；
+//      单条导出缺精确时间时回查 ListThreads 补 updatedMs
+//    - Gemini 导出补 Time：每回合自带时间戳 turn[4]=[秒,纳秒]，取最新回合作为最后活跃时间
+//  1.17.1 (2026-09-08)
+//    - 列表页 Shift 悬停预览全量快键：按住 Shift 悬停按钮时，气泡从“从 {时间} 起导出”
+//      临时换成“Shift + 单击全部导出”，松开即恢复；无锚点/编辑中不切换（详见 spec）
+//  1.17.2 (2026-09-08)
+//    - 修复 Perplexity（pplx）详情接口失效：补齐站点新增的客户端校验请求头
+//      （X-Perplexity-Request-Reason: view-thread、X-Perplexity-Request-Endpoint、
+//      X-Request-ID 等及 credentials: 'include'），解决 /rest/thread/{uuid} 报 403 问题
+//  1.17.3 (2026-09-08)
+//    - 修复 duck.ai 新聊天/首页状态误识别为单条会话报错：
+//      放宽首页固定标题判断（支持中文等本地化站点标题 /^Duck\.ai.*DuckDuckGo/i），
+//      并增加模式卡片入口 [data-testid="mode-entry-points"] DOM 检查，返回 null 走全部导出；
+//      watchURL 增加会话 ID 变更检查，在无 URL 变化的 SPA 中即时刷新按钮状态
+//  1.17.4 (2026-09-08)
+//    - 修复 duck.ai 普通回复（无思考链/引用，parts 为空）漏导出助手内容：
+//      _assistantParts 增加 msg.content 回退，保证纯文本回答完整导出
+//  1.17.5 (2026-09-08)
+//    - 修复 duck.ai 批量下载每次全量导出（增量过滤失效）：
+//      Duck.ai IndexedDB 中 lastEdit 为原生 Date 实例，normalizeTimestamp 补充 Date 对象
+//      （及 getTime() 接口）毫秒解析；解决时间被判为 null 导致全部会话被强制全量导出的问题；
+//      _findByTitle 比较 lastEdit 同样使用 normalizeTimestamp 归一化时间戳
+//  1.18.0 (2026-09-11)
+//    - 新增 Grok.com（grok.com）官方 Web 端适配器：
+//      列表 GET /rest/app-chat/conversations（分页）+ 详情 response-node 响应拓扑树
+//      + load-responses 批量拉正文，按时间正序还原多轮对话，解析 <grok:render> 引用卡片
+//    - Google AI 模式（gaim）支持未登录/临时搜索会话直接从当前 DOM 导出；
+//      引用统一归集为文末 ### References，与豆包/DeepSeek 金标准对齐
+//  1.18.1 (2026-09-12)
+//    - M365 Copilot 域名迁移：m365.cloud.microsoft → copilot.cloud.microsoft
+//      新增新域 @match/detect/详情导出 URL，保留旧域 m365.cloud.microsoft 作兜底；
+//      E2E/金标准/Python 脚本/文档同步更新；
+//      localStorage 锚点按源隔离，新域首次全量后自动恢复增量
+//  1.18.2 (2026-09-12)
+//    - 修复 Kimi 导出消息顺序错位：createTime 为微秒精度，被 Date.parse 截断到毫秒后
+//      同轮 user/assistant 判等，稳定排序保留接口「最新在前」顺序，assistant 错位
+//      到 user 之前；新增 _sortTime 以亚毫秒精度排序，金标准快照同步重刷
+//  1.18.3 (2026-09-12)
+//    - 修复 Perplexity 全量导出“点完直接对号”：站点弃用 /rest/thread/list_recent
+//      （恒返回 []），会话列表改走 GraphQL SidebarRecentThreadsRelayQuery
+//      （persisted query，取 entryId/name/updatedAt）；E2E 新增列表接口回归断言
+//  1.18.4 (2026-09-17)
+//    - 修复 Google AI 模式（gaim）导出公式混乱与无障碍读屏器杂音：
+//      精准识别 [data-xpm-latex] 提取原始 LaTeX 源码，区分行内公式（$...$）与
+//      独立块级/对齐公式（$$...$$）；支持 code 标签；彻底消除读屏器描述及 MathML 字符伪影
+//  1.18.5 (2026-09-19)
+//    - 修复 Qwen 导出丢失思考过程、且可能把思维链混入回复正文：
+//      content_list 现按 phase 分派（think/thinking_summary → Thought Process，
+//      answer → 正文，web_search/image_gen_tool/空 → 工具过程不输出）；
+//      thinking_summary 正文取自 extra.summary_title/summary_thought（item.content 为空）；
+//      同时消除非 answer 空项造成的正文前多余空行
+//  1.18.6 (2026-09-19)
+//    - 修复 Qwen 井号转加粗会误伤代码块：stripHashes 改为围栏感知，
+//      ``` / ~~~ 围栏内的 # 注释/代码原样保留（此前会被改成 **注释**）
+//  1.18.7 (2026-09-19)
+//    - 重构：stripHashes 收敛为模块级唯一实现（此前 27 个适配器各写一份：26 份
+//      `const stripHashes` + aistudio 一份名叫 convertHeadings 的内联实现，
+//      并漂移成 4 种不一致实现：朴素包裹 / null 安全 / 末尾守卫 / 围栏感知，
+//      同一个输入在不同适配器下产出不同 Markdown）
+//    - 修复 aistudio：代码块内的 # 注释被改写成加粗（其 convertHeadings 注释
+//      写着“代码块内的不转”，实现里却没有围栏判断）
+//    - aistudio：Time 恒为“导出当下”（new Date()），
+//      改为取对话自身时间戳 arr[4][4][0]，快照不再每次生成都变
+//    - 标题现在【整条】加粗：吸收标题内原有的 **（行内代码除外），避免内外层 **
+//      同级交错导致强调不全 / 残留可见星号
+//  1.18.8 (2026-09-19)
+//    - 修复 arena agent 模式导出报 “messages block not found”：RSC payload 键序变化，
+//      messages 不再是所在对象首键，且页面 i18n 也有同名 "messages" 键（值为对象，非数组）；
+//      _parseAgentRsc 改为定位 `"messages":[` 并逐候选括号配平解析，
+//      _extractBalancedJson 泛化为同时支持 { / [
+//    - 修复 arena E2E：金标准文件名映射错误，side-by-side / direct-chat 一直只告警未比对；
+//      启用此前被注释掉的 agent 模式；修正 References 结构断言（### 而非 ##）；
+//      比对前预置 arena_models.json 全量注册表（页面 initialModels 只含当前可选模型，
+//      历史会话旧模型会退回 UUID）；debug userscript 改写临时目录并跑完清理
+// =============================================================
+
+(function () {
+  'use strict';
+
+  // =============================================================
+  //  🎛️  CONFIG — 全局配置
+  //  =============================================================
+  //  LLM 注意: 这里可以调参数（延迟、限条数），但不要删除字段或改变结构。
+  //  =============================================================
+
+  const CONFIG = {
+    EXPORT_PREFIX: 'chat-export',
+    AFTERCHAT_WORKSPACE: 'downloadchats', // AfterChat workspace basename; localStorage 可覆盖
+    API_PAGE_DELAY: 300,   // 列表分页请求间隔（毫秒）
+    API_DELAY: 1200,       // 单条对话导出间隔（毫秒）
+    DEBUG_LIMIT: 0,        // 调试限条数，0 或 null 表示不限
+    INCREMENTAL: true,     // 增量导出：默认“从上次导出时刻起”，hover 句子可改起点（锚点 localStorage 仅存时间戳）
+  };
+
+  // ---- 通用时间格式化：本地时间 + 数值时区偏移（如 2026-08-05 16:00:53 +08:00） ----
+  function formatLocalTime(date) {
+    if (!date || isNaN(date.getTime())) return 'unknown';
+    const p2 = (n) => String(n).padStart(2, '0');
+    const offMin = -date.getTimezoneOffset();
+    const offSign = offMin >= 0 ? '+' : '-';
+    const offAbs = Math.abs(offMin);
+    const offStr = offSign + p2(Math.floor(offAbs / 60)) + ':' + p2(offAbs % 60);
+    return date.getFullYear() + '-' + p2(date.getMonth() + 1) + '-' + p2(date.getDate())
+      + ' ' + p2(date.getHours()) + ':' + p2(date.getMinutes()) + ':' + p2(date.getSeconds())
+      + ' ' + offStr;
+  }
+
+  // ---- 通用：Markdown 井号标题 → 加粗（唯一实现，勿在各适配器里再内联副本） ----
+  // 规则见 docs/ChatFormat.md 消息体规则：`# 标题` → `**标题**`
+  //   1. 代码围栏（``` / ~~~）内部原样保留，否则会破坏 Python/Shell 的 `# 注释`
+  //   2. 入参为 null/undefined 时返回空串（历史上有适配器因直接 .replace 而抛错）
+  //   3. 标题整体加粗：标题内原有的 `**` 会被吸收掉。
+  //      否则外层 `**` 与内层 `**` 同级交错，CommonMark 会错配定界符，
+  //      导致整条标题强调不全、甚至残留可见的 `**`（如 `## 方案一：**“…”**`）。
+  //      整条加粗后内层加粗本就是冗余的，直接去掉最干净。
+  //      但行内代码（`...`）里的 `**` 不是强调（如 glob `**/*.js`），必须原样保留。
+  function stripHashes(text) {
+    if (text === null || text === undefined) return '';
+    let inFence = false;
+    let fenceMark = '';
+    return String(text)
+      .split('\n')
+      .map((line) => {
+        const trimmed = line.trimStart();
+        const mark = trimmed.startsWith('```') ? '```'
+          : trimmed.startsWith('~~~') ? '~~~'
+            : '';
+        if (inFence) {
+          if (mark === fenceMark) inFence = false;
+          return line;
+        }
+        if (mark) {
+          inFence = true;
+          fenceMark = mark;
+          return line;
+        }
+        return line.replace(/^#{1,6}\s+(.+)$/, (match, content) => {
+          // 吸收标题内的 `**`（行内代码段除外），使整条标题落在一个加粗里
+          const merged = content
+            .split(/(`+[^`]*`+)/)
+            .map((seg, i) => (i % 2 ? seg : seg.replace(/\*\*/g, '')))
+            .join('');
+          const inner = merged.trim();
+          return inner ? '**' + inner + '**' : match;
+        });
+      })
+      .join('\n');
+  }
+
+  // ---- 通用：引用与信源区标准化工具（RFC 1.0.0 规范，见 docs/ChatFormat.md 4.4） ----
+  // 1. URL 规范化清洗（去 hash、去 tracking 参数、去非根路径冗余末尾斜杠）
+  function normalizeRefUrl(rawUrl) {
+    if (!rawUrl) return '';
+    const str = String(rawUrl).trim();
+    if (!str) return '';
+    try {
+      const u = new URL(str);
+      u.hash = '';
+      const TRACKING_PARAMS = [
+        'utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content',
+        'spm', 'from', 'source', 'feature', 'ref', 'ref_src',
+        'fbclid', 'gclid', 'msclkid', 'ved', 'ei'
+      ];
+      for (const p of TRACKING_PARAMS) {
+        u.searchParams.delete(p);
+      }
+      let res = u.toString();
+      if (res.endsWith('/') && !res.endsWith('://')) res = res.slice(0, -1);
+      return res;
+    } catch (e) {
+      return str.split('#')[0].trim().replace(/\/+$/, '');
+    }
+  }
+
+  // 2. 格式化单条 References 条目：标准 Markdown 链接化
+  function formatRefLine(num, title, url) {
+    const normUrl = normalizeRefUrl(url);
+    const cleanTitle = (title || '').trim();
+    if (cleanTitle && cleanTitle !== normUrl && cleanTitle !== url) {
+      return normUrl ? `- [${num}] [${cleanTitle}](${normUrl})` : `- [${num}] ${cleanTitle}`;
+    }
+    if (normUrl) {
+      return `- [${num}] [${normUrl}](${normUrl})`;
+    }
+    return `- [${num}] ${cleanTitle || 'unknown'}`;
+  }
+
+  // 3. 通用解析单行引用文本（支持 Markdown 链接、括号 URL、空格分隔及裸 URL）
+  function parseRefEntry(line) {
+    const mLine = String(line || '').trim().match(/^-\s*\[(\d+)\]\s*(.*)$/);
+    if (!mLine) return null;
+    const localNum = Number(mLine[1]);
+    const rest = mLine[2].trim();
+    const mdMatch = rest.match(/^\[(.*?)\]\((https?:\/\/[^\s)]+)\)$/);
+    if (mdMatch) {
+      return { localNum, title: mdMatch[1].trim(), url: mdMatch[2].trim() };
+    }
+    const parenMatch = rest.match(/^(.*?)\s*\((https?:\/\/[^\s)]+)\)$/);
+    if (parenMatch) {
+      return { localNum, title: parenMatch[1].trim(), url: parenMatch[2].trim() };
+    }
+    const spaceMatch = rest.match(/^(.*?)\s+(https?:\/\/\S+)$/);
+    if (spaceMatch) {
+      return { localNum, title: spaceMatch[1].trim(), url: spaceMatch[2].trim() };
+    }
+    if (/^https?:\/\/\S+$/.test(rest)) {
+      return { localNum, title: '', url: rest };
+    }
+    return { localNum, title: rest, url: '' };
+  }
+
+  // 4. ReferenceCollector：全局信源收集器（URL 规范化去重、单调递增编号、文末标准渲染）
+  class ReferenceCollector {
+    constructor() {
+      this.allRefs = [];              // array of { num, title, url }
+      this.urlToNum = new Map();      // normalizedUrl -> num
+      this.nextNum = 1;
+    }
+
+    add(title, rawUrl) {
+      const norm = normalizeRefUrl(rawUrl);
+      const cleanTitle = (title || '').trim();
+      if (norm && this.urlToNum.has(norm)) {
+        const num = this.urlToNum.get(norm);
+        // 如果原有条目缺 title，而新传入有有效 title，则补充 title
+        const existing = this.allRefs.find((r) => r.num === num);
+        if (existing && (!existing.title || existing.title === existing.url) && cleanTitle && cleanTitle !== norm) {
+          existing.title = cleanTitle;
+        }
+        return num;
+      }
+      const num = this.nextNum++;
+      if (norm) {
+        this.urlToNum.set(norm, num);
+      }
+      this.allRefs.push({
+        num,
+        title: cleanTitle,
+        url: norm || (rawUrl ? String(rawUrl).trim() : '')
+      });
+      return num;
+    }
+
+    get(rawUrl) {
+      const norm = normalizeRefUrl(rawUrl);
+      return norm ? this.urlToNum.get(norm) : undefined;
+    }
+
+    hasReferences() {
+      return this.allRefs.length > 0;
+    }
+
+    render() {
+      if (this.allRefs.length === 0) return [];
+      const lines = ['### References', ''];
+      for (const r of this.allRefs) {
+        lines.push(formatRefLine(r.num, r.title, r.url));
+      }
+      lines.push('');
+      return lines;
+    }
+  }
+
+  // =============================================================
+  //  🧩  PLATFORM_ADAPTERS — 平台适配器
+  //  =============================================================
+  //  LLM 注意: 新增供应商 = 在这里 push 一个适配器对象。
+  //  接口定义（PlatformAdapter @typedef）不要改，否则所有适配器都要修。
+  //  每个适配器必须实现全部 4 个方法。
+  //  =============================================================
+
+  /**
+   * @typedef {Object} PlatformAdapter
+   * @property {string}   id                        - 平台唯一标识
+   * @property {string}   name                      - 平台显示名称
+   * @property {()=>boolean} detect                 - 检测当前是否为此平台
+   * @property {()=>string|null} getCurrentConversationId - 当前对话 ID（列表页返回 null）
+   * @property {(onProgress?:(n:number)=>void)=>Promise<Array>} getAllConversations
+   * @property {(id:string)=>Promise<Object>} getConversationDetails
+   * @property {((data:Object, title:string)=>string)=} toMarkdown - [可选] 将对话数据转为 Markdown 字符串
+   */
+
+  /** @type {PlatformAdapter[]} */
+  const PLATFORM_ADAPTERS = [
+
+    // ═══════════════════════════════════════════════════════
+    //  ADAPTER[m365]  M365 Copilot
+    // ═══════════════════════════════════════════════════════
+    // LLM 注意: 完整实现。API 端点、请求头、数据清洗全封装在这里。
+    {
+      id: 'm365',
+      name: 'M365 Copilot',
+      detect: () => window.location.hostname === 'copilot.cloud.microsoft'
+        || window.location.hostname === 'm365.cloud.microsoft',
+
+      getCurrentConversationId: () => {
+        const match = window.location.pathname.match(/^\/chat\/conversation\/([^\/?]+)/);
+        return match ? match[1] : null;
+      },
+
+      async getAllConversations(onProgress) {
+        let allChats = [];
+        let syncState = '';
+        const limit = CONFIG.DEBUG_LIMIT || Infinity;
+
+        while (allChats.length < limit) {
+          const result = await this._fetchPage(syncState, allChats);
+          if (!result || !result.chats) break;
+          if (result.chats.length <= allChats.length) break;
+          allChats = result.chats;
+          syncState = result.syncState || '';
+          if (onProgress) onProgress(allChats.length);
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        return allChats
+          .map((c) => ({
+            id: c.conversationId || '',
+            title: (c.chatName || '').trim(),
+            createTimeUtc: c.createTimeUtc,
+            updateTimeUtc: c.updateTimeUtc,
+            tone: c.tone,
+            path: c.path,
+          }))
+          .filter((c) => c.id);
+      },
+
+      async getConversationDetails(id) {
+        const url = `/chat/conversation/${id}?auth=2`;
+        const resp = await fetch(url, {
+          headers: {
+            'accept': 'application/json',
+            'x-route-id': 'chat-history',
+            'x-slim-rehydration': 'true',
+            'x-host-context': JSON.stringify({
+              clientPlatform: 'web',
+              hostName: 'officeweb',
+              appName: 'SSR',
+              appMode: 'default',
+            }),
+          },
+        });
+        if (!resp.ok) throw new Error(`API ${resp.status}: ${resp.statusText}`);
+        return resp.json();
+      },
+
+      /** 将 M365 聊天数据转为 Markdown */
+      toMarkdown(data, title, convId) {
+        const rcr = data?.store?.rawConversationResponse;
+        if (!rcr) throw new Error('未找到 rawConversationResponse');
+
+        const tone = rcr.tone || 'unknown';
+        const createTimeMs = rcr.createTimeUtc;
+        const timeStr = createTimeMs
+          ? formatLocalTime(new Date(createTimeMs))
+          : 'unknown';
+        const convUrl = convId
+          ? `https://copilot.cloud.microsoft/chat/conversation/${convId}?auth=2`
+          : 'https://copilot.cloud.microsoft';
+
+        const lines = [];
+        lines.push(`# ${title}`);
+        lines.push('');
+        lines.push('## Metadata');
+        lines.push('');
+        lines.push('- **Model:** `' + tone + '`');
+        lines.push(`- **Time:** ${timeStr}`);
+        lines.push(`- **URL:** ${convUrl}`);
+        lines.push('');
+        lines.push('## Conversation');
+        lines.push('');
+
+        const messages = rcr.messages || [];
+
+
+        // ---- 第一遍：收集引用，按 URL 去重全局编号 ----
+        const refCollector = new ReferenceCollector();
+        const refKeyToNum = new Map(); // refKey → 编号
+
+        // 每条最终回复消息的引用映射
+        const msgCitationMap = new Map(); // msgIndex → Map<refKey, globalNum>
+
+        for (let i = 0; i < messages.length; i++) {
+          const msg = messages[i];
+          if (!this._isFinalResponse(msg)) continue;
+          const text = this._getResponseText(msg);
+          if (!text) continue;
+
+          const refs = msg.references || {};
+          const foundKeys = [...text.matchAll(/【([^】]+)】/g)].map(m => m[1]);
+          const uniqueKeys = [...new Set(foundKeys)];
+          const localMap = new Map();
+
+          for (const key of uniqueKeys) {
+            if (!refKeyToNum.has(key)) {
+              const refInfo = refs[key];
+              if (refInfo && refInfo.targetLink) {
+                const link = refInfo.targetLink;
+                const title = refInfo.title || '';
+                const gn = refCollector.add(title, link);
+                refKeyToNum.set(key, gn);
+              } else {
+                refKeyToNum.set(key, null);
+              }
+            }
+            const gn = refKeyToNum.get(key);
+            if (gn !== null && gn !== undefined) {
+              localMap.set(key, gn);
+            }
+          }
+          msgCitationMap.set(i, localMap);
+        }
+
+        // ---- 第二遍：生成正文 ----
+        for (let i = 0; i < messages.length; i++) {
+          const msg = messages[i];
+          const author = msg.author;
+
+          if (author === 'user') {
+            const text = (msg.text || '').trim();
+            if (!text) continue;
+            lines.push('### 🧑‍💻 User');
+            lines.push('');
+            lines.push(stripHashes(text));
+            lines.push('');
+
+          } else if (author === 'bot') {
+            if (this._isThinkingMsg(msg)) continue;
+            const responseText = this._getResponseText(msg);
+            if (!responseText) continue;
+
+            // 收集同 turn 的思考过程
+            const turn = msg.turnCount;
+            const thoughts = [];
+            for (let j = i - 1; j >= 0 && messages[j].turnCount === turn; j--) {
+              if (this._isThinkingMsg(messages[j])) {
+                const t = (messages[j].text || '').trim();
+                if (t) thoughts.unshift(t);
+              }
+            }
+
+            // 替换引用
+            const citeMap = msgCitationMap.get(i) || new Map();
+            let cleaned = responseText.replace(/【([^】]+)】/g, (_, key) => {
+              const n = citeMap.get(key);
+              return n !== undefined && n !== null ? `[${n}]` : '';
+            });
+
+            lines.push('### 🤖 Assistant');
+            lines.push('');
+
+            if (thoughts.length > 0) {
+              lines.push('#### 🤔 Thought Process');
+              lines.push('');
+              for (const t of thoughts) {
+                lines.push(stripHashes(t));
+                lines.push('');
+              }
+              lines.push('#### 💡 Response');
+              lines.push('');
+            }
+
+            lines.push(stripHashes(cleaned));
+            lines.push('');
+          }
+        }
+
+        // ---- References ----
+        if (refCollector.hasReferences()) {
+          lines.push(...refCollector.render());
+        }
+
+        return lines.join('\n');
+      },
+
+      // ---- 内部辅助方法 ----
+      _isThinkingMsg(msg) {
+        return msg.messageType === 'Progress'
+          || msg.addToChainOfThought === true
+          || msg.contentType === 'SearchResults';
+      },
+
+      _isFinalResponse(msg) {
+        if (msg.author !== 'bot') return false;
+        if (this._isThinkingMsg(msg)) return false;
+        return this._getResponseText(msg) !== null;
+      },
+
+      _getResponseText(msg) {
+        try {
+          return msg.adaptiveCards[0].body[0].text;
+        } catch (e) {
+          return null;
+        }
+      },
+
+      // M365 专用：列表分页请求（XHR，因为 fetch 在这个接口上有坑）
+      _fetchPage(syncState, existingChats) {
+        return new Promise((resolve, reject) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open('POST', '/chat', true);
+          xhr.setRequestHeader('accept', 'application/json');
+          xhr.setRequestHeader('content-type', 'application/json');
+          xhr.setRequestHeader('x-route-id', 'chat');
+          xhr.setRequestHeader('x-host-context', JSON.stringify({
+            clientPlatform: 'web', hostName: 'officeweb', appName: 'SSR', appMode: 'default',
+          }));
+          xhr.onload = () => {
+            if (xhr.status >= 200 && xhr.status < 300) {
+              try {
+                resolve(JSON.parse(xhr.responseText).store?.conversationPageHistoryList ?? null);
+              } catch (e) {
+                reject(new Error('解析列表API响应失败: ' + e.message));
+              }
+            } else {
+              reject(new Error(`列表API ${xhr.status}: ${xhr.statusText}`));
+            }
+          };
+          xhr.onerror = () => reject(new Error('列表API 网络错误'));
+          xhr.send(JSON.stringify({
+            action: 'GetConversationPageHistoryList',
+            syncState: syncState || '',
+            enableLastMessage: true,
+            conversationHistoryFilter: null,
+            state: {
+              conversationPageHistoryList: {
+                chats: existingChats || [],
+                syncState: syncState || '',
+              },
+            },
+          }));
+        });
+      },
+    },
+
+    // ═══════════════════════════════════════════════════════
+    //  ADAPTER[ima]  腾讯 ima 知识库
+    // ═══════════════════════════════════════════════════════
+    // 列表 /cgi-bin/history/get_history_list（cursor 翻页）
+    // 详情 /cgi-bin/session_logic/get_session（仅返回最近 msgs_limit≤20 轮）
+    // 鉴权：localStorage['ima-universal-local-storage-accountInfo'] → x-ima-cookie
+    {
+      id: 'ima',
+      name: '腾讯 ima 知识库',
+      detect: () => window.location.hostname === 'ima.qq.com',
+
+      getCurrentConversationId: () => {
+        const m = window.location.pathname.match(/^\/chat\/([^\/?]+)/)
+          || window.location.search.match(/[?&]sessionId=([^&]+)/);
+        return m ? m[1] : null;
+      },
+
+      /** 从 localStorage 读取登录态 */
+      _account() {
+        try {
+          return JSON.parse(localStorage.getItem('ima-universal-local-storage-accountInfo')) || {};
+        } catch (e) {
+          return {};
+        }
+      },
+
+      /** 组装 x-ima-cookie 头（token 字段与服务端校验一致） */
+      _imaCookie() {
+        const a = this._account();
+        return 'PLATFORM=H5; CLIENT-TYPE=256053; WEB-VERSION=999.999.999; '
+          + 'IMA-GUID=' + (a.guid || '') + '; '
+          + 'IMA-Q36=' + String(a.guid || '').replace(/^guid-/, '') + '; '
+          + 'IMA-IUA=' + navigator.userAgent + '; '
+          + 'IMA-UID=' + (a.userId || '') + '; '
+          + 'IMA-TOKEN=' + (a.token || '') + '; '
+          + 'IMA-REFRESH-TOKEN=' + (a.refreshToken || '') + '; '
+          + 'UID-TYPE=' + (a.idType ?? '') + '; '
+          + 'TOKEN-TYPE=' + (a.tokenType ?? '');
+      },
+
+      _headers() {
+        return {
+          'content-type': 'application/json',
+          'from_browser_ima': '1',
+          'extension_version': '999.999.999',
+          'x-ima-cookie': this._imaCookie(),
+        };
+      },
+
+      async getAllConversations(onProgress) {
+        const all = [];
+        let cursor = '';
+        const limit = CONFIG.DEBUG_LIMIT || Infinity;
+
+        while (all.length < limit) {
+          const r = await fetch('/cgi-bin/history/get_history_list', {
+            method: 'POST',
+            headers: this._headers(),
+            body: JSON.stringify({
+              limit: 20,
+              filter: 3,
+              cursor: cursor || '',
+              conditions: [{ type: 1, relate_type_condition: { not: false, relate_types: [] } }],
+            }),
+          });
+          if (!r.ok) throw new Error(`列表API ${r.status}: ${r.statusText}`);
+          const body = await r.json();
+          if (body.code !== 0) throw new Error(`列表API code ${body.code}: ${body.msg || ''}`);
+
+          const items = (body.histories || [])
+            .map((h) => h.ai_session)
+            .filter((s) => s && s.id)
+            .map((s) => ({
+              id: s.id,
+              title: (s.title || '').trim(),
+              update_ts: s.update_ts,
+            }));
+          if (!items.length) break;
+
+          all.push(...items);
+          if (onProgress) onProgress(all.length);
+
+          if (body.is_end) break;
+          cursor = body.next_cursor || '';
+          if (!cursor) break;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        return all.slice(0, limit);
+      },
+
+      async getConversationDetails(id) {
+        const r = await fetch('/cgi-bin/session_logic/get_session', {
+          method: 'POST',
+          headers: this._headers(),
+          body: JSON.stringify({ session_id: id, msgs_limit: 20 }),
+        });
+        if (!r.ok) throw new Error(`详情API ${r.status}: ${r.statusText}`);
+        const body = await r.json();
+        if (body.code !== 0) throw new Error(`详情API code ${body.code}: ${body.msg || ''}`);
+
+        const session = body.session || {};
+        // 标题兜底：name 为空时取第一条提问（getChatTitle 读 data.session.title）
+        session.title = (session.name || '').trim()
+          || this._firstQuestion(session)
+          || '';
+        return body;
+      },
+
+      _firstQuestion(session) {
+        for (const m of session.msgs || []) {
+          const q = m?.qa_msg?.question?.text;
+          if (q && q.trim()) return q.trim();
+        }
+        return '';
+      },
+
+      /** 将 ima 聊天数据转为 Markdown */
+      toMarkdown(data, title, convId) {
+        const session = data?.session || {};
+        const msgs = this._collectMessages(data);
+
+        const timeStr = session.update_ts
+          ? formatLocalTime(new Date(Number(session.update_ts)))
+          : 'unknown';
+        const convUrl = convId ? `https://ima.qq.com/chat/${convId}` : 'https://ima.qq.com';
+
+        const lines = [];
+        lines.push('## Metadata');
+        lines.push('');
+        lines.push('- **Model:** `' + this._modelName(msgs) + '`');
+        lines.push(`- **Time:** ${timeStr}`);
+        lines.push(`- **URL:** ${convUrl}`);
+        lines.push('');
+        lines.push('## Conversation');
+        lines.push('');
+
+
+        // ---- 第一遍：收集每条消息的引用编号 [N](@ref) → 全局编号（按 URL 去重） ----
+        const refCollector = new ReferenceCollector();
+        const msgCiteMap = new Map();  // msgIndex → Map<localNum, globalNum>
+
+        for (let i = 0; i < msgs.length; i++) {
+          const fa = msgs[i]?.qa_msg?.format_answer || {};
+          const text = this._assistantText(fa);
+          if (!text) continue;
+          const medias = this._parseMedias(fa);
+          const nums = [...new Set([...text.matchAll(/\[(\d+)\]\(@ref\)/g)].map(m => Number(m[1])))];
+          const localMap = new Map();
+          for (const n of nums) {
+            const mItem = medias[n - 1];
+            const url = mItem?.jumpUrl || '';
+            if (!url) continue;
+            const gn = refCollector.add(mItem?.title || '', url);
+            localMap.set(n, gn);
+          }
+          msgCiteMap.set(i, localMap);
+        }
+
+        // ---- 第二遍：生成正文 ----
+        for (let i = 0; i < msgs.length; i++) {
+          const q = msgs[i]?.qa_msg || {};
+          const question = (q.question?.text || q.question?.processed_text || '').trim();
+          if (!question) continue;
+
+          lines.push('### 🧑\u200d💻 User');
+          lines.push('');
+          lines.push(stripHashes(question));
+          lines.push('');
+
+          const fa = q.format_answer || {};
+          const responseText = this._assistantText(fa);
+          if (!responseText) continue;
+
+          const citeMap = msgCiteMap.get(i) || new Map();
+          const cleaned = responseText.replace(/\[(\d+)\]\(@ref\)/g, (_, n) => {
+            const gn = citeMap.get(Number(n));
+            return gn !== undefined ? `[${gn}]` : '';
+          });
+
+          lines.push('### 🤖 Assistant');
+          lines.push('');
+
+          const thinking = this._thinkingText(fa);
+          if (thinking) {
+            lines.push('#### 🤔 Thought Process');
+            lines.push('');
+            lines.push(stripHashes(thinking));
+            lines.push('');
+            lines.push('#### 💡 Response');
+            lines.push('');
+          }
+
+          lines.push(stripHashes(cleaned));
+          lines.push('');
+        }
+
+        // ---- References ----
+        if (refCollector.hasReferences()) {
+          lines.push(...refCollector.render());
+        }
+
+        return lines.join('\n');
+      },
+
+      // ---- 内部辅助方法 ----
+      _collectMessages(data) {
+        const out = [];
+        const pushSession = (s) => { if (s && Array.isArray(s.msgs)) out.push(...s.msgs); };
+        pushSession(data?.session);
+        for (const cs of data?.child_sessions || []) pushSession(cs);
+        // 按消息时间正序
+        return out.sort((a, b) =>
+          (Number(a?.qa_msg?.create_ts) || 0) - (Number(b?.qa_msg?.create_ts) || 0)
+        );
+      },
+
+      _modelName(msgs) {
+        for (const m of msgs) {
+          try {
+            const qaStart = JSON.parse(m?.qa_msg?.format_answer?.qa_start || '{}');
+            if (qaStart?.title) return qaStart.title;
+          } catch (e) { /* 忽略 */ }
+        }
+        return 'ima';
+      },
+
+      _assistantText(fa) {
+        try {
+          const parsed = JSON.parse(fa?.answer || '');
+          if (parsed && typeof parsed.Text === 'string') return parsed.Text;
+        } catch (e) { /* 忽略 */ }
+        return '';
+      },
+
+      _thinkingText(fa) {
+        try {
+          const parsed = JSON.parse(fa?.thinking || '');
+          if (parsed && typeof parsed.Message === 'string') return parsed.Message.trim();
+        } catch (e) { /* 忽略 */ }
+        return '';
+      },
+
+      _parseMedias(fa) {
+        try {
+          const sm = typeof fa?.search_medias === 'string'
+            ? JSON.parse(fa.search_medias)
+            : (fa?.search_medias || {});
+          return Array.isArray(sm?.medias) ? sm.medias : [];
+        } catch (e) {
+          return [];
+        }
+      },
+    },
+
+    // ═══════════════════════════════════════════════════════
+    //  ADAPTER[zai]  Z.ai (GLM)
+    // ═══════════════════════════════════════════════════════
+    // 列表 GET /api/v1/chats/?page=N&type=default（纯数组，翻到空页结束）
+    // 详情 GET /api/v1/chats/<id> → 消息树（含全部消息 id，无分页）
+    // 正文 POST /api/v1/chats/<id>/messages/batch {ids} → 消息内容 map（可大批量）
+    // 鉴权：localStorage['token'] → authorization: Bearer <jwt>，x-region: overseas
+    {
+      id: 'zai',
+      name: 'Z.ai',
+      detect: () => window.location.hostname === 'chat.z.ai',
+
+      getCurrentConversationId: () => {
+        const match = window.location.pathname.match(/^\/c\/([^\/?]+)/);
+        return match ? match[1] : null;
+      },
+
+      /** 从 localStorage 读取 JWT */
+      _token() {
+        try {
+          return localStorage.getItem('token') || '';
+        } catch (e) {
+          return '';
+        }
+      },
+
+      _headers() {
+        return {
+          'accept': 'application/json',
+          'content-type': 'application/json',
+          'x-region': 'overseas',
+          ...(this._token() ? { 'authorization': 'Bearer ' + this._token() } : {}),
+        };
+      },
+
+      async getAllConversations(onProgress) {
+        const all = [];
+        let page = 1;
+        const limit = CONFIG.DEBUG_LIMIT || Infinity;
+
+        while (all.length < limit) {
+          const r = await fetch(`/api/v1/chats/?page=${page}&type=default`, { headers: this._headers() });
+          if (!r.ok) throw new Error(`列表API ${r.status}: ${r.statusText}`);
+          const items = await r.json();
+          if (!Array.isArray(items) || !items.length) break;  // 空页 = 没有更多
+
+          const mapped = items
+            .map((c) => ({
+              id: c.id || '',
+              title: (c.title || '').trim(),
+              updated_at: c.updated_at,
+              created_at: c.created_at,
+            }))
+            .filter((c) => c.id);
+          if (!mapped.length) break;
+
+          all.push(...mapped);
+          if (onProgress) onProgress(all.length);
+
+          page++;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        return all.slice(0, limit);
+      },
+
+      async getConversationDetails(id) {
+        const r = await fetch(`/api/v1/chats/${id}`, { headers: this._headers() });
+        if (!r.ok) throw new Error(`详情API ${r.status}: ${r.statusText}`);
+        const body = await r.json();
+
+        // 收集全部消息 id（活动链 + 根节点兜底，与前端一致）
+        const tree = body?.chat?.history?.messages || {};
+        const ids = this._collectMessageIds(tree, body?.chat?.history?.currentId);
+        const contents = await this._fetchMessageContents(id, ids);
+
+        // 消息正文挂到返回体（toMarkdown 读 data.messages）
+        body.messages = contents;
+        return body;
+      },
+
+      /** 消息树 → 全部 id：沿 currentId 的父链回退 + 无父节点的根 */
+      _collectMessageIds(tree, currentId) {
+        const set = new Set();
+        let cur = currentId;
+        while (cur && !set.has(cur)) {
+          set.add(cur);
+          cur = tree[cur]?.parentId || null;
+        }
+        for (const m of Object.values(tree)) {
+          if (m && !m.parentId) set.add(m.id);
+        }
+        return [...set];
+      },
+
+      /** 批量拉消息正文（每批 100 个 id，防止超长会话单次过大） */
+      async _fetchMessageContents(id, ids) {
+        const out = {};
+        const CHUNK = 100;
+        for (let i = 0; i < ids.length; i += CHUNK) {
+          const slice = ids.slice(i, i + CHUNK);
+          const r = await fetch(`/api/v1/chats/${id}/messages/batch`, {
+            method: 'POST',
+            headers: this._headers(),
+            body: JSON.stringify({ ids: slice }),
+          });
+          if (!r.ok) throw new Error(`消息API ${r.status}: ${r.statusText}`);
+          const d = await r.json();
+          Object.assign(out, d.data || {});
+          if (i + CHUNK < ids.length) await sleep(CONFIG.API_PAGE_DELAY);
+        }
+        return out;
+      },
+
+      /** 活动链（currentId → 根 反转 = 时间正序）；异常时退回按时间排序 */
+      _activeChain(tree, currentId) {
+        const chain = [];
+        const seen = new Set();
+        let cur = currentId;
+        while (cur && !seen.has(cur)) {
+          seen.add(cur);
+          chain.push(cur);
+          cur = tree[cur]?.parentId || null;
+        }
+        chain.reverse();
+        if (!chain.length) {
+          return Object.values(tree)
+            .filter((m) => m && m.id)
+            .sort((a, b) => (a.timestamp || 0) - (b.timestamp || 0))
+            .map((m) => m.id);
+        }
+        return chain;
+      },
+
+      /** 将 Z.ai 聊天数据转为 Markdown */
+      toMarkdown(data, title, convId) {
+        const chat = data?.chat || {};
+        const tree = chat.history?.messages || {};
+        const contents = data?.messages || {};
+        const chain = this._activeChain(tree, chat.history?.currentId);
+        if (!chain.length) throw new Error('未找到消息数据');
+
+        const models = chat.models || data?.meta?.models || [];
+        const model = (Array.isArray(models) && models[0]) || 'glm';
+        const timeStr = data.updated_at
+          ? formatLocalTime(new Date(Number(data.updated_at) * 1000))
+          : 'unknown';
+        const convUrl = convId ? `https://chat.z.ai/c/${convId}` : 'https://chat.z.ai';
+
+        const lines = [];
+        lines.push('## Metadata');
+        lines.push('');
+        lines.push('- **Model:** `' + model + '`');
+        lines.push(`- **Time:** ${timeStr}`);
+        lines.push(`- **URL:** ${convUrl}`);
+        lines.push('');
+        lines.push('## Conversation');
+        lines.push('');
+
+
+        // ---- 第一遍：引用编号【turnNsearchM】→ 全局编号（按 URL 去重） ----
+        const refCollector = new ReferenceCollector();
+        const msgCiteMap = new Map();  // msgId → Map<refId, globalNum>
+
+        for (const mid of chain) {
+          const blocks = contents[mid]?.content_blocks || [];
+          const text = this._textBlock(blocks);
+          if (!text) continue;
+          const refMap = this._toolRefs(blocks);  // refId → {title, url}
+          const keys = [...new Set([...text.matchAll(/【(turn\d+search\d+)】/g)].map(x => x[1]))];
+          const localMap = new Map();
+          for (const key of keys) {
+            const ref = refMap.get(key);
+            if (!ref || !ref.url) continue;
+            const gn = refCollector.add(ref.title || '', ref.url);
+            localMap.set(key, gn);
+          }
+          msgCiteMap.set(mid, localMap);
+        }
+
+        // ---- 第二遍：生成正文 ----
+        for (const mid of chain) {
+          const m = contents[mid] || {};
+          const role = m.role || tree[mid]?.role;
+          const blocks = m.content_blocks || [];
+
+          if (role === 'user') {
+            const text = (m.content || '').trim();
+            if (!text) continue;
+            lines.push('### 🧑\u200d💻 User');
+            lines.push('');
+            lines.push(stripHashes(text));
+            lines.push('');
+
+          } else if (role === 'assistant') {
+            const responseText = this._textBlock(blocks);
+            if (!responseText) continue;
+
+            const citeMap = msgCiteMap.get(mid) || new Map();
+            const cleaned = responseText.replace(/【(turn\d+search\d+)】/g, (_, key) => {
+              const gn = citeMap.get(key);
+              return gn !== undefined ? `[${gn}]` : '';
+            });
+
+            lines.push('### 🤖 Assistant');
+            lines.push('');
+
+            const thinking = this._reasoningText(blocks);
+            if (thinking) {
+              lines.push('#### 🤔 Thought Process');
+              lines.push('');
+              lines.push(stripHashes(thinking));
+              lines.push('');
+              lines.push('#### 💡 Response');
+              lines.push('');
+            }
+
+            lines.push(stripHashes(cleaned));
+            lines.push('');
+          }
+          // system / tool 消息不导出
+        }
+
+        // ---- References ----
+        if (refCollector.hasReferences()) {
+          lines.push(...refCollector.render());
+        }
+
+        return lines.join('\n');
+      },
+
+      // ---- 内部辅助方法 ----
+      _textBlock(blocks) {
+        const b = (blocks || []).find((x) => x.type === 'text');
+        const text = (b?.content || '').trim();
+        return text;
+      },
+
+      _reasoningText(blocks) {
+        return (blocks || [])
+          .filter((x) => x.type === 'reasoning')
+          .map((x) => (x.content || '').trim())
+          .filter(Boolean)
+          .join('\n\n');
+      },
+
+      /** tool_calls results → refId → {title, url} */
+      _toolRefs(blocks) {
+        const map = new Map();
+        for (const b of blocks || []) {
+          if (b.type !== 'tool_calls') continue;
+          for (const res of b.results || []) {
+            // results[].content 里可能拼接了多个 [ref_id=...] 块，需要 matchAll
+            const re = /\[ref_id=(turn\d+search\d+)†([^†]*)†([^\]]+)\]/g;
+            let mm;
+            while ((mm = re.exec(res.content || '')) !== null) {
+              map.set(mm[1], { title: mm[2].trim(), url: mm[3].trim() });
+            }
+          }
+        }
+        return map;
+      },
+    },
+
+    // ═══════════════════════════════════════════════════════
+    //  ADAPTER[chatglm]  ChatGLM (智谱清言)
+    // ═══════════════════════════════════════════════════════
+    // 列表 POST /chatglm/mainchat-api/conversation/recent_list {page,page_size}
+    // 详情 GET /chatglm/mainchat-api/conversation/messages?assistant_id&conversation_id
+    // 鉴权：cookie chatglm_token → authorization: Bearer；另需 x-sign 签名
+    //   x-sign = md5(ts-nonce-8a1317a7468aa3ad86e997d08f3f31cb)
+    //   ts = Date.now() 字符串倒数第 2 位替换为 (数字和-该位)%10；nonce = uuid4 去横线
+    {
+      id: 'chatglm',
+      name: 'ChatGLM',
+      detect: () => window.location.hostname === 'chatglm.cn',
+
+      getCurrentConversationId: () => {
+        const m = window.location.search.match(/[?&]cid=([^&]+)/);
+        return m ? m[1] : null;
+      },
+
+      /** cookie chatglm_token → JWT */
+      _token() {
+        try {
+          const m = document.cookie.match(/(?:^|;\s*)chatglm_token=([^;]+)/);
+          return m ? m[1] : '';
+        } catch (e) {
+          return '';
+        }
+      },
+
+      /** 设备 id：32 位 hex（服务端仅校验格式），首次生成后持久化 */
+      _deviceId() {
+        const gen = () => {
+          let id = '';
+          const chars = '0123456789abcdef';
+          for (let i = 0; i < 32; i++) id += chars[Math.floor(Math.random() * 16)];
+          return id;
+        };
+        try {
+          let id = localStorage.getItem('afterchat-chatglm-device-id');
+          if (!id || !/^[0-9a-f]{32}$/i.test(id)) {
+            id = gen();
+            localStorage.setItem('afterchat-chatglm-device-id', id);
+          }
+          return id;
+        } catch (e) {
+          return gen();
+        }
+      },
+
+      /** 生成签名所需的 {ts, nonce, sign}（与前端一致） */
+      _sign() {
+        const A = String(Date.now());
+        const e = A.length;
+        const digits = A.split('').map((c) => Number(c));
+        const t = digits.reduce((s, d) => s + d, 0) - digits[e - 2];
+        const ts = A.substring(0, e - 2) + (t % 10) + A.substring(e - 1, e);
+        let nonce = '';
+        try {
+          nonce = (crypto.randomUUID ? crypto.randomUUID() : 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx')
+            .replace(/-/g, '');
+        } catch (err) {
+          const chars = '0123456789abcdef';
+          for (let i = 0; i < 32; i++) nonce += chars[Math.floor(Math.random() * 16)];
+        }
+        const sign = this._md5(`${ts}-${nonce}-8a1317a7468aa3ad86e997d08f3f31cb`);
+        return { ts, nonce, sign };
+      },
+
+      _headers() {
+        const s = this._sign();
+        return {
+          'accept': 'application/json, text/plain, */*',
+          'authorization': 'Bearer ' + this._token(),
+          'app-name': 'chatglm',
+          'x-app-platform': 'pc',
+          'x-app-version': '0.0.1',
+          'x-app-fr': 'default',
+          'x-lang': 'zh',
+          'x-device-id': this._deviceId(),
+          'x-request-id': s.nonce,
+          'x-timestamp': s.ts,
+          'x-nonce': s.nonce,
+          'x-sign': s.sign,
+          'x-exp-groups': this._expGroups(),
+        };
+      },
+
+      _expGroups() {
+        try {
+          return localStorage.getItem('trialGroup') || '';
+        } catch (e) {
+          return '';
+        }
+      },
+
+      async getAllConversations(onProgress) {
+        const all = [];
+        let page = 1;
+        const limit = CONFIG.DEBUG_LIMIT || Infinity;
+
+        while (all.length < limit) {
+          const r = await fetch('/chatglm/mainchat-api/conversation/recent_list', {
+            method: 'POST',
+            headers: { ...this._headers(), 'content-type': 'application/json;charset=utf-8' },
+            body: JSON.stringify({ page, page_size: 20 }),
+          });
+          if (!r.ok) throw new Error(`列表API ${r.status}: ${r.statusText}`);
+          const body = await r.json();
+          if (body.status !== 0) throw new Error(`列表API status ${body.status}: ${body.message || ''}`);
+
+          const list = body.result?.conversation_list || [];
+          if (!list.length) break;
+          for (const c of list) {
+            all.push({
+              id: c.conversation_id || '',
+              title: (c.title || '').trim(),
+              assistant_id: c.assistant_id,
+              update_time: c.update_time,
+              history_total: c.history_total,
+            });
+          }
+          if (onProgress) onProgress(all.length);
+
+          if (!body.result?.has_more) break;
+          page++;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        return all.filter((c) => c.id).slice(0, limit);
+      },
+
+      /** 从列表查找会话元信息（assistant_id / title / update_time） */
+      async _findConversation(id) {
+        let page = 1;
+        while (page <= 50) {
+          const r = await fetch('/chatglm/mainchat-api/conversation/recent_list', {
+            method: 'POST',
+            headers: { ...this._headers(), 'content-type': 'application/json;charset=utf-8' },
+            body: JSON.stringify({ page, page_size: 50 }),
+          });
+          if (!r.ok) throw new Error(`列表API ${r.status}: ${r.statusText}`);
+          const body = await r.json();
+          const list = body.result?.conversation_list || [];
+          const hit = list.find((c) => c.conversation_id === id);
+          if (hit) {
+            return {
+              assistant_id: hit.assistant_id,
+              title: (hit.title || '').trim(),
+              update_time: hit.update_time,
+            };
+          }
+          if (!body.result?.has_more || !list.length) break;
+          page++;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+        throw new Error(`未在列表中找到会话 ${id}`);
+      },
+
+      async getConversationDetails(id) {
+        const meta = await this._findConversation(id);
+        const r = await fetch(
+          `/chatglm/mainchat-api/conversation/messages?assistant_id=${encodeURIComponent(meta.assistant_id)}&conversation_id=${encodeURIComponent(id)}`,
+          { headers: this._headers() }
+        );
+        if (!r.ok) throw new Error(`详情API ${r.status}: ${r.statusText}`);
+        const body = await r.json();
+        if (body.status !== 0) throw new Error(`详情API status ${body.status}: ${body.message || ''}`);
+
+        return {
+          conversation_id: id,
+          assistant_id: meta.assistant_id,
+          title: meta.title,
+          update_time: meta.update_time,
+          messages: body.result?.messages || [],
+        };
+      },
+
+      /** 将 ChatGLM 聊天数据转为 Markdown */
+      toMarkdown(data, title, convId) {
+        const messages = data?.messages || [];
+        if (!messages.length) throw new Error('未找到消息数据');
+
+        const convUrl = convId ? `https://chatglm.cn/main/alltoolsdetail?cid=${convId}` : 'https://chatglm.cn';
+        const timeStr = data.update_time
+          ? formatLocalTime(new Date(Number(data.update_time) * 1000))
+          : 'unknown';
+
+        // 模型：取最后一条助手消息的 text block 模型
+        let model = 'glm';
+        outer: for (let i = messages.length - 1; i >= 0; i--) {
+          const parts = messages[i]?.output?.parts || [];
+          for (const p of parts) {
+            for (const c of p.content || []) {
+              if (c.type === 'text' && c.text && p.model) {
+                model = p.model;
+                break outer;
+              }
+            }
+          }
+        }
+
+        const lines = [];
+        lines.push('## Metadata');
+        lines.push('');
+        lines.push('- **Model:** `' + model + '`');
+        lines.push(`- **Time:** ${timeStr}`);
+        lines.push(`- **URL:** ${convUrl}`);
+        lines.push('');
+        lines.push('## Conversation');
+        lines.push('');
+
+
+        // ---- 第一遍：收集引用编号【turnNsearchM】→ 全局编号（按 URL 去重） ----
+        const refCollector = new ReferenceCollector();
+        const msgCiteMap = new Map();  // 消息下标 → Map<refKey, globalNum>
+
+        for (let i = 0; i < messages.length; i++) {
+          const ap = this._assistantParts(messages[i]);
+          const responseText = ap.texts.join('\n');
+          if (!responseText) continue;
+          const keys = [...new Set([...responseText.matchAll(/【(turn\d+search\d+)】/g)].map(x => x[1]))];
+          const localMap = new Map();
+          for (const key of keys) {
+            const ref = ap.refMap.get(key);
+            if (!ref || !ref.url) continue;
+            const gn = refCollector.add(ref.title || '', ref.url);
+            localMap.set(key, gn);
+          }
+          msgCiteMap.set(i, localMap);
+        }
+
+        // ---- 第二遍：生成正文 ----
+        for (let i = 0; i < messages.length; i++) {
+          const m = messages[i];
+          const inputText = (m.input?.content || [])
+            .map((c) => c.text || '')
+            .join('\n')
+            .trim();
+          if (!inputText) continue;
+
+          lines.push('### 🧑\u200d💻 User');
+          lines.push('');
+          lines.push(stripHashes(inputText));
+          lines.push('');
+
+          const ap = this._assistantParts(m);
+          const responseText = ap.texts.join('\n');
+          if (!responseText) continue;
+
+          const citeMap = msgCiteMap.get(i) || new Map();
+          const cleaned = responseText.replace(/【(turn\d+search\d+)】/g, (_, key) => {
+            const gn = citeMap.get(key);
+            return gn !== undefined ? `[${gn}]` : '';
+          });
+          // 思考文本里的引用标记也一并替换（保持与正文一致的编号）
+          const citeReplacer = (_, key) => {
+            const gn = citeMap.get(key);
+            return gn !== undefined ? `[${gn}]` : '';
+          };
+          const cleanThoughts = ap.thoughts.map((t) => t.replace(/【(turn\d+search\d+)】/g, citeReplacer));
+
+          lines.push('### 🤖 Assistant');
+          lines.push('');
+
+          if (cleanThoughts.length) {
+            lines.push('#### 🤔 Thought Process');
+            lines.push('');
+            lines.push(stripHashes(cleanThoughts.join('\n\n')));
+            lines.push('');
+            lines.push('#### 💡 Response');
+            lines.push('');
+          }
+
+          lines.push(stripHashes(cleaned));
+          lines.push('');
+        }
+
+        // ---- References ----
+        if (refCollector.hasReferences()) {
+          lines.push(...refCollector.render());
+        }
+
+        return lines.join('\n');
+      },
+
+      // ---- 内部辅助方法 ----
+      /** 解析一条消息的助手输出：thoughts / texts / refMap / 模型 */
+      _assistantParts(m) {
+        const parts = m?.output?.parts || [];
+        const thoughts = [];
+        const texts = [];
+        const refMap = new Map();
+        let model = '';
+        for (const p of parts) {
+          for (const c of p.content || []) {
+            if (c.type === 'think' && c.think) {
+              thoughts.push(c.think.trim());
+            } else if (c.type === 'text' && c.text) {
+              texts.push(c.text.trim());
+              if (p.model) model = p.model;
+            } else if (c.type === 'tool_result') {
+              // 搜索结果在 part 级 meta_data.tool_result_extra.search_results，match_key 对应正文【turnNsearchM】
+              for (const sr of p.meta_data?.tool_result_extra?.search_results || []) {
+                if (sr.match_key && sr.url) {
+                  refMap.set(sr.match_key, { title: sr.title || '', url: sr.url });
+                }
+              }
+            }
+          }
+        }
+        // 思考链原样保留（ChatGLM 模型喜欢先在心里答一遍，不去重）
+        return { thoughts, texts, refMap, model, parts };
+      },
+
+      // ---- MD5（RFC1321 风格公开实现，Public Domain）----
+      _md5(s) {
+        function md5cycle(x, k) {
+          var a = x[0], b = x[1], c = x[2], d = x[3];
+          a = ff(a, b, c, d, k[0], 7, -680876936); d = ff(d, a, b, c, k[1], 12, -389564586); c = ff(c, d, a, b, k[2], 17, 606105819); b = ff(b, c, d, a, k[3], 22, -1044525330);
+          a = ff(a, b, c, d, k[4], 7, -176418897); d = ff(d, a, b, c, k[5], 12, 1200080426); c = ff(c, d, a, b, k[6], 17, -1473231341); b = ff(b, c, d, a, k[7], 22, -45705983);
+          a = ff(a, b, c, d, k[8], 7, 1770035416); d = ff(d, a, b, c, k[9], 12, -1958414417); c = ff(c, d, a, b, k[10], 17, -42063); b = ff(b, c, d, a, k[11], 22, -1990404162);
+          a = ff(a, b, c, d, k[12], 7, 1804603682); d = ff(d, a, b, c, k[13], 12, -40341101); c = ff(c, d, a, b, k[14], 17, -1502002290); b = ff(b, c, d, a, k[15], 22, 1236535329);
+          a = gg(a, b, c, d, k[1], 5, -165796510); d = gg(d, a, b, c, k[6], 9, -1069501632); c = gg(c, d, a, b, k[11], 14, 643717713); b = gg(b, c, d, a, k[0], 20, -373897302);
+          a = gg(a, b, c, d, k[5], 5, -701558691); d = gg(d, a, b, c, k[10], 9, 38016083); c = gg(c, d, a, b, k[15], 14, -660478335); b = gg(b, c, d, a, k[4], 20, -405537848);
+          a = gg(a, b, c, d, k[9], 5, 568446438); d = gg(d, a, b, c, k[14], 9, -1019803690); c = gg(c, d, a, b, k[3], 14, -187363961); b = gg(b, c, d, a, k[8], 20, 1163531501);
+          a = gg(a, b, c, d, k[13], 5, -1444681467); d = gg(d, a, b, c, k[2], 9, -51403784); c = gg(c, d, a, b, k[7], 14, 1735328473); b = gg(b, c, d, a, k[12], 20, -1926607734);
+          a = hh(a, b, c, d, k[5], 4, -378558); d = hh(d, a, b, c, k[8], 11, -2022574463); c = hh(c, d, a, b, k[11], 16, 1839030562); b = hh(b, c, d, a, k[14], 23, -35309556);
+          a = hh(a, b, c, d, k[1], 4, -1530992060); d = hh(d, a, b, c, k[4], 11, 1272893353); c = hh(c, d, a, b, k[7], 16, -155497632); b = hh(b, c, d, a, k[10], 23, -1094730640);
+          a = hh(a, b, c, d, k[13], 4, 681279174); d = hh(d, a, b, c, k[0], 11, -358537222); c = hh(c, d, a, b, k[3], 16, -722521979); b = hh(b, c, d, a, k[6], 23, 76029189);
+          a = hh(a, b, c, d, k[9], 4, -640364487); d = hh(d, a, b, c, k[12], 11, -421815835); c = hh(c, d, a, b, k[15], 16, 530742520); b = hh(b, c, d, a, k[2], 23, -995338651);
+          a = ii(a, b, c, d, k[0], 6, -198630844); d = ii(d, a, b, c, k[7], 10, 1126891415); c = ii(c, d, a, b, k[14], 15, -1416354905); b = ii(b, c, d, a, k[5], 21, -57434055);
+          a = ii(a, b, c, d, k[12], 6, 1700485571); d = ii(d, a, b, c, k[3], 10, -1894986606); c = ii(c, d, a, b, k[10], 15, -1051523); b = ii(b, c, d, a, k[1], 21, -2054922799);
+          a = ii(a, b, c, d, k[8], 6, 1873313359); d = ii(d, a, b, c, k[15], 10, -30611744); c = ii(c, d, a, b, k[6], 15, -1560198380); b = ii(b, c, d, a, k[13], 21, 1309151649);
+          a = ii(a, b, c, d, k[4], 6, -145523070); d = ii(d, a, b, c, k[11], 10, -1120210379); c = ii(c, d, a, b, k[2], 15, 718787259); b = ii(b, c, d, a, k[9], 21, -343485551);
+          x[0] = add32(a, x[0]); x[1] = add32(b, x[1]); x[2] = add32(c, x[2]); x[3] = add32(d, x[3]);
+        }
+        function cmn(q, a, b, x, s, t) { a = add32(add32(a, q), add32(x, t)); return add32(a << s | a >>> (32 - s), b); }
+        function ff(a, b, c, d, x, s, t) { return cmn(b & c | ~b & d, a, b, x, s, t); }
+        function gg(a, b, c, d, x, s, t) { return cmn(b & d | c & ~d, a, b, x, s, t); }
+        function hh(a, b, c, d, x, s, t) { return cmn(b ^ c ^ d, a, b, x, s, t); }
+        function ii(a, b, c, d, x, s, t) { return cmn(c ^ (b | ~d), a, b, x, s, t); }
+        function md51(s) {
+          var n = s.length, state = [1732584193, -271733879, -1732584194, 271733878], i;
+          for (i = 64; i <= s.length; i += 64) { md5cycle(state, md5blk(s.substring(i - 64, i))); }
+          s = s.substring(i - 64);
+          var tail = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+          for (i = 0; i < s.length; i++) tail[i >> 2] |= s.charCodeAt(i) << (i % 4 << 3);
+          tail[i >> 2] |= 0x80 << (i % 4 << 3);
+          if (i > 55) { md5cycle(state, tail); tail = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; }
+          tail[14] = n * 8;
+          md5cycle(state, tail);
+          return state;
+        }
+        function md5blk(s) {
+          var md5blks = [], i;
+          for (i = 0; i < 64; i += 4) md5blks[i >> 2] = s.charCodeAt(i) + (s.charCodeAt(i + 1) << 8) + (s.charCodeAt(i + 2) << 16) + (s.charCodeAt(i + 3) << 24);
+          return md5blks;
+        }
+        function rhex(n) { var s = '', j; for (j = 0; j < 4; j++) s += hex_chr[n >> (j * 8 + 4) & 15] + hex_chr[n >> (j * 8) & 15]; return s; }
+        function hex(x) { for (var i = 0; i < x.length; i++) x[i] = rhex(x[i]); return x.join(''); }
+        function add32(a, b) { return a + b & 4294967295; }
+        var hex_chr = '0123456789abcdef'.split('');
+        return hex(md51(s));
+      },
+    },
+
+    // ═══════════════════════════════════════════════════════
+    //  ADAPTER[duck]  DuckDuckGo AI Chat (duck.ai)
+    // ═══════════════════════════════════════════════════════
+    // 无后端 API：聊天记录全部存在浏览器 IndexedDB（库 savedAIChatData，仓库 saved-chats）。
+    // 会话 key = chatId；另有 `__metadata__` 元数据项需跳过。
+    // duck.ai 没有每会话独立 URL（始终 https://duck.ai/），但打开会话时 duck 会把
+    // 该会话标题写入 document.title（首页/未开会话时是固定站点名）。
+    // 于是用 document.title 当「定位串」反查 IndexedDB：打开会话=单条导出，首页=全部导出。
+    {
+      id: 'duck',
+      name: 'DuckDuckGo AI Chat',
+      detect: () => window.location.hostname === 'duck.ai',
+
+      getCurrentConversationId: () => {
+        // 1. 若处于未开始对话的新聊天/首页状态（存在模式卡片入口），视为首页（全部导出）
+        try {
+          if (
+            typeof document !== 'undefined' &&
+            document.querySelector &&
+            document.querySelector('[data-testid="mode-entry-points"]')
+          ) {
+            return null;
+          }
+        } catch (_) {}
+
+        const t = (document.title || '').trim();
+        // 2. 首页/未打开任何会话时的固定标题（各语言版本均为 Duck.ai 开头并包含 DuckDuckGo，
+        //    如 EN: Duck.ai by DuckDuckGo. Private AI chat. Free.
+        //    或 ZH: Duck.ai 是由 DuckDuckGo 提供的免费人工智能聊天/私聊工具。）
+        if (!t || /^Duck\.ai.*DuckDuckGo/i.test(t)) return null;
+
+        return 't:' + t;   // 会话打开中：标题即定位串
+      },
+
+      /** 打开 IndexedDB */
+      _openDb() {
+        return new Promise((resolve, reject) => {
+          try {
+            const req = indexedDB.open('savedAIChatData');
+            req.onsuccess = () => resolve(req.result);
+            req.onerror = () => reject(new Error('打开 IndexedDB 失败: ' + (req.error?.message || 'unknown')));
+          } catch (e) {
+            reject(e);
+          }
+        });
+      },
+
+      /** 读一个 key 的值 */
+      _get(db, key) {
+        return new Promise((resolve, reject) => {
+          const req = db.transaction('saved-chats', 'readonly').objectStore('saved-chats').get(key);
+          req.onsuccess = () => resolve(req.result);
+          req.onerror = () => reject(new Error('IndexedDB 读取失败: ' + (req.error?.message || 'unknown')));
+        });
+      },
+
+      /** 用户/助手消息正文：字符串，或带图会话的 { text, images[] } 对象 */
+      _contentText(content) {
+        if (typeof content === 'string') return content;
+        if (content && typeof content === 'object' && typeof content.text === 'string') return content.text;
+        return '';
+      },
+
+      /**
+       * 用户消息里的图片：只有云端 URL 的才导出为 ![name](url)；
+       * duck 的图存在本地 IndexedDB（chat-images 仓库）没有可引用 URL，按约定直接丢弃。
+       */
+      _userImageMarkdown(content) {
+        if (!content || typeof content !== 'object' || !Array.isArray(content.images)) return '';
+        const parts = [];
+        for (const img of content.images) {
+          if (!img || typeof img.url !== 'string' || !/^https?:\/\//i.test(img.url)) continue;
+          parts.push(`![${img.name || 'image'}](${img.url})`);
+        }
+        return parts.join('\n\n');
+      },
+
+      /** 所有 key（排除元数据项） */
+      _allKeys(db) {
+        return new Promise((resolve, reject) => {
+          const req = db.transaction('saved-chats', 'readonly').objectStore('saved-chats').getAllKeys();
+          req.onsuccess = () => resolve(req.result.filter((k) => k !== '__metadata__'));
+          req.onerror = () => reject(new Error('IndexedDB 读 key 失败: ' + (req.error?.message || 'unknown')));
+        });
+      },
+
+      async getAllConversations(onProgress) {
+        const db = await this._openDb();
+        try {
+          const keys = await this._allKeys(db);
+          const out = [];
+          for (const k of keys) {
+            const chat = await this._get(db, k);
+            if (!chat) continue;
+            out.push({
+              id: chat.chatId || k,
+              title: (chat.title || '').trim(),
+              model: chat.model || '',
+              lastEdit: chat.lastEdit || null,
+            });
+          }
+          if (onProgress) onProgress(out.length);
+          return out;
+        } finally {
+          db.close();
+        }
+      },
+
+      async getConversationDetails(id) {
+        const db = await this._openDb();
+        try {
+          // 单条导出：入参是 't:'+标题 定位串 → 按标题反查
+          if (typeof id === 'string' && id.startsWith('t:')) {
+            const title = id.slice(2);
+            const chat = await this._findByTitle(db, title);
+            if (!chat) {
+              throw new Error('本地记录里找不到标题为「' + title + '」的会话（可能还没保存，先发一条消息再试）');
+            }
+            return chat;
+          }
+          // 全部导出：入参是 chatId（IndexedDB key）
+          const chat = await this._get(db, id);
+          if (!chat) throw new Error('IndexedDB 中未找到会话 ' + id);
+          return chat;
+        } finally {
+          db.close();
+        }
+      },
+
+      /** 标题归一化：两侧用同一规则对齐后再比（去零宽/压缩空白/去省略号尾巴/小写） */
+      _normTitle(s) {
+        return (s || '')
+          .replace(/\u200b/g, '')
+          .replace(/[ \u00a0\t]+/g, ' ')
+          .trim()
+          .replace(/[…]{1,4}$/, '')
+          .toLowerCase();
+      },
+
+      /** 按标题在 saved-chats 里反查会话：对齐后精确匹配；多条同名取 lastEdit 最新 */
+      async _findByTitle(db, title) {
+        const want = this._normTitle(title);
+        if (!want) return null;
+        let best = null;
+        for (const k of await this._allKeys(db)) {
+          const chat = await this._get(db, k);
+          if (!chat) continue;
+          if (this._normTitle(chat.title) !== want) continue;
+          const tCur = normalizeTimestamp(chat.lastEdit) || 0;
+          const tBest = normalizeTimestamp(best?.lastEdit) || 0;
+          if (!best || tCur > tBest) best = chat;
+        }
+        return best;
+      },
+
+      /** 将 duck.ai 聊天数据转为 Markdown */
+      toMarkdown(data, title, convId) {
+        const messages = data?.messages || [];
+        if (!messages.length) throw new Error('未找到消息数据');
+
+        const model = data.model || '';
+        const timeStr = data.lastEdit
+          ? formatLocalTime(new Date(data.lastEdit))
+          : 'unknown';
+        // duck.ai 无每会话 URL
+        const convUrl = 'https://duck.ai/';
+
+        const lines = [];
+        lines.push('## Metadata');
+        lines.push('');
+        lines.push('- **Model:** `' + (model || 'duck.ai') + '`');
+        lines.push(`- **Time:** ${timeStr}`);
+        lines.push(`- **URL:** ${convUrl}`);
+        lines.push('');
+        lines.push('## Conversation');
+        lines.push('');
+
+
+        // ---- 第一遍：收集每条助手消息的引用 <citation src="1,2"> → 全局编号（按 URL 去重） ----
+        const refCollector = new ReferenceCollector();
+        const msgCiteMap = new Map();  // 消息下标 → Map<localNum, globalNum>
+
+        for (let i = 0; i < messages.length; i++) {
+          if (messages[i]?.role !== 'assistant') continue;
+          const { responseText, sources } = this._assistantParts(messages[i]);
+          if (!responseText) continue;
+          const localMap = new Map();
+          const re = /<citation src="([0-9,\s]+)"><\/citation>/g;
+          let m;
+          while ((m = re.exec(responseText)) !== null) {
+            for (const nStr of m[1].split(',')) {
+              const n = Number(nStr.trim());
+              if (!n || localMap.has(n)) continue;
+              const src = sources[n - 1];
+              const url = src?.source?.url || '';
+              if (!url) continue;
+              const gn = refCollector.add(src?.source?.title || '', url);
+              localMap.set(n, gn);
+            }
+          }
+          msgCiteMap.set(i, localMap);
+        }
+
+        // ---- 第二遍：生成正文 ----
+        for (let i = 0; i < messages.length; i++) {
+          const msg = messages[i];
+
+          if (msg.role === 'user') {
+            const text = this._contentText(msg.content).trim();
+            const images = this._userImageMarkdown(msg.content);
+            if (!text && !images) continue;
+            lines.push('### 🧑\u200d💻 User');
+            lines.push('');
+            if (images) {
+              lines.push(images);
+              lines.push('');
+            }
+            if (text) {
+              lines.push(stripHashes(text));
+              lines.push('');
+            }
+
+          } else if (msg.role === 'assistant') {
+            const { responseText, thoughts } = this._assistantParts(msg);
+            if (!responseText) continue;
+
+            const citeMap = msgCiteMap.get(i) || new Map();
+            const cleaned = responseText.replace(/<citation src="([0-9,\s]+)"><\/citation>/g, (_, nums) => {
+              return nums.split(',')
+                .map((nStr) => {
+                  const gn = citeMap.get(Number(nStr.trim()));
+                  return gn !== undefined ? `[${gn}]` : '';
+                })
+                .join('');
+            });
+
+            lines.push('### 🤖 Assistant');
+            lines.push('');
+
+            if (thoughts.length) {
+              lines.push('#### 🤔 Thought Process');
+              lines.push('');
+              lines.push(stripHashes(thoughts.join('\n\n')));
+              lines.push('');
+              lines.push('#### 💡 Response');
+              lines.push('');
+            }
+
+            lines.push(stripHashes(cleaned));
+            lines.push('');
+          }
+        }
+
+        // ---- References ----
+        if (refCollector.hasReferences()) {
+          lines.push(...refCollector.render());
+        }
+
+        return lines.join('\n');
+      },
+
+      // ---- 内部辅助方法 ----
+      /** 解析助手消息：reasoning→thoughts，text→正文，source→引用源（按出现顺序 1-based） */
+      _assistantParts(msg) {
+        const thoughts = [];
+        const sources = [];
+        let responseText = '';
+        for (const p of msg?.parts || []) {
+          if (!p) continue;
+          if (p.type === 'reasoning' && typeof p.text === 'string' && p.text) {
+            thoughts.push(p.text.trim());
+          } else if (p.type === 'text' && typeof p.text === 'string' && p.text) {
+            responseText = p.text.trim();
+          } else if (p.type === 'source') {
+            sources.push(p);
+          }
+          // tool-invocation 等中间产物跳过
+        }
+        if (!responseText) {
+          responseText = this._contentText(msg?.content).trim();
+        }
+        return { thoughts, sources, responseText };
+      },
+    },
+
+    // ═══════════════════════════════════════════════════════
+    //  ADAPTER[pplx]  Perplexity
+    // ═══════════════════════════════════════════════════════
+    // LLM 注意: 列表走 /rest/thread/list_recent（无分页，一次返回全部）；
+    // 详情走 /rest/thread/{uuid}（schematized 响应：每条 entry 的 blocks 里
+    // ask_text.markdown_block 是正文，web_results.web_result_block 是引用源）。
+    {
+      id: 'pplx',
+      name: 'Perplexity',
+      detect: () => window.location.hostname === 'www.perplexity.ai',
+
+      getCurrentConversationId: () => {
+        const match = window.location.pathname.match(/\/search\/([a-f0-9-]{36}|[^\/?#]+)/i);
+        return match ? match[1] : null;
+      },
+
+      _projectCache: {},
+
+      _fetchProjectMeta(projectId) {
+        if (!projectId || (this._projectCache && this._projectCache[projectId])) return;
+        this._projectFetching = this._projectFetching || new Set();
+        if (this._projectFetching.has(projectId)) return;
+        this._projectFetching.add(projectId);
+        const urlProj = `/rest/collections/get_collection?collection_slug=${encodeURIComponent(projectId)}&version=2.18&source=default`;
+        fetch(urlProj, {
+          headers: this._threadHeaders(urlProj),
+          credentials: 'include',
+        }).then(async (r) => {
+          if (!r.ok) return;
+          const body = await r.json().catch(() => null);
+          const name = body?.title?.trim();
+          if (name) {
+            this._projectCache = this._projectCache || {};
+            this._projectCache[projectId] = name;
+          }
+        }).catch(() => {}).finally(() => {
+          this._projectFetching.delete(projectId);
+        });
+      },
+
+      getCurrentProject() {
+        // 匹配项目/空间文件夹主页: /projects/{id}、/collections/{id}、/spaces/{id}（当不在具体会话 /search/ 时）
+        const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
+        if (pathname.includes('/search/')) return null;
+        const m = pathname.match(/^\/(?:projects|collections|spaces)\/([0-9a-f-]{36}|[0-9a-z_-]{10,})/i);
+        if (!m) return null;
+        const id = m[1];
+        if (this._projectCache && this._projectCache[id]) {
+          return { id, name: this._projectCache[id] };
+        }
+        this._fetchProjectMeta(id);
+        return { id, name: '' };
+      },
+
+      async getProjectConversations(projectId, onProgress) {
+        let projectName = (this._projectCache && this._projectCache[projectId]) || '';
+        let collectionSlug = projectId;
+        try {
+          const urlProj = `/rest/collections/get_collection?collection_slug=${encodeURIComponent(projectId)}&version=2.18&source=default`;
+          const rProj = await fetch(urlProj, {
+            headers: this._threadHeaders(urlProj),
+            credentials: 'include',
+          });
+          if (rProj.ok) {
+            const pBody = await rProj.json();
+            projectName = pBody?.title?.trim() || projectName;
+            if (pBody?.slug) collectionSlug = pBody.slug;
+            if (projectName) {
+              this._projectCache = this._projectCache || {};
+              this._projectCache[projectId] = projectName;
+            }
+          }
+        } catch (e) {
+          console.warn('[AfterChat] 获取 Perplexity 项目详情失败:', e);
+        }
+
+        const conversations = [];
+        const seen = new Set();
+        const limit = CONFIG.DEBUG_LIMIT || Infinity;
+        let offset = 0;
+        const pageSize = 50;
+
+        while (conversations.length < limit) {
+          const q = new URLSearchParams({
+            collection_slug: collectionSlug,
+            limit: String(pageSize),
+            offset: String(offset),
+            filter_by_user: 'false',
+            filter_by_shared_threads: 'false',
+            include_user_and_shared_threads: 'true',
+            version: '2.18',
+            source: 'default',
+          });
+          const urlList = `/rest/collections/list_collection_threads?${q.toString()}`;
+          const rList = await fetch(urlList, {
+            headers: this._threadHeaders(urlList),
+            credentials: 'include',
+          });
+          if (!rList.ok) throw new Error(`Perplexity 项目列表接口 ${rList.status}: ${rList.statusText}`);
+          const list = await rList.json();
+          const items = Array.isArray(list) ? list : (list?.threads || list?.items || []);
+          if (!items.length) break;
+
+          for (const item of items) {
+            const threadId = item.uuid || item.slug || item.context_uuid;
+            if (!threadId || seen.has(threadId)) continue;
+            const itemCollectionId = item.collection?.uuid || item.collection_uuid;
+            if (itemCollectionId && itemCollectionId !== projectId) continue;
+
+            seen.add(threadId);
+            conversations.push({
+              id: threadId,
+              title: (item.title || item.query_str || '').trim(),
+              updated_at: item.last_query_datetime,
+              created_at: item.last_query_datetime,
+              project_id: projectId,
+            });
+            if (conversations.length >= limit) break;
+          }
+
+          if (onProgress) onProgress(conversations.length);
+          if (items.length < pageSize) break;
+          offset += items.length;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        return {
+          name: projectName || projectId,
+          conversations: conversations.slice(0, limit),
+        };
+      },
+
+      _threadHeaders(url) {
+        const fullUrl = url
+          ? (url.startsWith('http') ? url : (typeof window !== 'undefined' && window.location?.origin ? window.location.origin : 'https://www.perplexity.ai') + url)
+          : '';
+        const headers = {
+          'accept': 'application/json',
+          'x-app-apiclient': 'default',
+          'x-app-apiversion': '2.18',
+          'x-request-id':
+            typeof crypto !== 'undefined' && crypto.randomUUID
+              ? crypto.randomUUID()
+              : Math.random().toString(36).slice(2) + Date.now().toString(36),
+          'x-perplexity-request-reason': 'view-thread',
+          'x-perplexity-request-endpoint': fullUrl,
+        };
+        try {
+          const activeAccount = typeof sessionStorage !== 'undefined' ? sessionStorage.getItem('pplx-active-account') : null;
+          if (activeAccount) headers['x-pplx-account'] = activeAccount;
+        } catch (_) {}
+        return headers;
+      },
+
+      /** 详情接口查询串（与站点前端一致的最小参数集） */
+      _threadQuery(limit, offset, fromFirst) {
+        const p = new URLSearchParams();
+        p.set('with_parent_info', 'true');
+        p.set('with_schematized_response', 'true');
+        p.set('version', '2.18');
+        p.set('source', 'default');
+        p.set('limit', String(limit));
+        p.set('offset', String(offset));
+        p.set('from_first', String(fromFirst));
+        p.set('with_first_entry', 'false');
+        p.set('with_latest_entry', 'false');
+        for (const uc of ['answer_modes', 'search_result_widgets', 'preserve_latex']) {
+          p.append('supported_block_use_cases', uc);
+        }
+        return p;
+      },
+
+      /** ISO 时间串 → Date；无时区后缀时按 UTC 处理（thread_metadata 的时间不带偏移） */
+      _parseDate(str) {
+        if (!str) return null;
+        const hasTz = /(?:Z|[+-]\d{2}:\d{2})$/.test(str);
+        const d = new Date(hasTz ? str : str + 'Z');
+        return isNaN(d.getTime()) ? null : d;
+      },
+
+      /** GraphQL 端点（Apollo persisted query）：会话列表等 */
+      async _gql(operationName, variables, sha256Hash) {
+        const headers = { 'content-type': 'application/json', 'accept': '*/*' };
+        try {
+          const activeAccount = typeof sessionStorage !== 'undefined' ? sessionStorage.getItem('pplx-active-account') : null;
+          if (activeAccount) headers['x-pplx-account'] = activeAccount;
+        } catch (_) {}
+        const r = await fetch('/rest/perplexity_ask/graphql', {
+          method: 'POST',
+          headers,
+          credentials: 'include',
+          body: JSON.stringify({
+            operationName,
+            variables,
+            extensions: { persistedQuery: { version: 1, sha256Hash } },
+          }),
+        });
+        if (!r.ok) throw new Error(`API ${r.status}: ${r.statusText}`);
+        const data = await r.json();
+        if (data?.errors?.length) throw new Error(`GraphQL: ${data.errors[0]?.message || 'unknown error'}`);
+        return data;
+      },
+
+      // 站点已从 /rest/thread/list_recent 切到 GraphQL（SidebarRecentThreadsRelayQuery，
+      // Apollo persisted query）；旧接口现在恒返回 []，导致全部导出得到 0 条、
+      // startExportProcess 直接走 ui.done()，表现就是“点完直接对号”。
+      // 该连接只有 edges、无 pageInfo，after 游标也被忽略，故用较大的 first 一次取回。
+      async getAllConversations(onProgress) {
+        const HASH = '54fe025c6b86507e78086a4a1b11a39818b6102d3d7fb7bc6bf9f36f06c6669e';
+        const data = await this._gql('SidebarRecentThreadsRelayQuery', { first: 100 }, HASH);
+        const edges = data?.data?.viewer?.sidebarRecentThreads?.threads?.edges || [];
+        const limit = CONFIG.DEBUG_LIMIT || Infinity;
+        const result = edges
+          .map((e) => e?.node || {})
+          .map((n) => ({
+            id: n.entryId || '',
+            title: (n.name || '').trim(),
+            updated_at: n.updatedAt,
+            status: n.status,
+          }))
+          .filter((c) => c.id)
+          .slice(0, limit);
+        if (onProgress) onProgress(result.length);
+        return result;
+      },
+
+      async getConversationDetails(id) {
+        const limit = 50;
+        const allEntries = [];
+        let body = null;
+        let offset = 0;
+        let fromFirst = true;
+
+        for (let i = 0; i < 200; i++) {
+          const url = `/rest/thread/${id}?` + this._threadQuery(limit, offset, fromFirst);
+          const r = await fetch(url, {
+            headers: this._threadHeaders(url),
+            credentials: 'include',
+          });
+          if (!r.ok) throw new Error(`API ${r.status}: ${r.statusText}`);
+          body = await r.json();
+          allEntries.push(...(body.entries || []));
+          if (!body.has_next_page || !body.next_cursor) break;
+          offset = body.next_cursor;
+          fromFirst = false;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        // title 注入到 data.title（核心引擎 getChatTitle 的兜底链里有这个键）
+        return {
+          ...body,
+          entries: allEntries,
+          title: body?.thread_metadata?.title || allEntries[0]?.thread_title || '',
+        };
+      },
+
+      /** 将 Perplexity 聊天数据转为 Markdown */
+      toMarkdown(data, title, convId) {
+        const meta = data?.thread_metadata || {};
+        const entries = data?.entries || [];
+        const model = entries[0]?.display_model || meta.display_model || 'unknown';
+        const created = meta.created_at ? this._parseDate(meta.created_at) : null;
+        const timeStr = created ? formatLocalTime(created) : 'unknown';
+        const convUrl = convId
+          ? `https://www.perplexity.ai/search/${convId}`
+          : 'https://www.perplexity.ai';
+
+
+        const lines = [];
+        lines.push('## Metadata');
+        lines.push('');
+        lines.push('- **Model:** `' + model + '`');
+        lines.push(`- **Time:** ${timeStr}`);
+        lines.push(`- **URL:** ${convUrl}`);
+        lines.push('');
+        lines.push('## Conversation');
+        lines.push('');
+
+        // ---- 第一遍：收集各 entry 引用 [N]，建立全局递增映射（按 URL 去重） ----
+        const refCollector = new ReferenceCollector();
+        const entryCiteMap = new Map(); // entryIndex -> Map<localNum, globalNum>
+
+        for (let i = 0; i < entries.length; i++) {
+          const entry = entries[i];
+          const mb = entry?.blocks?.find((b) => b.markdown_block && b.intended_usage === 'ask_text');
+          const answer = mb?.markdown_block?.answer || '';
+          if (!answer) continue;
+
+          const wrBlock = entry?.blocks?.find((b) => b.web_result_block);
+          const webResults = wrBlock?.web_result_block?.web_results || [];
+          const citedNums = [...new Set(
+            [...answer.matchAll(/\[(\d+)\]/g)].map((m) => Number(m[1]))
+          )].filter((n) => Number.isInteger(n) && n >= 1 && n <= webResults.length)
+            .sort((a, b) => a - b);
+
+          const localMap = new Map();
+          for (const n of citedNums) {
+            const w = webResults[n - 1];
+            if (!w?.url) continue;
+            const title = w.name || w.title || '';
+            const gNum = refCollector.add(title, w.url);
+            localMap.set(n, gNum);
+          }
+          entryCiteMap.set(i, localMap);
+        }
+
+        for (let i = 0; i < entries.length; i++) {
+          const entry = entries[i];
+          const userText = entry?.query_str || '';
+          if (userText) {
+            lines.push('### 🧑‍💻 User');
+            lines.push('');
+            lines.push(stripHashes(userText));
+            lines.push('');
+          }
+
+          const mb = entry?.blocks?.find((b) => b.markdown_block && b.intended_usage === 'ask_text');
+          const answer = mb?.markdown_block?.answer || '';
+          if (!answer) continue;
+
+          const localMap = entryCiteMap.get(i) || new Map();
+          const cleanAnswer = answer.replace(/\[(\d+)\]/g, (orig, numStr) => {
+            const gNum = localMap.get(Number(numStr));
+            return gNum !== undefined ? `[${gNum}]` : orig;
+          });
+
+          lines.push('### 🤖 Assistant');
+          lines.push('');
+          lines.push(stripHashes(cleanAnswer));
+          lines.push('');
+        }
+
+        if (refCollector.hasReferences()) {
+          lines.push(...refCollector.render());
+        }
+
+        return lines.join('\n');
+      },
+    },
+
+    // ═══════════════════════════════════════════════════════
+    //  ADAPTER[deepseek]  DeepSeek Chat
+    // ═══════════════════════════════════════════════════════
+    {
+      id: 'deepseek',
+      name: 'DeepSeek Chat',
+      detect: () => window.location.hostname === 'chat.deepseek.com',
+
+      /** 从 localStorage 读取 Bearer token */
+      _token() {
+        try {
+          return JSON.parse(localStorage.getItem('userToken')).value;
+        } catch (e) {
+          return '';
+        }
+      },
+
+      _headers() {
+        return {
+          'authorization': 'Bearer ' + this._token(),
+          'x-client-platform': 'web',
+          'x-client-version': '2.2.0',
+        };
+      },
+
+      getCurrentConversationId: () => {
+        const match = window.location.pathname.match(/^\/a\/chat\/s\/([^\/?]+)/);
+        return match ? match[1] : null;
+      },
+
+      async getAllConversations(onProgress) {
+        const allSessions = [];
+        let cursor = '';
+        const limit = CONFIG.DEBUG_LIMIT || Infinity;
+
+        while (allSessions.length < limit) {
+          const url = cursor
+            ? `/api/v0/chat_session/fetch_page?lte_cursor.pinned=false&lte_cursor.updated_at=${cursor}`
+            : '/api/v0/chat_session/fetch_page';
+          const r = await fetch(url, { headers: this._headers() });
+          const body = await r.json();
+          const sessions = body?.data?.biz_data?.chat_sessions || [];
+          if (!sessions.length) break;
+
+          allSessions.push(...sessions);
+          if (onProgress) onProgress(allSessions.length);
+
+          const hasMore = body?.data?.biz_data?.has_more;
+          if (!hasMore) break;
+
+          cursor = sessions[sessions.length - 1].updated_at;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        return allSessions.slice(0, limit).map((s) => ({
+          id: s.id,
+          title: s.title || '',
+          model_type: s.model_type,
+          updated_at: s.updated_at,
+        }));
+      },
+
+      async getConversationDetails(id) {
+        const r = await fetch(`/api/v0/chat/history_messages?chat_session_id=${id}`, { headers: this._headers() });
+        const body = await r.json();
+        return body?.data?.biz_data || {};
+      },
+
+      /** 将 DeepSeek 聊天数据转为 Markdown */
+      toMarkdown(data, title, convId) {
+        const session = data?.chat_session || {};
+        const messages = data?.chat_messages || [];
+        const model = session.model_type || 'unknown';
+        const timeStr = session.inserted_at
+          ? formatLocalTime(new Date(session.inserted_at * 1000))
+          : 'unknown';
+        const convUrl = convId
+          ? `https://chat.deepseek.com/a/chat/s/${convId}`
+          : 'https://chat.deepseek.com';
+
+
+        // 第一遍：建立全局引用编号映射（按 URL 顺序去重注册）
+        const refCollector = new ReferenceCollector();
+        const getUrlNum = (url, title) => {
+          if (!url) return null;
+          return refCollector.add(title || '', url);
+        };
+
+        const msgCiteMaps = new Map();  // message_id → { refMap: Map(idx -> num), citeMap: Map(cite_idx -> num) }
+
+        for (const msg of messages) {
+          if (msg.role !== 'ASSISTANT') continue;
+          const fragments = msg.fragments || [];
+          const fragMap = new Map(fragments.map((f) => [f.id, f]));
+          const respFrag = fragments.find((f) => f.type === 'RESPONSE');
+          const refMap = new Map();
+          const citeMap = new Map();
+
+          // 1. 解析 respFrag.references（Tool 调用引用，如 TOOL_OPEN）
+          const references = respFrag?.references || msg.references || [];
+          references.forEach((ref, idx) => {
+            const target = fragMap.get(ref?.id);
+            const u = target?.result?.url;
+            const t = target?.result?.title || '';
+            if (u) {
+              refMap.set(idx, getUrlNum(u, t));
+            }
+          });
+
+          // 2. 解析 SEARCH / TOOL_SEARCH 中的 cite_index
+          for (const frag of fragments) {
+            if (frag.type === 'SEARCH' || frag.type === 'TOOL_SEARCH') {
+              for (const r of (frag.results || [])) {
+                if (r.cite_index !== undefined && r.cite_index !== null && r.cite_index !== '' && r.url) {
+                  citeMap.set(String(r.cite_index), getUrlNum(r.url, r.title || ''));
+                }
+              }
+            }
+          }
+
+          msgCiteMaps.set(msg.message_id, { refMap, citeMap });
+        }
+
+        const lines = [];
+        lines.push('## Metadata');
+        lines.push('');
+        lines.push('- **Model:** `deepseek-' + model + '`');
+        lines.push(`- **Time:** ${timeStr}`);
+        lines.push(`- **URL:** ${convUrl}`);
+        lines.push('');
+        lines.push('## Conversation');
+        lines.push('');
+
+        for (const msg of messages) {
+          const fragments = msg.fragments || [];
+
+          if (msg.role === 'USER') {
+            const reqFrag = fragments.find((f) => f.type === 'REQUEST');
+            const text = reqFrag?.content || '';
+            if (!text) continue;
+            lines.push('### 🧑\u200d💻 User');
+            lines.push('');
+            lines.push(stripHashes(text));
+            lines.push('');
+
+          } else if (msg.role === 'ASSISTANT') {
+            const respFrag = fragments.find((f) => f.type === 'RESPONSE');
+            const responseText = respFrag?.content || '';
+            if (!responseText) continue;
+
+            // 收集所有思考过程片段
+            const thoughts = fragments
+              .filter((f) => f.type === 'THINK' && f.content)
+              .map((f) => f.content.trim())
+              .filter(Boolean);
+            const thoughtText = thoughts.join('\n\n');
+
+            const { refMap, citeMap } = msgCiteMaps.get(msg.message_id) || { refMap: new Map(), citeMap: new Map() };
+
+            // 替换引用 [reference:N] 与 [citation:N]
+            let cleaned = responseText;
+            cleaned = cleaned.replace(/\[reference:(\d+)\]/g, (_, nStr) => {
+              const idx = parseInt(nStr, 10);
+              const num = refMap.get(idx);
+              return num ? `[${num}]` : '';
+            });
+            cleaned = cleaned.replace(/\[citation:(\d+)\]/g, (_, nStr) => {
+              const num = citeMap.get(nStr);
+              return num ? `[${num}]` : `[${nStr}]`;
+            });
+            // 去重连续相同的引用标记，如 [1][1] → [1]
+            cleaned = cleaned.replace(/(\[\d+\])(?:\s*\1)+/g, '$1');
+
+            lines.push('### 🤖 Assistant');
+            lines.push('');
+
+            if (thoughtText) {
+              lines.push('#### 🤔 Thought Process');
+              lines.push('');
+              lines.push(stripHashes(thoughtText));
+              lines.push('');
+              lines.push('#### 💡 Response');
+              lines.push('');
+            }
+
+            lines.push(stripHashes(cleaned));
+            lines.push('');
+          }
+        }
+
+        // References
+        if (refCollector.hasReferences()) {
+          lines.push(...refCollector.render());
+        }
+
+        return lines.join('\n');
+      },
+    },
+
+    // ═══════════════════════════════════════════════════════
+    //  ADAPTER[qwen]  通义千问
+    // ═══════════════════════════════════════════════════════
+    {
+      id: 'qwen',
+      name: '通义千问',
+      detect: () => window.location.hostname === 'chat.qwen.ai',
+
+      getCurrentConversationId: () => {
+        // 支持普通会话 /c/<uuid> 以及其他前缀模式 /a/chat/s/<uuid>
+        const m1 = window.location.pathname.match(/\/c\/([a-f0-9-]{36}|[^\/?#]+)/i);
+        if (m1) return m1[1];
+        const m2 = window.location.pathname.match(/\/a\/chat\/s\/([a-f0-9-]{36}|[^\/?#]+)/i);
+        if (m2) return m2[1];
+        return null;
+      },
+
+      _projectCache: {},
+
+      _fetchProjectMeta(projectId) {
+        if (!projectId || (this._projectCache && this._projectCache[projectId])) return;
+        this._projectFetching = this._projectFetching || new Set();
+        if (this._projectFetching.has(projectId)) return;
+        this._projectFetching.add(projectId);
+        fetch(`/api/v2/projects/${encodeURIComponent(projectId)}`, {
+          headers: { 'source': 'web' },
+        }).then(async (r) => {
+          if (!r.ok) return;
+          const body = await r.json().catch(() => null);
+          const name = body?.data?.name?.trim();
+          if (name) {
+            this._projectCache = this._projectCache || {};
+            this._projectCache[projectId] = name;
+          }
+        }).catch(() => {}).finally(() => {
+          this._projectFetching.delete(projectId);
+        });
+      },
+
+      getCurrentProject() {
+        // 匹配项目文件夹路径: /p/{projectId}（当不在具体会话 /c/ 页面时）
+        const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
+        if (pathname.includes('/c/') || pathname.includes('/a/chat/s/')) return null;
+        const m = pathname.match(/^\/p\/([0-9a-f-]{36}|[0-9a-z_-]{10,})/i);
+        if (!m) return null;
+        const id = m[1];
+        if (this._projectCache && this._projectCache[id]) {
+          return { id, name: this._projectCache[id] };
+        }
+        this._fetchProjectMeta(id);
+        return { id, name: '' };
+      },
+
+      async getProjectConversations(projectId, onProgress) {
+        let projectName = (this._projectCache && this._projectCache[projectId]) || '';
+        try {
+          const rProj = await fetch(`/api/v2/projects/${encodeURIComponent(projectId)}`, {
+            headers: { 'source': 'web' },
+          });
+          if (rProj.ok) {
+            const pBody = await rProj.json();
+            projectName = pBody?.data?.name?.trim() || projectName;
+            if (projectName) {
+              this._projectCache = this._projectCache || {};
+              this._projectCache[projectId] = projectName;
+            }
+          }
+        } catch (e) {
+          console.warn('[AfterChat] 获取通义千问项目详情失败:', e);
+        }
+
+        const conversations = [];
+        let page = 1;
+        const limit = CONFIG.DEBUG_LIMIT || Infinity;
+
+        while (conversations.length < limit) {
+          const url = `/api/v2/chats/?project_id=${encodeURIComponent(projectId)}&page=${page}`;
+          const r = await fetch(url, {
+            headers: { 'source': 'web' },
+          });
+          if (!r.ok) throw new Error(`通义千问项目会话列表API ${r.status}: ${r.statusText}`);
+          const body = await r.json();
+          const chats = body?.data || [];
+          if (!chats.length) break;
+
+          for (const c of chats) {
+            if (c.id) {
+              conversations.push({
+                id: c.id,
+                title: c.title || '',
+                updated_at: c.updated_at,
+                created_at: c.created_at,
+                chat_type: c.chat_type,
+                project_id: c.project_id || projectId,
+              });
+            }
+          }
+          if (onProgress) onProgress(conversations.length);
+
+          page++;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        return {
+          name: projectName || projectId,
+          conversations: conversations.slice(0, limit),
+        };
+      },
+
+      async getAllConversations(onProgress) {
+        const allChats = [];
+        let page = 1;
+        const limit = CONFIG.DEBUG_LIMIT || Infinity;
+
+        while (allChats.length < limit) {
+          const r = await fetch(`/api/v2/chats/?page=${page}&exclude_project=true`, {
+            headers: { 'source': 'web' },
+          });
+          const body = await r.json();
+          const chats = body?.data || [];
+          if (!chats.length) break;
+
+          allChats.push(...chats);
+          if (onProgress) onProgress(allChats.length);
+
+          page++;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        return allChats.slice(0, limit).map((c) => ({
+          id: c.id,
+          title: c.title || '',
+          updated_at: c.updated_at,
+          created_at: c.created_at,
+          chat_type: c.chat_type,
+        }));
+      },
+
+      async getConversationDetails(id) {
+        const r = await fetch(`/api/v2/chats/${id}`, {
+          headers: { 'source': 'web' },
+        });
+        const body = await r.json();
+        return body?.data || {};
+      },
+
+      toMarkdown(data, title, convId) {
+        const chat = data?.chat || {};
+        const messages = chat?.messages || [];
+
+        // 从第一条消息的 models 或 assistant 的 modelName 推断模型名
+        let modelName = 'unknown';
+        for (const msg of messages) {
+          if (msg.modelName) { modelName = msg.modelName; break; }
+          if (msg.models && Array.isArray(msg.models) && msg.models.length) {
+            modelName = msg.models[0]; break;
+          }
+        }
+
+        const timeStr = data?.created_at
+          ? formatLocalTime(new Date(data.created_at * 1000))
+          : 'unknown';
+        const convUrl = convId
+          ? `https://chat.qwen.ai/c/${convId}`
+          : 'https://chat.qwen.ai';
+
+        const lines = [];
+        lines.push('## Metadata');
+        lines.push('');
+        lines.push(`- **Model:** \`${modelName}\``);
+        lines.push(`- **Time:** ${timeStr}`);
+        lines.push(`- **URL:** ${convUrl}`);
+        lines.push('');
+        lines.push('## Conversation');
+        lines.push('');
+
+
+        for (const msg of messages) {
+          if (msg.role === 'user') {
+            const text = msg.content || '';
+            if (!text) continue;
+            lines.push('### 🧑‍💻 User');
+            lines.push('');
+            lines.push(stripHashes(text));
+            lines.push('');
+
+          } else if (msg.role === 'assistant') {
+            const thoughts = [];
+            const responses = [];
+            const pushUnique = (arr, text) => {
+              const t = (text || '').trim();
+              if (t && !arr.includes(t)) arr.push(t);
+            };
+
+            // 兼容旧字段：reasoning_content 非空时视为思考
+            pushUnique(thoughts, msg.reasoning_content);
+
+            if (msg.content_list && Array.isArray(msg.content_list)) {
+              for (const item of msg.content_list) {
+                const phase = String(item.phase || '').toLowerCase();
+                if (phase === 'think') {
+                  // 完整思维链：正文直接在 content
+                  pushUnique(thoughts, item.content);
+                } else if (phase === 'thinking_summary') {
+                  // 摘要形态：content 为空，内容在 extra.summary_title / extra.summary_thought
+                  const extra = item.extra || {};
+                  const titleArr = Array.isArray(extra.summary_title?.content) ? extra.summary_title.content : [];
+                  const thoughtArr = Array.isArray(extra.summary_thought?.content) ? extra.summary_thought.content : [];
+                  const parts = [];
+                  if (titleArr.length) parts.push(`**${titleArr.join(' ')}**`);
+                  for (const line of thoughtArr) {
+                    const t = String(line || '').trim();
+                    if (t) parts.push(`- ${t}`);
+                  }
+                  if (parts.length) pushUnique(thoughts, parts.join('\n'));
+                } else if (phase === 'answer') {
+                  pushUnique(responses, item.content);
+                }
+                // 其它 phase（web_search / image_gen_tool / 空）属于工具过程，不输出
+              }
+            } else {
+              pushUnique(responses, msg.content);
+            }
+
+            if (thoughts.length === 0 && responses.length === 0) continue;
+
+            lines.push('### 🤖 Assistant');
+            lines.push('');
+
+            if (thoughts.length) {
+              lines.push('#### 🤔 Thought Process');
+              lines.push('');
+              lines.push(stripHashes(thoughts.join('\n\n')));
+              lines.push('');
+              if (responses.length) {
+                lines.push('#### 💡 Response');
+                lines.push('');
+              }
+            }
+
+            if (responses.length) {
+              lines.push(stripHashes(responses.join('\n\n')));
+            }
+
+            lines.push('');
+          }
+        }
+
+        return lines.join('\n');
+      },
+    },
+
+    // ═══════════════════════════════════════════════════════
+    //  ADAPTER[qianwen]  千问 (qianwen.com)
+    // ═══════════════════════════════════════════════════════
+    {
+      id: 'qianwen',
+      name: '千问',
+      detect: () => window.location.hostname === 'www.qianwen.com',
+
+      getCurrentConversationId: () => {
+        const match = window.location.pathname.match(/^\/chat\/([^\/?]+)/);
+        return match ? match[1] : null;
+      },
+
+      _projectCache: {},
+
+      _fetchProjectMeta(groupId) {
+        if (!groupId || (this._projectCache && this._projectCache[groupId])) return;
+        this._projectFetching = this._projectFetching || new Set();
+        if (this._projectFetching.has(groupId)) return;
+        this._projectFetching.add(groupId);
+        this._request('/api/v1/session/group/list', {
+          method: 'POST',
+          body: {},
+        }).then((body) => {
+          const list = Array.isArray(body?.data) ? body.data : [];
+          for (const item of list) {
+            const gid = item.group_id;
+            const gname = (item.group_name || '').trim();
+            if (gid && gname) {
+              this._projectCache = this._projectCache || {};
+              this._projectCache[gid] = gname;
+            }
+          }
+        }).catch(() => {}).finally(() => {
+          this._projectFetching.delete(groupId);
+        });
+      },
+
+      getCurrentProject() {
+        const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
+        if (pathname.includes('/chat/')) return null;
+        const m = pathname.match(/^\/group\/([0-9a-f-]{32,36}|[0-9a-zA-Z_-]{8,})/i);
+        if (!m) return null;
+        const id = m[1];
+
+        // 1. 优先读取项目元数据缓存
+        if (this._projectCache && this._projectCache[id]) {
+          return { id, name: this._projectCache[id] };
+        }
+
+        // 2. 静默通过后端 /api/v1/session/group/list 接口预取分组名（严禁 DOM 探测）
+        this._fetchProjectMeta(id);
+
+        return { id, name: '' };
+      },
+
+      _deviceId() {
+        try {
+          const ls = typeof localStorage !== 'undefined' ? localStorage : null;
+          const existing = ls?.getItem('uc-stat-dn');
+          if (existing) return existing;
+          const cached = ls?.getItem('qianwen-exporter-device-id');
+          if (cached) return cached;
+          const generated = (typeof crypto !== 'undefined' && crypto.randomUUID)
+            ? crypto.randomUUID()
+            : `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+          ls?.setItem('qianwen-exporter-device-id', generated);
+          return generated;
+        } catch (e) {
+          return '';
+        }
+      },
+
+      _xsrfToken() {
+        try {
+          const doc = typeof document !== 'undefined' ? document : null;
+          const match = doc?.cookie?.match(/(?:^|; )XSRF-TOKEN=([^;]+)/);
+          return match ? decodeURIComponent(match[1]) : '';
+        } catch (e) {
+          return '';
+        }
+      },
+
+      _webVersion() {
+        try {
+          const perf = typeof performance !== 'undefined' ? performance : null;
+          const entries = perf?.getEntriesByType('resource') || [];
+          for (const entry of entries) {
+            const name = entry?.name || '';
+            const match = name.match(/\/qianwen-web\/(\d+\.\d+\.\d+)\//);
+            if (match) return match[1];
+          }
+        } catch (e) {}
+        return '4.0.7';
+      },
+
+      _baseUrl() {
+        return 'https://chat2-api.qianwen.com';
+      },
+
+      _commonParams(extra) {
+        const version = this._webVersion();
+        const nav = typeof navigator !== 'undefined' ? navigator : { language: 'zh-CN' };
+        let tz = 'Asia/Shanghai';
+        try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || 'Asia/Shanghai'; } catch (e) {}
+        return new URLSearchParams({
+          biz_id: 'ai_qwen',
+          chat_client: 'h5',
+          device: 'pc',
+          fr: 'pc',
+          pr: 'qwen',
+          ut: this._deviceId(),
+          la: nav.language || 'zh-CN',
+          tz,
+          wv: version,
+          ve: version,
+          ...(extra || {}),
+        });
+      },
+
+      _headers() {
+        const h = {
+          'accept': 'application/json',
+          'content-type': 'application/json',
+          'x-platform': 'pc_tongyi',
+        };
+        const token = this._xsrfToken();
+        const deviceId = this._deviceId();
+        if (token) h['x-xsrf-token'] = token;
+        if (deviceId) h['x-deviceid'] = deviceId;
+        return h;
+      },
+
+      async _request(path, options) {
+        const qs = this._commonParams(options?.query);
+        const url = `${this._baseUrl()}${path}?${qs.toString()}`;
+        const resp = await fetch(url, {
+          method: options?.method || 'GET',
+          credentials: 'include',
+          headers: this._headers(),
+          body: options?.body ? JSON.stringify(options.body) : undefined,
+        });
+        const text = await resp.text();
+        let body = null;
+        try { body = text ? JSON.parse(text) : {}; } catch (e) { body = { raw: text }; }
+        if (!resp.ok || body?.success === false || (body?.code !== undefined && body.code !== 0)) {
+          throw new Error(`Qianwen API ${resp.status}: ${body?.msg || body?.errorMsg || text.slice(0, 120)}`);
+        }
+        return body;
+      },
+
+      async getAllConversations(onProgress) {
+        const allChats = [];
+        const seen = new Set();
+        const limit = CONFIG.DEBUG_LIMIT || Infinity;
+        let nextToken = '';
+
+        while (allChats.length < limit) {
+          const body = await this._request('/api/v2/session/page/list', {
+            method: 'POST',
+            body: {
+              limit: 50,
+              next_token: nextToken,
+              sort_field: 'modifiedTime',
+              need_filter_tag: true,
+            },
+          });
+          const data = body?.data || {};
+          const sessions = Array.isArray(data.list) ? data.list : [];
+          let added = 0;
+          for (const session of sessions) {
+            const id = session.session_id || session.sessionId;
+            if (!id || seen.has(id)) continue;
+            seen.add(id);
+            allChats.push({
+              id,
+              title: session.title || session.summary || '',
+              created_at: session.created_at || session.createTime,
+              updated_at: session.updated_at || session.modifiedTime || session.last_req_timestamp,
+              qwen_session_type: session.qwen_session_type || session.sessionType,
+            });
+            added++;
+            if (allChats.length >= limit) break;
+          }
+
+          if (onProgress) onProgress(allChats.length);
+          nextToken = data.next_token || '';
+          if (!data.have_next_page || !nextToken || !sessions.length || !added) break;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        return allChats.slice(0, limit);
+      },
+
+      async getProjectConversations(projectId, onProgress) {
+        let projectName = (this._projectCache && this._projectCache[projectId]) || '';
+        if (!projectName) {
+          try {
+            const gResp = await this._request('/api/v1/session/group/list', {
+              method: 'POST',
+              body: {},
+            });
+            const list = Array.isArray(gResp?.data) ? gResp.data : [];
+            for (const item of list) {
+              const gid = item.group_id;
+              const gname = (item.group_name || '').trim();
+              if (gid && gname) {
+                this._projectCache = this._projectCache || {};
+                this._projectCache[gid] = gname;
+              }
+            }
+            if (this._projectCache[projectId]) {
+              projectName = this._projectCache[projectId];
+            }
+          } catch (e) {
+            console.warn('[AfterChat] 获取千问分组列表失败:', e);
+          }
+        }
+        projectName = projectName || `Project ${projectId}`;
+
+        const allChats = [];
+        const seen = new Set();
+        let nextToken = '';
+
+        while (true) {
+          const body = await this._request('/api/v2/session/page/list', {
+            method: 'POST',
+            body: {
+              limit: 50,
+              next_token: nextToken,
+              sort_field: 'modifiedTime',
+              group_id: projectId,
+            },
+          });
+          const data = body?.data || {};
+          const sessions = Array.isArray(data.list) ? data.list : [];
+          let added = 0;
+          for (const session of sessions) {
+            const id = session.session_id || session.sessionId;
+            if (!id || seen.has(id)) continue;
+            seen.add(id);
+            allChats.push({
+              id,
+              title: session.title || session.summary || id,
+              created_at: session.created_at || session.createTime,
+              updated_at: session.updated_at || session.modifiedTime || session.last_req_timestamp,
+              qwen_session_type: session.qwen_session_type || session.sessionType,
+            });
+            added++;
+          }
+
+          if (onProgress) onProgress(allChats.length);
+          nextToken = data.next_token || '';
+          if (!data.have_next_page || !nextToken || !sessions.length || !added) break;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        return {
+          id: projectId,
+          name: projectName,
+          conversations: allChats,
+        };
+      },
+
+      async getConversationDetails(id) {
+        const sessionResp = await this._request('/api/v1/session/get', {
+          method: 'POST',
+          body: { session_id: id },
+        });
+
+        const pageSize = 100;
+        const turns = [];
+        const seen = new Set();
+        let pos = '';
+        let page = 1;
+
+        while (true) {
+          const query = {
+            session_id: id,
+            page_size: String(pageSize),
+            page: String(page),
+            return_response_messages: 'true',
+            event_filter: 'all',
+          };
+          if (pos) query.pos = pos;
+          const msgResp = await this._request('/api/v1/session/msg/list', { method: 'GET', query });
+          const data = msgResp?.data || {};
+          const batch = Array.isArray(data.list) ? data.list : [];
+          let added = 0;
+          for (const turn of batch) {
+            const key = turn.req_id || turn.pos || JSON.stringify(turn.request_messages || []);
+            if (!key || seen.has(key)) continue;
+            seen.add(key);
+            turns.push(turn);
+            added++;
+          }
+
+          const nextPos = data.next_page_pos || batch[batch.length - 1]?.pos || '';
+          const hasMore = data.has_next_page ?? data.have_next_page ?? data.have_more_record ?? false;
+          if (!hasMore || !batch.length || !added || !nextPos || nextPos === pos) break;
+          pos = nextPos;
+          page++;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        for (let i = 0; i < turns.length; i++) {
+          const turn = turns[i];
+          const hasResponseMessages = Array.isArray(turn?.response_messages) && turn.response_messages.length > 0;
+          const hasQwenResponseMessages = Array.isArray(turn?.qwen_response_messages) && turn.qwen_response_messages.length > 0;
+          if (!turn?.req_id || hasResponseMessages || hasQwenResponseMessages) continue;
+          try {
+            const detailResp = await this._request('/api/v1/session/req/detail', {
+              method: 'GET',
+              query: { session_id: id, req_id: turn.req_id },
+            });
+            const detail = detailResp?.data || null;
+            const detailHasResponseMessages = Array.isArray(detail?.response_messages) && detail.response_messages.length > 0;
+            const detailHasQwenResponseMessages = Array.isArray(detail?.qwen_response_messages) && detail.qwen_response_messages.length > 0;
+            if (detail && (detailHasResponseMessages || detailHasQwenResponseMessages)) {
+              turns[i] = { ...turn, ...detail };
+            }
+          } catch (e) {
+            console.warn('Qianwen req detail fallback failed:', turn.req_id, e);
+          }
+          if (i < turns.length - 1) await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        return {
+          conversation_id: id,
+          sessionResp,
+          messagesResp: { data: { list: turns, have_next_page: false } },
+          session: sessionResp?.data || {},
+          turns,
+        };
+      },
+
+      _plainText(value) {
+        if (!value) return '';
+        if (typeof value === 'string') return value;
+        if (typeof value.content === 'string') return value.content;
+        if (Array.isArray(value.content)) return value.content.map((x) => this._plainText(x)).join('');
+        return '';
+      },
+
+      _parseJson(value) {
+        if (!value || typeof value !== 'string') return null;
+        try { return JSON.parse(value); } catch (e) { return null; }
+      },
+
+      _turnUserText(turn) {
+        const parts = [];
+        for (const msg of (turn?.request_messages || [])) {
+          const text = this._plainText(msg).trim();
+          if (text) parts.push(text);
+        }
+        return parts.join('\n\n').trim();
+      },
+
+      _qwenResponseText(turn) {
+        const parts = [];
+        for (const msg of (turn?.qwen_response_messages || [])) {
+          const role = String(msg?.role || '').toLowerCase();
+          const type = String(msg?.contentType || msg?.content_type || msg?.mimeType || '').toLowerCase();
+          if (role !== 'assistant') continue;
+          if (!['', 'text', 'markdown', 'multi_load/text'].includes(type)) continue;
+          const text = typeof msg.content === 'string' ? msg.content.trim() : '';
+          if (text) parts.push(text);
+        }
+        return parts.join('\n\n').trim();
+      },
+
+      _turnResponseText(turn) {
+        const parts = [];
+        for (const msg of (turn?.response_messages || [])) {
+          const text = this._plainText(msg).trim();
+          if (!text) continue;
+          if (/^(signal|bar|paa)\//.test(msg.mime_type || '')) continue;
+          parts.push(text);
+        }
+        if (!parts.length) {
+          const qwenText = this._qwenResponseText(turn);
+          if (qwenText) parts.push(qwenText);
+        }
+        return parts.join('\n\n').trim();
+      },
+
+      _thinkFromResponse(turn) {
+        const parts = [];
+        for (const msg of (turn?.response_messages || [])) {
+          const loaders = msg?.meta_data?.multi_load || [];
+          for (const item of loaders) {
+            const think = item?.type === 'deep_think' ? item?.content?.think_content : '';
+            if (think) parts.push(String(think).trim());
+          }
+        }
+        return parts.join('\n\n').trim();
+      },
+
+      _sourceItems(value, out) {
+        if (!value) return;
+        if (Array.isArray(value)) {
+          for (const item of value) this._sourceItems(item, out);
+          return;
+        }
+        if (typeof value !== 'object') return;
+        if ((value.url || value.raw_url) && (value.title || value.name || value.url)) {
+          out.push({ title: value.title || value.name || '', url: value.url || value.raw_url });
+        }
+        for (const key of ['sources', 'multi_load', 'list', 'content']) this._sourceItems(value[key], out);
+      },
+
+      _firstSourceItem(value) {
+        if (!value) return null;
+        if (Array.isArray(value)) {
+          for (const item of value) {
+            const hit = this._firstSourceItem(item);
+            if (hit) return hit;
+          }
+          return null;
+        }
+        if (typeof value !== 'object') return null;
+        if ((value.url || value.raw_url) && (value.title || value.name || value.url)) {
+          return { title: value.title || value.name || '', url: value.url || value.raw_url };
+        }
+        for (const key of ['sources', 'multi_load', 'list', 'content']) {
+          const hit = this._firstSourceItem(value[key]);
+          if (hit) return hit;
+        }
+        return null;
+      },
+
+      _sourceGroupItems(value, out) {
+        if (!value) return;
+        if (Array.isArray(value)) {
+          for (const item of value) this._sourceGroupItems(item, out);
+          return;
+        }
+        if (typeof value !== 'object') return;
+        const seq = typeof value.source_seq === 'string' ? value.source_seq : '';
+        if (/^source_group_web_\d+$/.test(seq)) {
+          const source = this._firstSourceItem(value);
+          if (source?.url) out.push({ seq, ...source });
+        }
+        for (const key of ['sources', 'multi_load', 'list', 'content']) this._sourceGroupItems(value[key], out);
+      },
+
+      _turnSourceGroups(turn) {
+        const groups = [];
+        const seen = new Set();
+        for (const msg of (turn?.response_messages || [])) this._sourceGroupItems(msg?.meta_data, groups);
+        return groups
+          .filter((ref) => {
+            if (!ref.seq || seen.has(ref.seq)) return false;
+            seen.add(ref.seq);
+            return true;
+          })
+          .sort((a, b) => {
+            const an = Number((a.seq.match(/(\d+)$/) || [])[1] || 0);
+            const bn = Number((b.seq.match(/(\d+)$/) || [])[1] || 0);
+            return an - bn;
+          });
+      },
+
+      _qwenRefs(turn) {
+        const refs = [];
+        for (const msg of (turn?.qwen_response_messages || [])) {
+          const type = String(msg?.contentType || msg?.content_type || '').toLowerCase();
+          const content = typeof msg?.content === 'string' ? msg.content : '';
+          if (type === 'referencelink') {
+            const parsed = this._parseJson(content);
+            for (const link of (parsed?.links || [])) {
+              if (link?.url) refs.push({ title: link.title || link.name || '', url: link.url });
+            }
+          } else if (type === 'plugin') {
+            const parsed = this._parseJson(content);
+            const pluginResult = this._parseJson(parsed?.pluginResult || '');
+            const items = Array.isArray(pluginResult) ? pluginResult : [];
+            for (const item of items) {
+              if (item?.url) refs.push({ title: item.title || item.name || '', url: item.url });
+            }
+          }
+        }
+        return refs;
+      },
+
+      _turnRefs(turn) {
+        const refs = [];
+        for (const msg of (turn?.response_messages || [])) this._sourceItems(msg?.meta_data, refs);
+        refs.push(...this._qwenRefs(turn));
+        return refs;
+      },
+
+      toMarkdown(data, title, convId) {
+        const session = data?.session || data?.sessionResp?.data || data || {};
+        const turnsRaw = data?.turns || data?.messagesResp?.data?.list || data?.data?.list || [];
+        const turns = [...turnsRaw]
+          .filter((turn) => turn && (turn.request_messages || turn.response_messages || turn.qwen_response_messages))
+          .sort((a, b) => {
+            const at = Number(a.request_timestamp || a.created_at || a.create_time || a.pos || 0);
+            const bt = Number(b.request_timestamp || b.created_at || b.create_time || b.pos || 0);
+            return at - bt;
+          });
+
+        const modelName = turns.find((t) => t.model_name)?.model_name || 'Qwen';
+        const timeStr = session.created_at
+          ? formatLocalTime(new Date(Number(session.created_at)))
+          : 'unknown';
+        const convUrl = convId ? `https://www.qianwen.com/chat/${convId}` : 'https://www.qianwen.com';
+        const refCollector = new ReferenceCollector();
+        const refKeyToNum = new Map();
+        const ensureRef = (key, ref) => {
+          if (!ref?.url) return null;
+          if (key && refKeyToNum.has(key)) return refKeyToNum.get(key);
+          const num = refCollector.add(ref.title || '', ref.url);
+          if (key) refKeyToNum.set(key, num);
+          return num;
+        };
+
+        const lines = [];
+        lines.push('## Metadata');
+        lines.push('');
+        lines.push(`- **Model:** \`${modelName}\``);
+        lines.push(`- **Time:** ${timeStr}`);
+        lines.push(`- **URL:** ${convUrl}`);
+        lines.push('');
+        lines.push('## Conversation');
+        lines.push('');
+
+        for (const turn of turns) {
+          const userText = this._turnUserText(turn);
+          const responseTextRaw = this._turnResponseText(turn).replace(/\[\((?:deep_think|doc_common_card)[^\)]*\)\]/g, '').trim();
+          const thought = this._thinkFromResponse(turn);
+          const turnKey = turn.req_id || turn.pos || String(turn.request_timestamp || '');
+          const sourceGroups = this._turnSourceGroups(turn);
+          if (sourceGroups.length) {
+            for (const group of sourceGroups) ensureRef(`${turnKey}:${group.seq}`, group);
+          } else {
+            for (const ref of this._turnRefs(turn)) ensureRef('', ref);
+          }
+          if (userText) {
+            lines.push('### 🧑‍💻 User');
+            lines.push('');
+            lines.push(stripHashes(userText));
+            lines.push('');
+          }
+          if (responseTextRaw || thought) {
+            let responseText = responseTextRaw
+              .replace(/\[\[(source_group_web_\d+)\]\]/g, (_, seq) => {
+                const num = refKeyToNum.get(`${turnKey}:${seq}`);
+                return num ? `[${num}]` : '';
+              })
+              .replace(/\[\[[^\]]+\]\]/g, '');
+            lines.push('### 🤖 Assistant');
+            lines.push('');
+            if (thought) {
+              lines.push('#### 🤔 Thought Process');
+              lines.push('');
+              lines.push(stripHashes(thought));
+              lines.push('');
+              if (responseText) {
+                lines.push('#### 💡 Response');
+                lines.push('');
+              }
+            }
+            if (responseText) {
+              lines.push(stripHashes(responseText));
+              lines.push('');
+            }
+          }
+        }
+
+        if (refCollector.hasReferences()) {
+          lines.push(...refCollector.render());
+        }
+
+        return lines.join('\n').replace(/\n{3,}/g, '\n\n');
+      },
+    },
+
+    // ═══════════════════════════════════════════════════════
+    //  ADAPTER[yuanbao]  腾讯元宝
+    // ═══════════════════════════════════════════════════════
+    {
+      id: 'yuanbao',
+      name: '腾讯元宝',
+      detect: () => window.location.hostname === 'yuanbao.tencent.com',
+
+      _defaultAgentId: 'naQivTmsDa',
+
+      _unpackId(id) {
+        const parts = String(id || '').split('/').filter(Boolean);
+        if (parts.length >= 2) return { agentId: parts[0], conversationId: parts[1] };
+        return { agentId: this._currentAgentId() || this._defaultAgentId, conversationId: parts[0] || '' };
+      },
+
+      _packId(agentId, conversationId) {
+        return `${agentId || this._defaultAgentId}/${conversationId}`;
+      },
+
+      _currentAgentId() {
+        const match = window.location.pathname.match(/^\/chat\/([^\/?]+)(?:\/([^\/?]+))?/);
+        return match ? match[1] : '';
+      },
+
+      getCurrentConversationId: () => {
+        const match = window.location.pathname.match(/^\/chat\/([^\/?]+)\/([^\/?]+)/);
+        return match ? `${match[1]}/${match[2]}` : null;
+      },
+
+      _projectCache: {},
+
+      _fetchProjectMeta(projectId) {
+        if (!projectId || (this._projectCache && this._projectCache[projectId])) return;
+        this._projectFetching = this._projectFetching || new Set();
+        if (this._projectFetching.has(projectId)) return;
+        this._projectFetching.add(projectId);
+        this._post('/api/v5/projectLogic/project/project-home-page', {
+          project_id: projectId,
+        }).then((pInfo) => {
+          const name = pInfo?.data?.project_info?.name?.trim();
+          if (name) {
+            this._projectCache = this._projectCache || {};
+            this._projectCache[projectId] = name;
+          }
+        }).catch(() => {}).finally(() => {
+          this._projectFetching.delete(projectId);
+        });
+      },
+
+      getCurrentProject() {
+        const pathParts = (typeof window !== 'undefined' ? window.location.pathname : '').split('/').filter(Boolean);
+        if (pathParts.length >= 3 && pathParts[0] === 'chat') return null;
+        const search = typeof window !== 'undefined' ? window.location.search : '';
+        const params = new URLSearchParams(search);
+        const id = params.get('projectId');
+        if (!id) return null;
+        let name = params.get('projectName') || '';
+        if (name) {
+          this._projectCache = this._projectCache || {};
+          this._projectCache[id] = name;
+          return { id, name };
+        }
+        if (this._projectCache && this._projectCache[id]) {
+          return { id, name: this._projectCache[id] };
+        }
+        this._fetchProjectMeta(id);
+        return { id, name: '' };
+      },
+
+      async _post(path, body) {
+        const r = await fetch(path, {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+            'accept': 'application/json',
+            'content-type': 'application/json',
+          },
+          body: JSON.stringify(body || {}),
+        });
+        const text = await r.text();
+        let data = null;
+        try { data = text ? JSON.parse(text) : {}; } catch (e) { data = { raw: text }; }
+        const errCode = data?.code ?? data?.error?.code;
+        if (!r.ok || (errCode !== undefined && String(errCode) !== '0')) {
+          throw new Error(`Yuanbao API ${r.status}: ${data?.message || data?.msg || data?.error?.message || text.slice(0, 120)}`);
+        }
+        return data;
+      },
+
+      async getAllConversations(onProgress) {
+        const agentId = this._currentAgentId() || this._defaultAgentId;
+        const all = [];
+        const seen = new Set();
+        const limit = CONFIG.DEBUG_LIMIT || Infinity;
+        const pageSize = 40;
+        let offset = 0;
+        let total = Infinity;
+
+        while (all.length < limit && offset < total) {
+          const body = await this._post('/api/user/agent/conversation/list', {
+            agentId,
+            offset,
+            limit: pageSize,
+            filterGoodQuestion: true,
+          });
+          const conversations = Array.isArray(body?.conversations) ? body.conversations : [];
+          total = Number(body?.pagination?.totalResults ?? conversations.length);
+          let added = 0;
+          for (const c of conversations) {
+            const cid = c.id;
+            if (!cid || seen.has(cid)) continue;
+            seen.add(cid);
+            all.push({
+              id: this._packId(c.agentId || agentId, cid),
+              title: c.title || c.sessionTitle || cid,
+              created_at: c.firstRepliedAt || c.createTime,
+              updated_at: c.lastRepliedAt || c.lastRepliedDatetime,
+              agentId: c.agentId || agentId,
+              model: c.chatModelId || c.modelId,
+            });
+            added++;
+            if (all.length >= limit) break;
+          }
+          if (onProgress) onProgress(all.length);
+          if (!conversations.length || !added) break;
+          offset += conversations.length;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        return all.slice(0, limit);
+      },
+
+      async getProjectConversations(projectId, onProgress) {
+        let projectName = (this._projectCache && this._projectCache[projectId]) || '';
+        const agentId = this._currentAgentId() || this._defaultAgentId;
+
+        try {
+          const pInfo = await this._post('/api/v5/projectLogic/project/project-home-page', {
+            project_id: projectId,
+          });
+          const name = pInfo?.data?.project_info?.name?.trim();
+          if (name) {
+            projectName = name;
+            this._projectCache = this._projectCache || {};
+            this._projectCache[projectId] = projectName;
+          }
+        } catch (e) {
+          console.warn('[AfterChat] 获取腾讯元宝项目详情失败:', e);
+        }
+        projectName = projectName || `Project ${projectId}`;
+
+        const all = [];
+        const seen = new Set();
+        let lastRepliedAt = 0;
+        let topTime = 0;
+        const pageSize = 20;
+
+        while (true) {
+          const body = await this._post('/api/user/agent/conversation/v3/list', {
+            agent_id: agentId,
+            project_id: projectId,
+            page_size: pageSize,
+            action: 1,
+            last_replied_at: lastRepliedAt,
+            top_time: topTime,
+          });
+
+          const list = Array.isArray(body?.data?.list) ? body.data.list : [];
+          let added = 0;
+
+          for (const c of list) {
+            const cid = c.id;
+            if (!cid || seen.has(cid)) continue;
+            seen.add(cid);
+            all.push({
+              id: this._packId(c.agentId || agentId, cid),
+              title: (c.title || c.sessionTitle || cid).trim(),
+              created_at: c.firstRepliedAt || c.createTime,
+              updated_at: c.lastRepliedAt || c.lastRepliedDatetime,
+              agentId: c.agentId || agentId,
+              model: c.chatModelId || c.modelId,
+            });
+            added++;
+            lastRepliedAt = Number(c.lastRepliedAt) || lastRepliedAt;
+            topTime = Number(c.topTime) || topTime;
+          }
+
+          if (onProgress) onProgress(all.length);
+          if (!list.length || !added || list.length < pageSize) break;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        return {
+          id: projectId,
+          name: projectName,
+          conversations: all,
+        };
+      },
+
+      async getConversationDetails(id) {
+        const { agentId, conversationId } = this._unpackId(id);
+        if (!conversationId) throw new Error('缺少 Yuanbao conversationId');
+        const allConvs = [];
+        const seen = new Set();
+        const pageSize = 50;
+        let offset = 0;
+        let meta = null;
+
+        while (true) {
+          const body = await this._post('/api/user/agent/conversation/v1/detail', {
+            conversationId,
+            offset,
+            limit: pageSize,
+            agentId,
+          });
+          if (!meta) meta = body;
+          const batch = Array.isArray(body?.convs) ? body.convs : [];
+          let added = 0;
+          let minIndex = Infinity;
+          for (const conv of batch) {
+            const idx = Number(conv?.index);
+            if (Number.isFinite(idx)) minIndex = Math.min(minIndex, idx);
+            const key = conv?.id || `${conv?.speaker || ''}:${idx}`;
+            if (!key || seen.has(key)) continue;
+            seen.add(key);
+            allConvs.push(conv);
+            added++;
+          }
+          if (!body?.hasMore || !batch.length || !added || !Number.isFinite(minIndex) || minIndex === offset) break;
+          offset = minIndex;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        return { ...(meta || {}), agentId, conversationId, convs: allConvs };
+      },
+
+      _textContent(item) {
+        if (!item) return '';
+        if (typeof item === 'string') return item;
+        if (typeof item.msg === 'string') return item.msg;
+        if (typeof item.text === 'string') return item.text;
+        if (typeof item.content === 'string') return item.content;
+        return '';
+      },
+
+      _docRefs(docs) {
+        const refs = [];
+        for (const doc of (docs || [])) {
+          const url = doc?.url || doc?.link || '';
+          if (!url) continue;
+          const rawIndex = Number(doc.index ?? doc.idx ?? refs.length + 1);
+          refs.push({ index: Number.isFinite(rawIndex) && rawIndex > 0 ? rawIndex : refs.length + 1, title: doc.title || doc.name || '', url });
+        }
+        return refs;
+      },
+
+      _speechParts(conv) {
+        const thought = [];
+        const text = [];
+        const refs = [];
+        for (const speech of (conv?.speechesV2 || [])) {
+          for (const item of (speech?.content || [])) {
+            const type = item?.type || '';
+            if (type === 'deepSearch') {
+              for (const sub of (item.contents || [])) {
+                if (sub?.type === 'text' && sub.msg) thought.push(sub.msg);
+                if (Array.isArray(sub?.docs)) refs.push(...this._docRefs(sub.docs));
+              }
+            } else if (type === 'searchGuid') {
+              if (Array.isArray(item.docs)) refs.push(...this._docRefs(item.docs));
+            } else {
+              const content = this._textContent(item).trim();
+              if (content) text.push(content);
+            }
+          }
+          if (!text.length && speech?.newPrompt) text.push(speech.newPrompt);
+        }
+        return { thought: thought.join('\n\n').trim(), text: text.join('\n\n').trim(), refs };
+      },
+
+      toMarkdown(data, title, convId) {
+        const { agentId, conversationId } = this._unpackId(convId || data?.conversationId || data?.id || '');
+        const convs = [...(data?.convs || [])]
+          .filter((c) => c && c.speaker && Array.isArray(c.speechesV2))
+          .sort((a, b) => (Number(a.index) || 0) - (Number(b.index) || 0));
+        const modelName = data?.chatModelId || data?.modelId || convs.find((c) => c?.speechesV2?.[0]?.chatModelId)?.speechesV2?.[0]?.chatModelId || 'Yuanbao';
+        const timeValue = data?.firstRepliedAt || convs[0]?.createTime || data?.lastRepliedAt;
+        const timeStr = timeValue
+          ? formatLocalTime(new Date(Number(timeValue) * 1000))
+          : 'unknown';
+        const url = agentId && conversationId
+          ? `https://yuanbao.tencent.com/chat/${agentId}/${conversationId}`
+          : 'https://yuanbao.tencent.com';
+        // ---- 第一遍：收集各轮引用 [citation:N]，建立全局递增映射（按 URL 去重） ----
+        const refCollector = new ReferenceCollector();
+        const msgCiteMap = new Map(); // convIndex -> Map<localIndex, globalNum>
+
+        for (let i = 0; i < convs.length; i++) {
+          const conv = convs[i];
+          if (String(conv.speaker || '').toLowerCase() === 'human') continue;
+          const parts = this._speechParts(conv);
+          if (!parts.text && !parts.thought) continue;
+          // 本轮内部按 ref.index 去重（deepSearch 与 searchGuid 会重复附带相同 index 的 docs）
+          const convRefs = new Map();
+          for (const ref of parts.refs) {
+            if (!ref?.url) continue;
+            if (!convRefs.has(ref.index)) convRefs.set(ref.index, ref);
+          }
+          const localMap = new Map();
+          for (const [idx, ref] of convRefs.entries()) {
+            const num = refCollector.add(ref.title || '', ref.url);
+            localMap.set(idx, num);
+          }
+          msgCiteMap.set(i, localMap);
+        }
+
+        const lines = [];
+        lines.push('## Metadata');
+        lines.push('');
+        lines.push(`- **Model:** \`${modelName}\``);
+        lines.push(`- **Time:** ${timeStr}`);
+        lines.push(`- **URL:** ${url}`);
+        lines.push('');
+        lines.push('## Conversation');
+        lines.push('');
+
+        for (let i = 0; i < convs.length; i++) {
+          const conv = convs[i];
+          const role = String(conv.speaker || '').toLowerCase() === 'human' ? 'user' : 'assistant';
+          const parts = this._speechParts(conv);
+          if (!parts.text && !parts.thought) continue;
+          if (role === 'user') {
+            lines.push('### 🧑‍💻 User');
+            lines.push('');
+            lines.push(stripHashes(parts.text));
+            lines.push('');
+          } else {
+            const citeMap = msgCiteMap.get(i) || new Map();
+            const replacer = (_, idxStr) => {
+              const n = citeMap.get(Number(idxStr));
+              return n !== undefined ? `[${n}]` : `[${idxStr}]`;
+            };
+            const responseText = stripHashes(parts.text.replace(/\[citation:(\d+)\]/g, replacer));
+            const thoughtText = stripHashes(parts.thought.replace(/\[citation:(\d+)\]/g, replacer));
+            lines.push('### 🤖 Assistant');
+            lines.push('');
+            if (thoughtText) {
+              lines.push('#### 🤔 Thought Process');
+              lines.push('');
+              lines.push(thoughtText);
+              lines.push('');
+              if (responseText) {
+                lines.push('#### 💡 Response');
+                lines.push('');
+              }
+            }
+            if (responseText) {
+              lines.push(responseText);
+              lines.push('');
+            }
+          }
+        }
+
+        if (refCollector.hasReferences()) {
+          lines.push(...refCollector.render());
+        }
+
+        return lines.join('\n').replace(/\n{3,}/g, '\n\n');
+      },
+    },
+
+    // ═══════════════════════════════════════════════════════
+    //  ADAPTER[hunyuan]  腾讯混元 (Hy AI Studio)
+    // ═══════════════════════════════════════════════════════
+    // 列表 POST /api/new-portal/chat/conversation/list
+    //   body {limit, offset, modelTag:'all'} → {code, totalCount, data:[{id, agentId, title, funcName,...}]}
+    // 详情 POST /api/new-portal/user/agent/conversation/v1/detail
+    //   body {conversationId, offset, limit, chatModelId?, agentId?, lastId?}
+    //   → {code, hasMore, convs:[{speaker:'ai'|'human', index, chatRecordId, createTime,
+    //      speechesV2:[{speechType:'thought'|'text', content:[{type:'text'|'thought'|'tool_calls'|'searchGuid'|'drawWithSearch', msg?, content?, docs?}]}]}]}
+    // 注意: convs 按新→旧返回；长对话用 lastId（最旧已加载 conv 的 chatRecordId）游标翻页，
+    //       服务端整轮返回（ai+其前置 human），cursor 所在轮已包含在已加载页内，不会丢消息。
+    {
+      id: 'hunyuan',
+      name: '腾讯混元',
+      // 国内站 aistudio.tencent.com + 海外站 aistudio.tencent.ai（API 同构，海外域 api.hy.tencent.ai，已实测确认）
+      detect: () => ['aistudio.tencent.com', 'aistudio.tencent.ai'].includes(window.location.hostname),
+
+      _siteHost() {
+        return (typeof window !== 'undefined' && window.location && window.location.hostname)
+          || 'aistudio.tencent.com';
+      },
+
+      _apiBase() {
+        // 海外站 aistudio.tencent.ai 的 API 域是 api.hy.tencent.ai（实测确认，非 api.hunyuan.tencent.ai）
+        return this._siteHost().endsWith('.tencent.ai')
+          ? 'https://api.hy.tencent.ai'
+          : 'https://api.hunyuan.tencent.com';
+      },
+
+      getCurrentConversationId: () => {
+        const m = window.location.pathname.match(/^\/chat\/([^\/?]+)\/([^\/?]+)/);
+        return m ? `${m[1]}/${m[2]}` : null;
+      },
+
+      _packId(agentId, conversationId) {
+        return `${agentId || 'HunyuanDefault'}/${conversationId}`;
+      },
+
+      _unpackId(id) {
+        const parts = String(id || '').split('/').filter(Boolean);
+        if (parts.length >= 2) return { agentId: parts[0], conversationId: parts[1] };
+        return { agentId: 'HunyuanDefault', conversationId: parts[0] || '' };
+      },
+
+      _headers(agentId, conversationId) {
+        const h = {
+          'accept': 'application/json',
+          'content-type': 'application/json',
+          'x-requested-with': 'XMLHttpRequest',
+          'x-source': 'web',
+        };
+        if (agentId) h['x-agentid'] = conversationId ? `${agentId}/${conversationId}` : agentId;
+        return h;
+      },
+
+      async _post(path, body, headers) {
+        const r = await fetch(this._apiBase() + path, {
+          method: 'POST',
+          credentials: 'include',
+          headers: headers || { 'accept': 'application/json', 'content-type': 'application/json' },
+          body: JSON.stringify(body || {}),
+        });
+        const text = await r.text();
+        let data = null;
+        try { data = text ? JSON.parse(text) : {}; } catch (e) { data = { raw: text }; }
+        const code = Number(data?.code);
+        if (!r.ok || !(code === 0 || code === 200)) {
+          throw new Error(`Hunyuan API ${r.status}: ${data?.msg || data?.message || text.slice(0, 120)}`);
+        }
+        return data;
+      },
+
+      async getAllConversations(onProgress) {
+        const all = [];
+        const seen = new Set();
+        const limit = CONFIG.DEBUG_LIMIT || Infinity;
+        const pageSize = 40;
+        let offset = 0;
+        let total = Infinity;
+
+        while (all.length < limit && offset < total) {
+          const body = await this._post('/api/new-portal/chat/conversation/list', {
+            limit: pageSize,
+            offset,
+            modelTag: 'all',
+          }, this._headers());
+          const conversations = Array.isArray(body?.data) ? body.data : [];
+          total = Number(body?.totalCount ?? conversations.length);
+          let added = 0;
+          for (const c of conversations) {
+            const cid = c.id;
+            if (!cid || seen.has(cid)) continue;
+            seen.add(cid);
+            const agentId = c.agentId || 'HunyuanDefault';
+            all.push({
+              id: this._packId(agentId, cid),
+              title: c.title || cid,
+              created_at: c.createdAt,
+              updated_at: c.updatedAt,
+              agentId,
+              model: c.funcName || c.chatModelId || c.modelId,
+              chatModelId: c.chatModelId || '',
+            });
+            added++;
+            if (all.length >= limit) break;
+          }
+          if (onProgress) onProgress(all.length);
+          if (!conversations.length || !added) break;
+          offset += conversations.length;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        return all.slice(0, limit);
+      },
+
+      async getConversationDetails(id) {
+        const { agentId, conversationId } = this._unpackId(id);
+        if (!conversationId) throw new Error('缺少混元 conversationId');
+        let chatModelId = '';
+        let convTitle = '';
+        try {
+          const m = await this._ensureModelMap();
+          const info = m.get(conversationId) || {};
+          chatModelId = info.chatModelId || '';
+          convTitle = info.title || '';
+        } catch (e) { /* 列表拉不到也不阻塞详情 */ }
+        const allConvs = [];
+        const seen = new Set();
+        const pageSize = 15;
+        let cursor = null; // lastId: 最旧已加载轮次内任一 conv 的 chatRecordId
+        let newestIndex = 0;
+        let meta = null;
+        let pages = 0;
+
+        while (pages++ < 200) {
+          const body = {
+            conversationId,
+            offset: newestIndex,
+            limit: pageSize,
+          };
+          if (agentId) body.agentId = agentId;
+          if (chatModelId) body.chatModelId = chatModelId;
+          if (cursor) body.lastId = cursor;
+          const resp = await this._post(
+            '/api/new-portal/user/agent/conversation/v1/detail',
+            body,
+            this._headers(agentId, conversationId)
+          );
+          if (!meta) meta = resp;
+          const batch = Array.isArray(resp?.convs) ? resp.convs : [];
+          let added = 0;
+          let oldestLoaded = null;
+          let maxIndex = newestIndex;
+          for (const conv of batch) {
+            const idx = Number(conv?.index);
+            if (Number.isFinite(idx)) {
+              maxIndex = Math.max(maxIndex, idx);
+              if (!oldestLoaded || idx < Number(oldestLoaded.index)) oldestLoaded = conv;
+            }
+            const key = conv?.id || `${conv?.speaker || ''}:${idx}`;
+            if (!key || seen.has(key)) continue;
+            seen.add(key);
+            allConvs.push(conv);
+            added++;
+          }
+          newestIndex = maxIndex;
+          if (!resp?.hasMore || !batch.length || !added || !oldestLoaded) break;
+          cursor = oldestLoaded.chatRecordId || null;
+          if (!cursor) break;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        const result = { ...(meta || {}), agentId, conversationId, convs: allConvs };
+        // 详情接口不带标题，从列表缓存补上，让单条导出文件名用真实标题
+        if (!result.title && convTitle) result.title = convTitle;
+        return result;
+      },
+
+      _modelCache: null,
+
+      async _ensureModelMap() {
+        if (this._modelCache) return this._modelCache;
+        const map = new Map();
+        let offset = 0;
+        while (true) {
+          const body = await this._post('/api/new-portal/chat/conversation/list', {
+            limit: 40,
+            offset,
+            modelTag: 'all',
+          }, this._headers());
+          const conversations = Array.isArray(body?.data) ? body.data : [];
+          for (const c of conversations) {
+            if (!c.id) continue;
+            map.set(c.id, {
+              chatModelId: c.chatModelId || '',
+              funcName: c.funcName || '',
+              modelId: c.modelId,
+              title: c.title || '',
+            });
+          }
+          if (!conversations.length || map.size >= Number(body?.totalCount ?? 0)) break;
+          offset += conversations.length;
+        }
+        this._modelCache = map;
+        return map;
+      },
+
+      _docRefs(docs) {
+        const refs = [];
+        for (const doc of (docs || [])) {
+          const url = doc?.url || doc?.link || '';
+          if (!url) continue;
+          const rawIndex = Number(doc.index ?? doc.idx ?? refs.length + 1);
+          refs.push({
+            index: Number.isFinite(rawIndex) && rawIndex > 0 ? rawIndex : refs.length + 1,
+            title: doc.title || doc.name || '',
+            url,
+          });
+        }
+        return refs;
+      },
+
+      _speechParts(conv) {
+        const thought = [];
+        const text = [];
+        const refs = [];
+        for (const speech of (conv?.speechesV2 || [])) {
+          for (const item of (speech?.content || [])) {
+            const type = item?.type || '';
+            if (type === 'thought') {
+              if (item.msg) thought.push(item.msg);
+            } else if (type === 'text') {
+              if (item.msg) text.push(item.msg);
+            } else if (type === 'tool_calls') {
+              try {
+                const parsed = JSON.parse(item.content || '[]');
+                if (Array.isArray(parsed)) refs.push(...this._docRefs(parsed));
+              } catch (e) { /* 忽略解析失败 */ }
+            } else if (type === 'searchGuid' || type === 'drawWithSearch') {
+              if (Array.isArray(item.docs)) refs.push(...this._docRefs(item.docs));
+            }
+          }
+        }
+        return { thought: thought.join('\n\n').trim(), text: text.join('\n\n').trim(), refs };
+      },
+
+      toMarkdown(data, title, convId) {
+        const { agentId, conversationId } = this._unpackId(convId || data?.conversationId || data?.id || '');
+        const convs = [...(data?.convs || [])]
+          .filter((c) => c && (c.speaker === 'ai' || c.speaker === 'human'))
+          .sort((a, b) => (Number(a.index) || 0) - (Number(b.index) || 0));
+        const modelName = data?.funcName || data?.chatModelId || data?.modelId || 'Hunyuan';
+        const timeValue = convs[0]?.createTime || data?.createTime;
+        const timeStr = timeValue
+          ? formatLocalTime(new Date(Number(timeValue) * 1000))
+          : 'unknown';
+        const url = agentId && conversationId
+          ? `https://${this._siteHost()}/chat/${agentId}/${conversationId}`
+          : `https://${this._siteHost()}`;
+        const refCollector = new ReferenceCollector();
+
+        const lines = [];
+        lines.push('## Metadata');
+        lines.push('');
+        lines.push(`- **Model:** \`${modelName}\``);
+        lines.push(`- **Time:** ${timeStr}`);
+        lines.push(`- **URL:** ${url}`);
+        lines.push('');
+        lines.push('## Conversation');
+        lines.push('');
+
+        for (const conv of convs) {
+          const role = String(conv.speaker || '').toLowerCase() === 'human' ? 'user' : 'assistant';
+          const parts = this._speechParts(conv);
+          const fallback = (conv.displayPrompt || '').trim();
+          if (!parts.text && !parts.thought && !fallback) continue;
+          for (const ref of parts.refs) {
+            if (ref?.url) refCollector.add(ref.title || '', ref.url);
+          }
+          if (role === 'user') {
+            const body = stripHashes(parts.text || fallback);
+            if (!body) continue;
+            lines.push('### 🧑‍💻 User');
+            lines.push('');
+            lines.push(body);
+            lines.push('');
+          } else {
+            const thoughtText = stripHashes(parts.thought);
+            const responseText = stripHashes(parts.text);
+            if (!thoughtText && !responseText) continue;
+            lines.push('### 🤖 Assistant');
+            lines.push('');
+            if (thoughtText) {
+              lines.push('#### 🤔 Thought Process');
+              lines.push('');
+              lines.push(thoughtText);
+              lines.push('');
+              if (responseText) {
+                lines.push('#### 💡 Response');
+                lines.push('');
+              }
+            }
+            if (responseText) {
+              lines.push(responseText);
+              lines.push('');
+            }
+          }
+        }
+
+        if (refCollector.hasReferences()) {
+          lines.push(...refCollector.render());
+        }
+
+        return lines.join('\n').replace(/\n{3,}/g, '\n\n');
+      },
+    },
+
+    // ═══════════════════════════════════════════════════════
+    //  ADAPTER[kimi]  Kimi
+    // ═══════════════════════════════════════════════════════
+    {
+      id: 'kimi',
+      name: 'Kimi',
+      detect: () => window.location.hostname === 'www.kimi.com',
+
+      getCurrentConversationId: () => {
+        // 支持普通单会话 /chat/{id} 或潜在的路径 /c/{id}
+        const match = window.location.pathname.match(/(?:\/chat\/|\/c\/)([a-f0-9-]{36}|[^\/?#]+)/i);
+        return match ? match[1] : null;
+      },
+
+      _projectCache: {},
+
+      _fetchProjectMeta(projectId) {
+        if (!projectId || (this._projectCache && this._projectCache[projectId])) return;
+        this._projectFetching = this._projectFetching || new Set();
+        if (this._projectFetching.has(projectId)) return;
+        this._projectFetching.add(projectId);
+        this._post('/apiv2/kimi.gateway.project.v1.ProjectService/GetProject', {
+          project_id: projectId,
+        }).then((pResp) => {
+          const name = pResp?.project?.name?.trim();
+          if (name) {
+            this._projectCache = this._projectCache || {};
+            this._projectCache[projectId] = name;
+          }
+        }).catch(() => {}).finally(() => {
+          this._projectFetching.delete(projectId);
+        });
+      },
+
+      getCurrentProject() {
+        // 匹配项目文件夹主页: /project/{projectId}（当不在具体会话 /chat/ 页面时）
+        const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
+        if (pathname.includes('/chat/') || pathname.includes('/c/')) return null;
+        const m = pathname.match(/^\/project\/([0-9a-f-]{36}|[0-9a-z_-]{10,})/i);
+        if (!m) return null;
+        const id = m[1];
+        if (this._projectCache && this._projectCache[id]) {
+          return { id, name: this._projectCache[id] };
+        }
+        this._fetchProjectMeta(id);
+        return { id, name: '' };
+      },
+
+      _token() {
+        try { return localStorage.getItem('access_token') || ''; } catch (e) { return ''; }
+      },
+
+      _headers() {
+        const h = {
+          'accept': '*/*',
+          'content-type': 'application/json',
+          'connect-protocol-version': '1',
+          'x-msh-platform': 'web',
+          'x-msh-version': '2.0.0',
+          'r-timezone': (Intl.DateTimeFormat().resolvedOptions().timeZone || 'Asia/Shanghai'),
+          'x-language': navigator.language || 'zh-CN',
+        };
+        const token = this._token();
+        if (token) h['authorization'] = 'Bearer ' + token;
+        return h;
+      },
+
+      async _post(path, body) {
+        const r = await fetch(path, {
+          method: 'POST',
+          headers: this._headers(),
+          body: JSON.stringify(body || {}),
+        });
+        if (!r.ok) throw new Error(`Kimi API ${r.status}: ${await r.text().catch(() => r.statusText)}`);
+        return r.json();
+      },
+
+      async getProjectConversations(projectId, onProgress) {
+        let projectName = (this._projectCache && this._projectCache[projectId]) || '';
+        try {
+          const pResp = await this._post('/apiv2/kimi.gateway.project.v1.ProjectService/GetProject', {
+            project_id: projectId,
+          });
+          projectName = pResp?.project?.name?.trim() || projectName;
+          if (projectName) {
+            this._projectCache = this._projectCache || {};
+            this._projectCache[projectId] = projectName;
+          }
+        } catch (e) {
+          console.warn('[AfterChat] 获取 Kimi 项目详情失败:', e);
+        }
+
+        const conversations = [];
+        const seen = new Set();
+        const limit = CONFIG.DEBUG_LIMIT || Infinity;
+        let pageToken = '';
+        let pageSize = 50;
+
+        while (conversations.length < limit) {
+          const body = {
+            page_size: pageSize,
+            project_id: projectId,
+            filter_types: ['FEED_TYPE_CHAT', 'FEED_TYPE_TASK'],
+          };
+          if (pageToken) body.page_token = pageToken;
+          const data = await this._post('/apiv2/kimi.gateway.feed.v1.FeedService/ListFeeds', body);
+          const items = Array.isArray(data?.items) ? data.items : [];
+          if (!items.length) break;
+
+          for (const item of items) {
+            const chat = item?.chat || item?.item?.value || null;
+            if (!chat?.id || seen.has(chat.id)) continue;
+            if (chat.projectId && chat.projectId !== projectId) continue;
+            seen.add(chat.id);
+            conversations.push({
+              id: chat.id,
+              title: (chat.name || '').trim(),
+              createTime: chat.createTime,
+              updateTime: chat.updateTime,
+              messageContent: chat.messageContent,
+              projectId: chat.projectId || projectId,
+            });
+            if (conversations.length >= limit) break;
+          }
+
+          if (onProgress) onProgress(conversations.length);
+          pageToken = data?.nextPageToken || data?.next_page_token || '';
+          if (!pageToken) break;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        return {
+          name: projectName || projectId,
+          conversations: conversations.slice(0, limit),
+        };
+      },
+
+      async getAllConversations(onProgress) {
+        const allChats = [];
+        const seen = new Set();
+        const limit = CONFIG.DEBUG_LIMIT || Infinity;
+        let pageToken = '';
+        let pageSize = 15;
+
+        while (allChats.length < limit) {
+          const body = {
+            pageToken,
+            pageSize,
+            projectId: '',
+            filterTypes: [1], // FEED_TYPE_CHAT
+            includePinned: false,
+          };
+          const data = await this._post('/apiv2/kimi.gateway.feed.v1.FeedService/ListFeeds', body);
+          const items = Array.isArray(data?.items) ? data.items : [];
+          for (const item of items) {
+            const chat = item?.chat || item?.item?.value || null;
+            if (!chat?.id || seen.has(chat.id)) continue;
+            seen.add(chat.id);
+            allChats.push({
+              id: chat.id,
+              title: (chat.name || '').trim(),
+              createTime: chat.createTime,
+              updateTime: chat.updateTime,
+              messageContent: chat.messageContent,
+            });
+            if (allChats.length >= limit) break;
+          }
+
+          if (onProgress) onProgress(allChats.length);
+          pageToken = data?.nextPageToken || '';
+          if (!pageToken || !items.length) break;
+          pageSize = 50;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        return allChats.slice(0, limit);
+      },
+
+      async getConversationDetails(id) {
+        const chatResp = await this._post('/apiv2/kimi.gateway.chat.v1.ChatService/GetChat', { chatId: id });
+        let messages = [];
+        let pageToken = '';
+        const seen = new Set();
+
+        while (true) {
+          const msgResp = await this._post('/apiv2/kimi.gateway.chat.v1.ChatService/ListMessages', {
+            chatId: id,
+            pageSize: 100,
+            pageToken,
+          });
+          for (const msg of (msgResp?.messages || [])) {
+            if (!msg?.id || seen.has(msg.id)) continue;
+            seen.add(msg.id);
+            messages.push(msg);
+          }
+          pageToken = msgResp?.nextPageToken || '';
+          if (!pageToken) break;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        return {
+          conversation_id: id,
+          chatResp,
+          messagesResp: { messages },
+          chat: chatResp?.chat || {},
+        };
+      },
+
+      _plainText(value) {
+        if (!value) return '';
+        if (typeof value === 'string') return value;
+        if (typeof value.content === 'string') return value.content;
+        if (Array.isArray(value.content)) return value.content.map((x) => this._plainText(x)).join('');
+        return '';
+      },
+
+      _messageText(msg) {
+        const parts = [];
+        for (const block of (msg?.blocks || [])) {
+          const text = this._plainText(block?.text);
+          if (text) parts.push(text);
+        }
+        return parts.join('\n\n').trim();
+      },
+
+      _messageThink(msg) {
+        const parts = [];
+        for (const block of (msg?.blocks || [])) {
+          const text = this._plainText(block?.think);
+          if (text) parts.push(text);
+        }
+        return parts.join('\n\n').trim();
+      },
+
+      // Kimi 的 createTime 是微秒精度（如 2026-08-01T15:48:56.072365Z），
+      // 而 Date.parse 只保留毫秒：同一轮的 user/assistant 仅差几微秒会被判为相等，
+      // 稳定排序便保留接口“最新在前”的原始顺序，导致 assistant 错位到 user 前面。
+      // 这里把小数秒一并换算成亚毫秒，保证同轮也能按真实先后排序。
+      _sortTime(value) {
+        const m = /^(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2})(?:\.(\d+))?(Z|[+-]\d{2}:?\d{2})?$/.exec(String(value || ''));
+        if (!m) return null;
+        const base = Date.parse(m[1] + (m[3] || 'Z'));
+        if (!Number.isFinite(base)) return null;
+        const frac = m[2] ? Number('0.' + m[2]) : 0;
+        return base + frac * 1000;
+      },
+
+      _citationInfo(ref) {
+        const item = ref?.items?.[0];
+        const base = item?.search?.base || item?.searchResult?.base || item?.base || {};
+        return {
+          title: (base.title || '').trim(),
+          url: base.url || '',
+        };
+      },
+
+      _cleanCitations(text, references, refCollector) {
+        if (!text) return '';
+        const refByText = new Map();
+        for (const ref of (references || [])) {
+          if (ref?.matchedText) refByText.set(ref.matchedText, ref);
+        }
+        return text.replace(/cite[\s\S]*?/g, (marker) => {
+          const ref = refByText.get(marker);
+          const info = this._citationInfo(ref);
+          if (!info.url) return '';
+          const num = refCollector.add(info.title, info.url);
+          return `[${num}]`;
+        });
+      },
+
+      toMarkdown(data, title, convId) {
+        const chat = data?.chat || data?.chatResp?.chat || {};
+        const messagesRaw = data?.messagesResp?.messages || data?.messages || [];
+        const messages = [...messagesRaw]
+          .filter((m) => m?.role && m.role !== 'system')
+          .sort((a, b) => (this._sortTime(a.createTime) ?? 0) - (this._sortTime(b.createTime) ?? 0));
+
+        const timeStr = chat.createTime
+          ? formatLocalTime(new Date(chat.createTime))
+          : 'unknown';
+        const convUrl = convId ? `https://www.kimi.com/chat/${convId}` : 'https://www.kimi.com';
+        const modelName = chat?.lastRequest?.scenario || 'Kimi';
+        const refCollector = new ReferenceCollector();
+
+        const lines = [];
+        lines.push('## Metadata');
+        lines.push('');
+        lines.push(`- **Model:** \`${modelName}\``);
+        lines.push(`- **Time:** ${timeStr}`);
+        lines.push(`- **URL:** ${convUrl}`);
+        lines.push('');
+        lines.push('## Conversation');
+        lines.push('');
+
+        for (const msg of messages) {
+          const role = String(msg.role || '').toLowerCase();
+          const text = this._messageText(msg);
+          const thought = this._messageThink(msg);
+          if (!text && !thought) continue;
+
+          if (role === 'user') {
+            if (!text) continue;
+            lines.push('### 🧑‍💻 User');
+            lines.push('');
+            lines.push(stripHashes(text));
+            lines.push('');
+          } else if (role === 'assistant') {
+            const cleaned = stripHashes(this._cleanCitations(text, msg.references || [], refCollector));
+            lines.push('### 🤖 Assistant');
+            lines.push('');
+            if (thought) {
+              lines.push('#### 🤔 Thought Process');
+              lines.push('');
+              lines.push(stripHashes(thought));
+              lines.push('');
+              if (cleaned) {
+                lines.push('#### 💡 Response');
+                lines.push('');
+              }
+            }
+            if (cleaned) {
+              lines.push(cleaned);
+              lines.push('');
+            }
+          }
+        }
+
+        if (refCollector.hasReferences()) {
+          lines.push(...refCollector.render());
+        }
+
+        return lines.join('\n').replace(/\n{3,}/g, '\n\n');
+      },
+    },
+
+    // ═══════════════════════════════════════════════════════
+    //  ADAPTER[doubao]  豆包 / Dola（Dola 是豆包国际版，API 同构，一站双域，参考 hunyuan 模式）
+    // ═══════════════════════════════════════════════════════
+    {
+      id: 'doubao',
+      name: '豆包',
+      detect: () => ['www.doubao.com', 'www.dola.com'].includes(window.location.hostname),
+
+      // 当前站点 host；Node 测试环境下无 window，用 _fallbackHost（测试可覆盖为 dola）
+      _fallbackHost: 'www.doubao.com',
+
+      _siteHost() {
+        return (typeof window !== 'undefined' && window.location && window.location.hostname)
+          || this._fallbackHost;
+      },
+
+      getCurrentConversationId: () => {
+        const match = window.location.pathname.match(/^\/chat\/([^\/?]+)/);
+        return match ? match[1] : null;
+      },
+
+      _projectCache: {},
+
+      _fetchProjectMeta(projectId) {
+        if (!projectId) return;
+        this._projectCache = this._projectCache || {};
+        if (this._projectCache[projectId] || this._fetchingProjectId === projectId) return;
+        this._fetchingProjectId = projectId;
+        const body = {
+          cmd: 4605,
+          uplink_body: {
+            list_projects_uplink_body: {
+              limit: 50,
+              include_invisible_projects: false,
+              sort_type: 1,
+              group_conversation_filter_param: {
+                exclude_archive: true,
+              },
+            },
+          },
+          sequence_id: this._uuid(),
+          channel: 2,
+          version: '1',
+        };
+        this._post('/im/project/list', body)
+          .then((res) => {
+            const projects = res?.downlink_body?.list_projects_downlink_body?.projects || [];
+            for (const p of projects) {
+              if (p.project_id && p.name) {
+                this._projectCache[String(p.project_id)] = p.name.trim();
+              }
+            }
+            if (this._projectCache[String(projectId)] && typeof window !== 'undefined' && window.__m365Controller?.updateLabel) {
+              window.__m365Controller.updateLabel();
+            }
+          })
+          .catch(() => {})
+          .finally(() => {
+            this._fetchingProjectId = null;
+          });
+      },
+
+      getCurrentProject() {
+        const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
+        if (pathname.match(/^\/chat\/[0-9a-zA-Z_-]+/)) return null;
+        const search = typeof window !== 'undefined' ? window.location.search : '';
+        const m = search.match(/[?&]project=([^&]+)/);
+        if (!m) return null;
+        const id = decodeURIComponent(m[1]);
+
+        // 1. 优先读取缓存
+        if (this._projectCache && this._projectCache[id]) {
+          return { id, name: this._projectCache[id] };
+        }
+
+        // 2. 静默通过后端 /im/project/list 接口预取项目名（严禁 DOM 探测）
+        if (typeof this._fetchProjectMeta === 'function') {
+          this._fetchProjectMeta(id);
+        }
+
+        return { id, name: '' };
+      },
+
+      _uuid() {
+        if (typeof crypto !== 'undefined' && crypto.randomUUID) return crypto.randomUUID();
+        return String(Date.now()) + '-' + Math.random().toString(16).slice(2);
+      },
+
+      _headers() {
+        return {
+          'accept': 'application/json, text/plain, */*',
+          'content-type': 'application/json; encoding=utf-8',
+          'agw-js-conv': 'str',
+        };
+      },
+
+      _endpoint(path) {
+        const resources = [];
+        try {
+          resources.push(...performance.getEntriesByType('resource').map((e) => e.name || ''));
+        } catch (e) { /* ignore */ }
+        resources.push(window.location.href);
+
+        const found = [...resources].reverse().find((u) => String(u).includes(path));
+        if (found) {
+          const url = new URL(found, window.location.origin);
+          return url.pathname + url.search;
+        }
+
+        const sibling = [...resources].reverse().find((u) => /\/im\/(conversation\/info|chain\/single|chain\/recent_conv)/.test(String(u)));
+        if (sibling) {
+          const url = new URL(sibling, window.location.origin);
+          return path + url.search;
+        }
+
+        // 兜底：Doubao/Dola 后端依赖这类 web 参数；完整环境下一般会走上面的 performance endpoint。
+        // 豆包(CN) 与 Dola(国际版) 的 aid/region/版本号不同，按当前站点区分。
+        const isDola = this._siteHost().endsWith('dola.com');
+        const p = new URLSearchParams({
+          version_code: '20800',
+          language: (navigator.language || 'zh').split('-')[0],
+          device_platform: 'web',
+          doubao_device_platform: 'web',
+          aid: isDola ? '495671' : '497858',
+          real_aid: isDola ? '495671' : '497858',
+          pkg_type: 'release_version',
+          pc_version: isDola ? '3.32.3' : '3.29.13',
+          doubao_pc_version: isDola ? '3.32.3' : '3.29.13',
+          region: isDola ? 'JP' : 'CN',
+          sys_region: isDola ? 'JP' : 'CN',
+          samantha_web: '1',
+          web_platform: 'browser',
+          'use-olympus-account': '1',
+          web_tab_id: this._uuid(),
+        });
+        try {
+          const deviceId = localStorage.getItem('desktop_device_id') || '';
+          if (deviceId) p.set('device_id', deviceId);
+          const teaId = localStorage.getItem('flow_tea_user_id') || '';
+          if (teaId) { p.set('web_id', teaId); p.set('tea_uuid', teaId); }
+        } catch (e) { /* ignore */ }
+        return path + '?' + p.toString();
+      },
+
+      async _post(path, body) {
+        const r = await fetch(this._endpoint(path), {
+          method: 'POST',
+          credentials: 'include',
+          headers: this._headers(),
+          body: JSON.stringify(body || {}),
+        });
+        if (!r.ok) throw new Error(`Doubao API ${r.status}: ${await r.text().catch(() => r.statusText)}`);
+        const data = await r.json();
+        if (data?.status_code && data.status_code !== 0) {
+          throw new Error(`Doubao API ${data.status_code}: ${data.status_desc || 'unknown error'}`);
+        }
+        return data;
+      },
+
+      _recentBody(convVersion) {
+        // 豆包 IM 翻页协议（对照前端 SDK s2-lib-conversation-service）：
+        // - conv_version 必须是数字：0 = 首屏（direction=3 FROM_LATEST 拉最新），非 0 = 翻页拉更旧（direction=1 OLDER）
+        // - 传字符串 conv_version 会被服务端拒绝（API_712010702 系统内部异常）
+        // - need_coco_* 仅首屏为 true
+        const v = Number(convVersion) || 0;
+        const isFirstPage = v === 0;
+        return {
+          cmd: 3200,
+          uplink_body: {
+            pull_recent_conv_chain_uplink_body: {
+              limit: 20,
+              message_count_per_conv: 10,
+              api_version: 1,
+              conv_version: v,
+              direction: isFirstPage ? 3 : 1,
+              option: {
+                not_need_message: true,
+                need_complete_conversation: true,
+                need_coco_conversation: isFirstPage,
+                need_coco_bot: isFirstPage,
+                need_pc_pin_chain: true,
+                pc_pin_query_type: 0,
+              },
+            },
+          },
+          sequence_id: this._uuid(),
+          channel: 2,
+          version: '1',
+        };
+      },
+
+      _infoBody(id) {
+        return {
+          cmd: 1110,
+          uplink_body: {
+            get_conv_info_uplink_body: {
+              conversation_id: id,
+              ext: { cold_start: 'true' },
+              bot_id: '',
+              conversation_type: 3,
+              option: { need_bot_info: true },
+            },
+          },
+          sequence_id: this._uuid(),
+          channel: 2,
+          version: '1',
+        };
+      },
+
+      _chainBody(id, anchorIndex, limit) {
+        return {
+          cmd: 3100,
+          uplink_body: {
+            pull_singe_chain_uplink_body: {
+              conversation_id: id,
+              anchor_index: anchorIndex,
+              conversation_type: 3,
+              direction: 1,
+              limit: limit || 50,
+              ext: {},
+              filter: { index_list: [] },
+              evaluate_ab_params: '',
+              evaluate_common_params: '',
+            },
+          },
+          sequence_id: this._uuid(),
+          channel: 2,
+          version: '1',
+        };
+      },
+
+      async getAllConversations(onProgress) {
+        const allChats = [];
+        const seen = new Set();
+        const limit = CONFIG.DEBUG_LIMIT || Infinity;
+        let convVersion = 0;
+
+        while (allChats.length < limit) {
+          const data = await this._post('/im/chain/recent_conv', this._recentBody(convVersion));
+          const body = data?.downlink_body?.pull_recent_conv_chain_downlink_body || {};
+          const cells = Array.isArray(body.cells) ? body.cells : [];
+          let added = 0;
+
+          for (const cell of cells) {
+            const conv = cell?.conversation || {};
+            const id = conv.conversation_id || cell?.id;
+            if (!id || seen.has(id)) continue;
+            seen.add(id);
+            allChats.push({
+              id,
+              title: (conv.name || '').trim(),
+              create_time: conv.create_time,
+              update_time: conv.update_time,
+              bot_id: conv.bot_id,
+            });
+            added++;
+            if (allChats.length >= limit) break;
+          }
+
+          if (onProgress) onProgress(allChats.length);
+          // 无新增说明游标已到底或服务端返回重复页，立即停止防止死循环
+          if (!body.has_more || !body.next_conv_version || !cells.length || !added) break;
+          convVersion = body.next_conv_version;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        return allChats.slice(0, limit);
+      },
+
+      async getProjectConversations(projectId, onProgress) {
+        let projectName = `Project ${projectId}`;
+        const conversations = [];
+
+        try {
+          const body = {
+            cmd: 4605,
+            uplink_body: {
+              list_projects_uplink_body: {
+                limit: 50,
+                include_invisible_projects: false,
+                sort_type: 1,
+                group_conversation_filter_param: {
+                  exclude_archive: true,
+                },
+              },
+            },
+            sequence_id: this._uuid(),
+            channel: 2,
+            version: '1',
+          };
+          const res = await this._post('/im/project/list', body);
+          const projects = res?.downlink_body?.list_projects_downlink_body?.projects || [];
+          const proj = projects.find((p) => String(p.project_id) === String(projectId));
+          if (proj) {
+            if (proj.name) {
+              projectName = proj.name;
+              this._projectCache = this._projectCache || {};
+              this._projectCache[String(projectId)] = proj.name;
+            }
+            const convList = Array.isArray(proj.conversations) ? proj.conversations : [];
+            for (const c of convList) {
+              const cid = c.conversation_id;
+              if (!cid) continue;
+              conversations.push({
+                id: cid,
+                title: (c.conversation_name || '').trim() || cid,
+                created_at: Number(c.create_time) || c.create_time,
+                updated_at: Number(c.update_time) || c.update_time,
+              });
+            }
+          }
+        } catch (e) {
+          console.warn('[AfterChat] Doubao list_projects failed:', e);
+        }
+
+        if (onProgress) onProgress(conversations.length);
+
+        return {
+          id: projectId,
+          name: projectName,
+          conversations,
+        };
+      },
+
+      async getConversationDetails(id) {
+        const conversationInfo = await this._post('/im/conversation/info', this._infoBody(id));
+        const messages = [];
+        const seen = new Set();
+        let anchorIndex = 9007199254740991;
+
+        while (true) {
+          const chainResp = await this._post('/im/chain/single', this._chainBody(id, anchorIndex, 50));
+          const body = chainResp?.downlink_body?.pull_singe_chain_downlink_body || {};
+          const batch = Array.isArray(body.messages) ? body.messages : [];
+          let minIndex = Infinity;
+          let added = 0;
+
+          for (const msg of batch) {
+            const idx = Number(msg?.index_in_conv);
+            if (Number.isFinite(idx)) minIndex = Math.min(minIndex, idx);
+            if (!msg?.message_id || seen.has(msg.message_id)) continue;
+            seen.add(msg.message_id);
+            messages.push(msg);
+            added++;
+          }
+
+          if (!body.has_more || !batch.length || !added || !Number.isFinite(minIndex) || minIndex <= 1) break;
+          anchorIndex = minIndex - 1;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        return {
+          conversation_id: id,
+          conversationInfo,
+          chainSingle: {
+            ...conversationInfo,
+            downlink_body: {
+              pull_singe_chain_downlink_body: { messages, has_more: false },
+            },
+          },
+          conversation: conversationInfo?.downlink_body?.get_conv_info_downlink_body?.conversation_info || {},
+        };
+      },
+
+      _textFromBlock(block) {
+        const text = block?.content?.text_block?.text;
+        return typeof text === 'string' ? text.trim() : '';
+      },
+
+      _searchRefsFromBlock(block) {
+        const results = block?.content?.search_query_result_block?.results || [];
+        const refs = [];
+        for (const r of results) {
+          const card = r?.text_card || r?.image_card || r?.video_card || null;
+          const url = card?.url || '';
+          if (!url) continue;
+          refs.push({ title: card?.title || '', url });
+        }
+        return refs;
+      },
+
+      _messageParts(msg) {
+        const blocks = msg?.content_block || [];
+        const textBlocks = blocks
+          .filter((b) => b?.content?.text_block)
+          .map((b) => this._textFromBlock(b))
+          .filter(Boolean);
+        const hasThinkingBlock = blocks.some((b) => b?.content?.thinking_block || b?.block_type === 10040);
+        const refs = [];
+        for (const block of blocks) refs.push(...this._searchRefsFromBlock(block));
+
+        if (String(msg?.user_type) === '2' && hasThinkingBlock && textBlocks.length > 1) {
+          return {
+            thought: textBlocks.slice(0, -1).join('\n\n').trim(),
+            text: textBlocks[textBlocks.length - 1] || '',
+            refs,
+          };
+        }
+        return { thought: '', text: textBlocks.join('\n\n').trim(), refs };
+      },
+
+      toMarkdown(data, title, convId) {
+        const conv = data?.conversation || data?.conversationInfo?.downlink_body?.get_conv_info_downlink_body?.conversation_info || {};
+        const rawMessages = data?.chainSingle?.downlink_body?.pull_singe_chain_downlink_body?.messages || data?.messages || [];
+        const messages = [...rawMessages]
+          .filter((m) => m?.message_id)
+          .sort((a, b) => (Number(a.index_in_conv) || 0) - (Number(b.index_in_conv) || 0));
+
+        const timeStr = conv.create_time
+          ? formatLocalTime(new Date(Number(conv.create_time) * 1000))
+          : 'unknown';
+        const convUrl = convId ? `https://${this._siteHost()}/chat/${convId}` : `https://${this._siteHost()}`;
+        const modelName = conv?.conv_extra?.inner_bot_name || conv?.tags?.[0]
+          || (this._siteHost().endsWith('dola.com') ? 'Dola' : '豆包');
+        const refCollector = new ReferenceCollector();
+
+        const lines = [];
+        lines.push('## Metadata');
+        lines.push('');
+        lines.push(`- **Model:** \`${modelName}\``);
+        lines.push(`- **Time:** ${timeStr}`);
+        lines.push(`- **URL:** ${convUrl}`);
+        lines.push('');
+        lines.push('## Conversation');
+        lines.push('');
+
+        for (const msg of messages) {
+          const role = String(msg.user_type) === '1' ? 'user' : String(msg.user_type) === '2' ? 'assistant' : 'other';
+          if (role === 'other') continue;
+          const parts = this._messageParts(msg);
+          if (!parts.text && !parts.thought) continue;
+
+          for (const ref of parts.refs || []) {
+            if (ref.url) refCollector.add(ref.title || '', ref.url);
+          }
+
+          if (role === 'user') {
+            lines.push('### 🧑‍💻 User');
+            lines.push('');
+            lines.push(stripHashes(parts.text));
+            lines.push('');
+          } else {
+            lines.push('### 🤖 Assistant');
+            lines.push('');
+            if (parts.thought) {
+              lines.push('#### 🤔 Thought Process');
+              lines.push('');
+              lines.push(stripHashes(parts.thought));
+              lines.push('');
+              if (parts.text) {
+                lines.push('#### 💡 Response');
+                lines.push('');
+              }
+            }
+            if (parts.text) {
+              lines.push(stripHashes(parts.text));
+              lines.push('');
+            }
+          }
+        }
+
+        if (refCollector.hasReferences()) {
+          lines.push(...refCollector.render());
+        }
+
+        return lines.join('\n').replace(/\n{3,}/g, '\n\n');
+      },
+    },
+
+    // ═══════════════════════════════════════════════════════
+    //  ADAPTER[minimax]  MiniMax Agent — 海外版 agent.minimax.io / 国内版 agent.minimaxi.com
+    //  两端 API 完全同构（已从两端前端 webpack 模块逐项确认）：
+    //  接口：会话树 GET /minimax-cloud/api/v1/sidebar/session/tree
+    //        会话信息 GET /minimax-cloud/api/v1/session/{id}
+    //        消息     GET /minimax-cloud/api/v1/session/{id}/message?limit=80
+    //  鉴权：token 头 + query token（localStorage _token / user_detail_agent.token）
+    //        x-signature = md5(x-timestamp + "I*7Cf%WZ#S&%1RlZJ&C2" + body)（GET 无 body）
+    //        yy 头服务端不校验（实测任意值 200），用固定占位即可
+    //  差异：国内版 sys_language/lang 为 zh（REGION=cn），海外版为 en（REGION=en）
+    //  海外版已用真实浏览器 + 真实会话 430078672212281 实测；国内版因无账号未实测消息接口。
+    // ═══════════════════════════════════════════════════════
+    {
+      id: 'minimax',
+      name: 'MiniMax',
+      detect: () => ['agent.minimax.io', 'agent.minimaxi.com'].includes(window.location.hostname),
+
+      // 当前站点 host；Node 测试环境下无 window，用 _fallbackHost（默认海外版）
+      _fallbackHost: 'agent.minimax.io',
+
+      _siteHost() {
+        return (typeof window !== 'undefined' && window.location && window.location.hostname)
+          || this._fallbackHost;
+      },
+
+      getCurrentConversationId: () => {
+        const m = window.location.search.match(/[?&]id=([^&]+)/);
+        return m ? decodeURIComponent(m[1]) : null;
+      },
+
+      _projectCache: {},
+
+      _fetchProjectMeta(projectId) {
+        if (!projectId || (this._projectCache && this._projectCache[projectId])) return;
+        this._projectFetching = this._projectFetching || new Set();
+        if (this._projectFetching.has(projectId)) return;
+        this._projectFetching.add(projectId);
+        const pUrl = this._endpoint('/minimax-cloud/api/v1/project');
+        this._get(pUrl).then((pData) => {
+          const p = (pData?.projects || []).find((x) => String(x.id) === String(projectId));
+          if (p?.name) {
+            this._projectCache = this._projectCache || {};
+            this._projectCache[projectId] = p.name;
+          }
+        }).catch(() => {}).finally(() => {
+          this._projectFetching.delete(projectId);
+        });
+      },
+
+      getCurrentProject() {
+        const search = typeof window !== 'undefined' && window.location ? window.location.search : '';
+        if (/[?&]id=[^&]+/.test(search)) return null;
+        const m = search.match(/[?&]project=([^&]+)/);
+        if (!m) return null;
+        const id = decodeURIComponent(m[1]);
+        if (this._projectCache && this._projectCache[id]) {
+          return { id, name: this._projectCache[id] };
+        }
+        this._fetchProjectMeta(id);
+        return { id, name: '' };
+      },
+
+      _token() {
+        try {
+          const ls = typeof localStorage !== 'undefined' ? localStorage : null;
+          const ud = JSON.parse(ls?.getItem('user_detail_agent') || '{}');
+          return ud.token || ls?.getItem('_token') || '';
+        } catch (e) {
+          return '';
+        }
+      },
+
+      // 构造页面同款 web query 参数（复刻前端 mC 逻辑，实测缺参数会 401）
+      _webParams() {
+        const now = Date.now();
+        let ud = {};
+        const ls = typeof localStorage !== 'undefined' ? localStorage : null;
+        const ss = typeof sessionStorage !== 'undefined' ? sessionStorage : null;
+        const nav = typeof navigator !== 'undefined' ? navigator : { userAgent: '', language: '', platform: '' };
+        const scr = typeof screen !== 'undefined' ? screen : { width: 0, height: 0 };
+        try { ud = JSON.parse(ls?.getItem('user_detail_agent') || '{}'); } catch (e) { /* ignore */ }
+        const zh = this._siteHost().endsWith('minimaxi.com'); // 国内版 REGION=cn → zh
+        const p = new URLSearchParams({
+          device_platform: 'web',
+          biz_id: '3',
+          app_id: '3001',
+          version_code: '22201',
+          timezone_offset: String(-60 * new Date().getTimezoneOffset()),
+          sys_language: zh ? 'zh' : 'en',
+          lang: zh ? 'zh' : 'en',
+          uuid: ls?.getItem('UNIQUE_USER_ID') || '',
+          device_id: ss?.getItem('tab_device_id') || '',
+          os_name: (nav.userAgent || '').includes('Win') ? 'Windows' : (nav.userAgent || '').includes('Mac') ? 'macOS' : 'unknown',
+          browser_name: (nav.userAgent || '').includes('Firefox') ? 'Firefox' : (nav.userAgent || '').includes('Chrome') ? 'Chrome' : 'unknown',
+          browser_language: nav.language || '',
+          browser_platform: nav.platform || '',
+          user_id: ud.realUserID || '0',
+          screen_width: String(scr.width || 0),
+          screen_height: String(scr.height || 0),
+          unix: String(now),
+          token: this._token(),
+          client: 'web',
+        });
+        return p.toString();
+      },
+
+      // 优先复用页面已加载的真实 endpoint（含合法参数），只刷新 session id / token / unix；
+      // 兜底自行拼参数。
+      _endpoint(path) {
+        const resources = [];
+        try {
+          resources.push(...performance.getEntriesByType('resource').map((e) => e.name || ''));
+        } catch (e) { /* ignore */ }
+        const found = [...resources].reverse().find((u) => String(u).includes('/minimax-cloud/api/v1/'));
+        const now = Date.now();
+        if (found) {
+          try {
+            const url = new URL(found, window.location.origin);
+            url.pathname = path;
+            url.searchParams.set('unix', String(now));
+            url.searchParams.set('token', this._token());
+            return url.pathname + url.search;
+          } catch (e) { /* ignore */ }
+        }
+        return path + '?' + this._webParams();
+      },
+
+      async _get(url) {
+        const ts = Math.floor(Date.now() / 1000);
+        const sig = this._md5(String(ts) + 'I*7Cf%WZ#S&%1RlZJ&C2');
+        const r = await fetch(url, {
+          method: 'GET',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+            token: this._token(),
+            yy: '9d285808f21a907f949225cffeb77556',
+            'x-timestamp': String(ts),
+            'x-signature': sig,
+          },
+        });
+        if (!r.ok) throw new Error(`MiniMax API ${r.status}: ${await r.text().catch(() => r.statusText)}`);
+        const data = await r.json();
+        if (data?.base_resp && data.base_resp.status_code !== 0) {
+          throw new Error(`MiniMax API ${data.base_resp.status_code}: ${data.base_resp.status_msg || 'unknown error'}`);
+        }
+        return data;
+      },
+
+      async getAllConversations(onProgress) {
+        const all = [];
+        const seen = new Set();
+        const limit = CONFIG.DEBUG_LIMIT || Infinity;
+        let cursor = '';
+
+        while (all.length < limit) {
+          let url = this._endpoint('/minimax-cloud/api/v1/sidebar/session/tree');
+          if (cursor) url += (url.includes('?') ? '&' : '?') + 'cursor=' + encodeURIComponent(cursor);
+          const data = await this._get(url);
+          const sessions = Array.isArray(data.sessions) ? data.sessions : [];
+          let added = 0;
+
+          for (const item of sessions) {
+            const s = item?.session || item || {};
+            const id = s.session_id;
+            if (!id || seen.has(id)) continue;
+            seen.add(id);
+            all.push({
+              id,
+              title: (s.title || '').trim() || id,
+              created_at: s.created_at,
+              updated_at: s.updated_at,
+              model: s.model?.model_id || '',
+              archived: !!s.archived,
+            });
+            added++;
+            if (all.length >= limit) break;
+          }
+
+          if (onProgress) onProgress(all.length);
+          if (!data.has_more || !data.next_cursor || !sessions.length || !added) break;
+          cursor = data.next_cursor;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        return all.slice(0, limit);
+      },
+
+      async getProjectConversations(projectId, onProgress) {
+        let projectName = (this._projectCache && this._projectCache[projectId]) || '';
+        try {
+          const pUrl = this._endpoint('/minimax-cloud/api/v1/project');
+          const pData = await this._get(pUrl);
+          const p = (pData?.projects || []).find((x) => String(x.id) === String(projectId));
+          if (p?.name) {
+            projectName = p.name;
+            this._projectCache = this._projectCache || {};
+            this._projectCache[projectId] = projectName;
+          }
+        } catch (e) {
+          console.warn('[AfterChat] 获取 MiniMax 项目详情失败:', e);
+        }
+        projectName = projectName || `Project ${projectId}`;
+
+        const all = [];
+        const seen = new Set();
+        let cursor = '';
+
+        while (true) {
+          const endpointUrl = this._endpoint('/minimax-cloud/api/v1/sidebar/session');
+          let url = endpointUrl;
+          try {
+            const u = new URL(endpointUrl, (typeof window !== 'undefined' && window.location?.origin) || 'https://' + this._fallbackHost);
+            u.searchParams.set('project_id', String(projectId));
+            u.searchParams.set('limit', '20');
+            if (cursor) u.searchParams.set('cursor', cursor);
+            url = u.pathname + u.search;
+          } catch (e) {
+            url += (url.includes('?') ? '&' : '?') + `project_id=${encodeURIComponent(projectId)}&limit=20`;
+            if (cursor) url += `&cursor=${encodeURIComponent(cursor)}`;
+          }
+
+          const data = await this._get(url);
+          const sessions = Array.isArray(data.sessions) ? data.sessions : [];
+          let added = 0;
+
+          for (const item of sessions) {
+            const s = item?.session || item || {};
+            const id = s.session_id;
+            if (!id || seen.has(id)) continue;
+            seen.add(id);
+            all.push({
+              id,
+              title: (s.title || '').trim() || id,
+              created_at: s.created_at,
+              updated_at: s.updated_at,
+              model: s.model?.model_id || '',
+              archived: !!s.archived,
+            });
+            added++;
+          }
+
+          if (onProgress) onProgress(all.length);
+          if (!data.has_more || !data.next_cursor || !sessions.length || !added) break;
+          cursor = data.next_cursor;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        return {
+          id: projectId,
+          name: projectName,
+          conversations: all,
+        };
+      },
+
+      async getConversationDetails(id) {
+
+        const sessionResp = await this._get(this._endpoint(`/minimax-cloud/api/v1/session/${id}`));
+        const messages = [];
+        const seen = new Set();
+        let cursor = '';
+
+        while (true) {
+          let url = this._endpoint(`/minimax-cloud/api/v1/session/${id}/message`);
+          url += (url.includes('?') ? '&' : '?') + 'limit=80';
+          if (cursor) url += '&cursor=' + encodeURIComponent(cursor);
+          const data = await this._get(url);
+          const batch = Array.isArray(data.messages) ? data.messages : [];
+          let added = 0;
+
+          for (const m of batch) {
+            if (!m?.msg_id || seen.has(m.msg_id)) continue;
+            seen.add(m.msg_id);
+            messages.push(m);
+            added++;
+          }
+
+          if (!data.has_more || !data.next_cursor || !batch.length || !added) break;
+          cursor = data.next_cursor;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        messages.sort((a, b) => (Number(a.timestamp) || 0) - (Number(b.timestamp) || 0));
+        return {
+          conversation_id: id,
+          sessionInfo: sessionResp,
+          messages,
+          session: sessionResp?.session || {},
+        };
+      },
+
+      toMarkdown(data, title, convId) {
+        const session = data?.session || data?.sessionInfo?.session || {};
+        // msg_type: 1 正常消息；2 为中间态/被替代的回复（与最终回复开头重复），跳过
+        const messages = (Array.isArray(data?.messages) ? data.messages : [])
+          .filter((m) => m?.msg_content && Number(m.msg_type) === 1);
+
+        const timeStr = session.created_at
+          ? formatLocalTime(new Date(Number(session.created_at)))
+          : 'unknown';
+        const convUrl = convId ? `https://${this._siteHost()}/mavis?id=${convId}` : `https://${this._siteHost()}`;
+        const modelName = session?.model?.model_id || session?.model?.provider_id || 'MiniMax';
+
+        const lines = [];
+        lines.push('## Metadata');
+        lines.push('');
+        lines.push(`- **Model:** \`${modelName}\``);
+        lines.push(`- **Time:** ${timeStr}`);
+        lines.push(`- **URL:** ${convUrl}`);
+        lines.push('');
+        lines.push('## Conversation');
+        lines.push('');
+
+        for (const msg of messages) {
+          const role = msg.role === 'user' ? 'user' : msg.role === 'assistant' ? 'assistant' : 'other';
+          if (role === 'other') continue;
+          const text = String(msg.msg_content || '').trim();
+          if (!text) continue;
+
+          if (role === 'user') {
+            lines.push('### 🧑‍💻 User');
+            lines.push('');
+            lines.push(stripHashes(text));
+            lines.push('');
+          } else {
+            lines.push('### 🤖 Assistant');
+            lines.push('');
+            lines.push(stripHashes(text));
+            lines.push('');
+          }
+        }
+
+        return lines.join('\n').replace(/\n{3,}/g, '\n\n');
+      },
+
+      // ---- MD5（RFC1321 风格公开实现，Public Domain；与 chatglm 适配器同款）----
+      _md5(s) {
+        function md5cycle(x, k) {
+          var a = x[0], b = x[1], c = x[2], d = x[3];
+          a = ff(a, b, c, d, k[0], 7, -680876936); d = ff(d, a, b, c, k[1], 12, -389564586); c = ff(c, d, a, b, k[2], 17, 606105819); b = ff(b, c, d, a, k[3], 22, -1044525330);
+          a = ff(a, b, c, d, k[4], 7, -176418897); d = ff(d, a, b, c, k[5], 12, 1200080426); c = ff(c, d, a, b, k[6], 17, -1473231341); b = ff(b, c, d, a, k[7], 22, -45705983);
+          a = ff(a, b, c, d, k[8], 7, 1770035416); d = ff(d, a, b, c, k[9], 12, -1958414417); c = ff(c, d, a, b, k[10], 17, -42063); b = ff(b, c, d, a, k[11], 22, -1990404162);
+          a = ff(a, b, c, d, k[12], 7, 1804603682); d = ff(d, a, b, c, k[13], 12, -40341101); c = ff(c, d, a, b, k[14], 17, -1502002290); b = ff(b, c, d, a, k[15], 22, 1236535329);
+          a = gg(a, b, c, d, k[1], 5, -165796510); d = gg(d, a, b, c, k[6], 9, -1069501632); c = gg(c, d, a, b, k[11], 14, 643717713); b = gg(b, c, d, a, k[0], 20, -373897302);
+          a = gg(a, b, c, d, k[5], 5, -701558691); d = gg(d, a, b, c, k[10], 9, 38016083); c = gg(c, d, a, b, k[15], 14, -660478335); b = gg(b, c, d, a, k[4], 20, -405537848);
+          a = gg(a, b, c, d, k[9], 5, 568446438); d = gg(d, a, b, c, k[14], 9, -1019803690); c = gg(c, d, a, b, k[3], 14, -187363961); b = gg(b, c, d, a, k[8], 20, 1163531501);
+          a = gg(a, b, c, d, k[13], 5, -1444681467); d = gg(d, a, b, c, k[2], 9, -51403784); c = gg(c, d, a, b, k[7], 14, 1735328473); b = gg(b, c, d, a, k[12], 20, -1926607734);
+          a = hh(a, b, c, d, k[5], 4, -378558); d = hh(d, a, b, c, k[8], 11, -2022574463); c = hh(c, d, a, b, k[11], 16, 1839030562); b = hh(b, c, d, a, k[14], 23, -35309556);
+          a = hh(a, b, c, d, k[1], 4, -1530992060); d = hh(d, a, b, c, k[4], 11, 1272893353); c = hh(c, d, a, b, k[7], 16, -155497632); b = hh(b, c, d, a, k[10], 23, -1094730640);
+          a = hh(a, b, c, d, k[13], 4, 681279174); d = hh(d, a, b, c, k[0], 11, -358537222); c = hh(c, d, a, b, k[3], 16, -722521979); b = hh(b, c, d, a, k[6], 23, 76029189);
+          a = hh(a, b, c, d, k[9], 4, -640364487); d = hh(d, a, b, c, k[12], 11, -421815835); c = hh(c, d, a, b, k[15], 16, 530742520); b = hh(b, c, d, a, k[2], 23, -995338651);
+          a = ii(a, b, c, d, k[0], 6, -198630844); d = ii(d, a, b, c, k[7], 10, 1126891415); c = ii(c, d, a, b, k[14], 15, -1416354905); b = ii(b, c, d, a, k[5], 21, -57434055);
+          a = ii(a, b, c, d, k[12], 6, 1700485571); d = ii(d, a, b, c, k[3], 10, -1894986606); c = ii(c, d, a, b, k[10], 15, -1051523); b = ii(b, c, d, a, k[1], 21, -2054922799);
+          a = ii(a, b, c, d, k[8], 6, 1873313359); d = ii(d, a, b, c, k[15], 10, -30611744); c = ii(c, d, a, b, k[6], 15, -1560198380); b = ii(b, c, d, a, k[13], 21, 1309151649);
+          a = ii(a, b, c, d, k[4], 6, -145523070); d = ii(d, a, b, c, k[11], 10, -1120210379); c = ii(c, d, a, b, k[2], 15, 718787259); b = ii(b, c, d, a, k[9], 21, -343485551);
+          x[0] = add32(a, x[0]); x[1] = add32(b, x[1]); x[2] = add32(c, x[2]); x[3] = add32(d, x[3]);
+        }
+        function cmn(q, a, b, x, s, t) { a = add32(add32(a, q), add32(x, t)); return add32(a << s | a >>> (32 - s), b); }
+        function ff(a, b, c, d, x, s, t) { return cmn(b & c | ~b & d, a, b, x, s, t); }
+        function gg(a, b, c, d, x, s, t) { return cmn(b & d | c & ~d, a, b, x, s, t); }
+        function hh(a, b, c, d, x, s, t) { return cmn(b ^ c ^ d, a, b, x, s, t); }
+        function ii(a, b, c, d, x, s, t) { return cmn(c ^ (b | ~d), a, b, x, s, t); }
+        function md51(s) {
+          var n = s.length, state = [1732584193, -271733879, -1732584194, 271733878], i;
+          for (i = 64; i <= s.length; i += 64) { md5cycle(state, md5blk(s.substring(i - 64, i))); }
+          s = s.substring(i - 64);
+          var tail = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+          for (i = 0; i < s.length; i++) tail[i >> 2] |= s.charCodeAt(i) << (i % 4 << 3);
+          tail[i >> 2] |= 0x80 << (i % 4 << 3);
+          if (i > 55) { md5cycle(state, tail); tail = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; }
+          tail[14] = n * 8;
+          md5cycle(state, tail);
+          return state;
+        }
+        function md5blk(s) {
+          var md5blks = [], i;
+          for (i = 0; i < 64; i += 4) md5blks[i >> 2] = s.charCodeAt(i) + (s.charCodeAt(i + 1) << 8) + (s.charCodeAt(i + 2) << 16) + (s.charCodeAt(i + 3) << 24);
+          return md5blks;
+        }
+        function rhex(n) { var s = '', j; for (j = 0; j < 4; j++) s += hex_chr[n >> (j * 8 + 4) & 15] + hex_chr[n >> (j * 8) & 15]; return s; }
+        function hex(x) { for (var i = 0; i < x.length; i++) x[i] = rhex(x[i]); return x.join(''); }
+        function add32(a, b) { return a + b & 4294967295; }
+        var hex_chr = '0123456789abcdef'.split('');
+        return hex(md51(s));
+      },
+    },
+
+    // ═══════════════════════════════════════════════════════
+    //  ADAPTER[copilot]  Microsoft Copilot (copilot.microsoft.com)
+    // ═══════════════════════════════════════════════════════
+    {
+      id: 'copilot',
+      name: 'Microsoft Copilot',
+      detect: () => window.location.hostname === 'copilot.microsoft.com',
+
+      getCurrentConversationId: () => {
+        const match = window.location.pathname.match(/^\/chats\/([^\/?]+)/);
+        return match ? match[1] : null;
+      },
+
+      /**
+       * 从 MSAL localStorage 缓存中提取 Bearer token。
+       * MSAL.js v2 将 token 存储在 localStorage，key 包含 |accesstoken|，
+       * value 为 JSON 对象，secret 字段即 Bearer token。
+       */
+      _token() {
+        try {
+          let fallback = '';
+          for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (!key || !key.includes('accesstoken')) continue;
+            const raw = localStorage.getItem(key);
+            if (!raw) continue;
+            const parsed = JSON.parse(raw);
+            if (!parsed.secret) continue;
+            // 优先返回 copilot API 需要的 ChatAI.ReadWrite scope 的 token
+            const target = (parsed.target || '').toLowerCase();
+            if (target.includes('chatai.readwrite')) {
+              return parsed.secret;
+            }
+            // 兜底：记录第一个有效的 token
+            if (!fallback) fallback = parsed.secret;
+          }
+          return fallback;
+        } catch (e) { /* ignore */ }
+        return '';
+      },
+
+      _headers() {
+        const h = { 'accept': '*/*' };
+        const token = this._token();
+        if (token) h['authorization'] = 'Bearer ' + token;
+        return h;
+      },
+
+
+
+      async getAllConversations(onProgress) {
+        const allChats = [];
+        let cursor = '';
+        const limit = CONFIG.DEBUG_LIMIT || Infinity;
+
+        while (allChats.length < limit) {
+          const params = new URLSearchParams({
+            cursor: cursor,
+            types: 'chat,character,xbox,group',
+            features: 'anonymous-block-page',
+            setflight: 'anonymous-block-page',
+          });
+          const url = `/c/api/conversations?${params}`;
+          const r = await fetch(url, { headers: this._headers() });
+          if (!r.ok) throw new Error(`列表API ${r.status}: ${r.statusText}`);
+          const body = await r.json();
+          const items = body?.results || [];
+          if (!items.length) break;
+
+          allChats.push(...items);
+          if (onProgress) onProgress(allChats.length);
+
+          if (!body.next) break;
+          cursor = body.next;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        return allChats.slice(0, limit).map((c) => ({
+          id: c.id || '',
+          title: (c.title || '').trim(),
+          updated_at: c.updatedAt,
+        }));
+      },
+
+      async getConversationDetails(id) {
+        const params = new URLSearchParams({
+          'api-version': '2',
+          'features': 'anonymous-block-page',
+          'setflight': 'anonymous-block-page',
+        });
+        const url = `/c/api/conversations/${encodeURIComponent(id)}/history?${params}`;
+        const r = await fetch(url, { headers: this._headers() });
+        if (!r.ok) throw new Error(`详情API ${r.status}: ${r.statusText}`);
+        const data = await r.json();
+
+        // 从对话元数据 API 获取标题，供文件命名用
+        try {
+          const metaR = await fetch(`/c/api/conversations/${encodeURIComponent(id)}`, { headers: this._headers() });
+          if (metaR.ok) {
+            const meta = await metaR.json();
+            if (meta.title) data.title = meta.title;
+          }
+        } catch (e) { /* 标题不影响核心导出 */ }
+
+        return data;
+      },
+
+      /** 将 copilot 聊天数据转为 Markdown */
+      toMarkdown(data, title, convId) {
+        const results = data?.results || [];
+        if (!results.length) throw new Error('无消息数据');
+
+        // API 返回 newest-first，翻转成时间正序
+        const messages = [...results].reverse();
+
+        const modelName = 'Microsoft Copilot';
+
+        // 取最早消息的时间作为对话创建时间
+        const firstMsg = messages[0];
+        const timeStr = firstMsg?.createdAt
+          ? formatLocalTime(new Date(firstMsg.createdAt))
+          : 'unknown';
+        const convUrl = convId
+          ? `https://copilot.microsoft.com/chats/${convId}`
+          : 'https://copilot.microsoft.com';
+
+
+        const lines = [];
+        lines.push('## Metadata');
+        lines.push('');
+        lines.push(`- **Model:** \`${modelName}\``);
+        lines.push(`- **Time:** ${timeStr}`);
+        lines.push(`- **URL:** ${convUrl}`);
+        lines.push('');
+        lines.push('## Conversation');
+        lines.push('');
+
+        for (const msg of messages) {
+          const authorType = msg?.author?.type;
+          const contentItems = msg?.content || [];
+
+          // 拼接所有 content 中的文本片段
+          let text = '';
+          for (const c of contentItems) {
+            if (c.type === 'text' && c.text) {
+              text += c.text;
+            }
+          }
+          text = text.trim();
+          if (!text) continue;
+
+          if (authorType === 'human') {
+            lines.push('### 🧑‍💻 User');
+            lines.push('');
+            lines.push(stripHashes(text));
+            lines.push('');
+          } else if (authorType === 'ai') {
+            lines.push('### 🤖 Assistant');
+            lines.push('');
+            lines.push(stripHashes(text));
+            lines.push('');
+          }
+        }
+
+        return lines.join('\n');
+      },
+    },
+
+    // ═══════════════════════════════════════════════════════
+    //  ADAPTER[aistudio]  Google AI Studio
+    // ═══════════════════════════════════════════════════════
+    // 两个 API 都走 gRPC-web JSON+protobuf：
+    //   - 列表：ListPrompts → [100, ''] 返回全部提示（无 DOM）
+    //   - 单条：ResolveDriveResource → [id] 返回完整对话
+    // 请求在页面上下文中通过 XMLHttpRequest（withCredentials=true）执行，
+    // 浏览器自动处理 Cookie + CORS。SAPISIDHASH 从 document.cookie 实时计算。
+    {
+      id: 'aistudio',
+      name: 'Google AI Studio',
+      detect: () => window.location.hostname === 'aistudio.google.com',
+
+      getCurrentConversationId: () => {
+        // 多账号切换后 URL 会带 /u/<n>/ 前缀（如 /u/1/prompts/<id>）
+        const m1 = window.location.pathname.match(/^\/u\/\d+\/prompts\/([^\/?]+)/);
+        const m2 = window.location.pathname.match(/^\/prompts\/([^\/?]+)/);
+        const match = m1 || m2;
+        if (!match) return null;
+        // /prompts/new_chat 是默认页，不是真实对话 ID
+        if (match[1] === 'new_chat') return null;
+        return match[1];
+      },
+
+      /**
+       * 对话列表：通过 ListPrompts API 分页获取（纯 CURL 方式，无 DOM 解析）。
+       * 响应格式：[prompts[], nextPageToken?]
+       *   prompts 各元素: ["prompts/{id}", ..., [title, ...], ...]
+       *   nextPageToken: "~!!~BASE64" 或 undefined（末页）
+       */
+      async getAllConversations(onProgress) {
+        const chats = [];
+        let pageToken = '';
+
+        while (true) {
+          const body = pageToken ? [100, pageToken] : [100, ''];
+          const raw = await this._rpc('ListPrompts', body);
+          const list = Array.isArray(raw) ? raw : [];
+          const prompts = list.length > 0 && Array.isArray(list[0]) ? list[0] : [];
+
+          for (const item of prompts) {
+            if (!Array.isArray(item)) continue;
+            const resourceName = item[0];
+            if (typeof resourceName !== 'string') continue;
+            const id = resourceName.replace('prompts/', '');
+            if (!id) continue;
+            const title = Array.isArray(item[4]) && typeof item[4][0] === 'string'
+              ? item[4][0]
+              : '';
+            // 时间戳：item[4][4][0] = [seconds, nanos]（Google Timestamp 格式），normalizeTimestamp 可解析
+            const tsArr = Array.isArray(item[4]) && Array.isArray(item[4][4])
+              ? item[4][4][0]
+              : null;
+            chats.push({ id, title, updated_at: tsArr });
+          }
+
+          if (onProgress) onProgress(chats.length);
+
+          // 检查是否有下一页
+          const nextToken = list[1];
+          if (!nextToken || typeof nextToken !== 'string' || !nextToken.includes('~!!~')) break;
+          pageToken = nextToken;
+
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        return chats;
+      },
+
+      /** 单条对话：用 XHR 调 ResolveDriveResource API */
+      async getConversationDetails(id) {
+        const raw = await this._rpc('ResolveDriveResource', [id]);
+        return this._parseConversation(raw, id);
+      },
+
+      toMarkdown(data, title, convId) {
+        const messages = data?.messages || [];
+        const modelName = data?.modelName || 'Gemini';
+        const ms = normalizeTimestamp(data?.updated_at);
+        const timeStr = ms ? formatLocalTime(new Date(ms)) : 'unknown';
+        // 保留 /u/<n>/ 前缀，保证点开 URL 落在正确的 Google 账号上
+        const authUser = this._authUserFromUrl();
+        const base = authUser && authUser !== '0'
+          ? 'https://aistudio.google.com/u/' + authUser
+          : 'https://aistudio.google.com';
+        const convUrl = convId ? base + '/prompts/' + convId : base;
+
+        const lines = [];
+        lines.push('## Metadata');
+        lines.push('');
+        lines.push('- **Model:** `' + modelName + '`');
+        lines.push('- **Time:** ' + timeStr);
+        lines.push('- **URL:** ' + convUrl);
+        lines.push('');
+        lines.push('## Conversation');
+        lines.push('');
+
+        // 消息体中的 # 标题 → **加粗**（共享实现，含代码围栏感知；勿在此另写一份）
+        const convertParts = (parts) => parts.map(p => ({ ...p, text: stripHashes(p.text) }));
+
+        for (let i = 0; i < messages.length; i++) {
+          const msg = messages[i];
+          const prev = i > 0 ? messages[i-1] : null;
+          const isContinuedModel = (msg.role === 'model' || msg.role === 'assistant') && prev && (prev.role === 'model' || prev.role === 'assistant');
+
+          const tp = convertParts(msg.parts.filter(p => p.type === 'thought'));
+          const tx = convertParts(msg.parts.filter(p => p.type === 'text'));
+
+          if (msg.role === 'user') {
+            lines.push('### \u{1F9D1}\u{200D}\u{1F4BB} User');
+            lines.push('');
+            for (const part of tx) lines.push(part.text);
+            lines.push('');
+          } else if (msg.role === 'system') {
+            lines.push('### \u{2699}\u{FE0F} System');
+            lines.push('');
+            for (const part of tx) lines.push(part.text);
+            lines.push('');
+          } else {
+            if (!isContinuedModel) {
+              lines.push('### \u{1F916} Assistant');
+              lines.push('');
+            }
+
+            if (tp.length > 0) {
+              lines.push('#### \u{1F914} Thought Process');
+              lines.push('');
+              for (const part of tp) lines.push(part.text);
+              lines.push('');
+
+              if (tx.length > 0) {
+                lines.push('#### \u{1F4A1} Response');
+                lines.push('');
+                for (const part of tx) lines.push(part.text);
+                lines.push('');
+              }
+            } else if (isContinuedModel && tx.length > 0) {
+              lines.push('#### \u{1F4A1} Response');
+              lines.push('');
+              for (const part of tx) lines.push(part.text);
+              lines.push('');
+            } else {
+              for (const part of tx) lines.push(part.text);
+            }
+
+            if (!isContinuedModel) {
+              lines.push('');
+            }
+          }
+        }
+
+        return lines.join('\n').replace(/\n{3,}/g, '\n\n');
+      },
+
+      // ──── RPC 调用 ────
+
+      /** SAPISID cookie 值（读写缓存用） */
+      _sapisid: '',
+
+      /** 从 Cookie 中读取 SAPISID 值 */
+      _getSAPISID() {
+        if (this._sapisid) return this._sapisid;
+        const cookies = document.cookie.split(';').map(c => c.trim());
+        for (const c of cookies) {
+          if (c.startsWith('SAPISID=')) {
+            this._sapisid = c.substring(8);
+            return this._sapisid;
+          }
+        }
+        return '';
+      },
+
+      /** 从 URL /u/<n>/ 前缀提取 Google 账号索引（无前缀或非浏览器环境默认 0） */
+      _authUserFromUrl() {
+        try {
+          const m = window.location.pathname.match(/^\/u\/(\d+)\//);
+          return m ? m[1] : '0';
+        } catch (e) {
+          return '0';
+        }
+      },
+
+      /** 实时计算 SAPISIDHASH */
+      async _computeSAPISIDHash() {
+        const sapisid = this._getSAPISID();
+        if (!sapisid) throw new Error('SAPISID cookie 不可用');
+        const ts = Math.floor(Date.now() / 1000);
+        const origin = 'https://aistudio.google.com';
+        const msg = ts + ' ' + sapisid + ' ' + origin;
+        const enc = new TextEncoder().encode(msg);
+        const buf = await crypto.subtle.digest('SHA-1', enc);
+        const hash = Array.from(new Uint8Array(buf))
+          .map(b => b.toString(16).padStart(2, '0')).join('');
+        return ts + '_' + hash;
+      },
+
+      /** 从页面的 JSON config 中提取 API key（不硬编码） */
+      _getApiKey() {
+        if (this._apiKey) return this._apiKey;
+        for (const s of document.scripts) {
+          if (s.type === 'application/json') {
+            try {
+              const data = JSON.parse(s.textContent);
+              if (data.WIu0Nc) {
+                this._apiKey = data.WIu0Nc;
+                return this._apiKey;
+              }
+            } catch {}
+          }
+        }
+        throw new Error('API key 未找到：页面 JSON config 结构可能已变更');
+      },
+
+      /** 调用 Google AI Studio RPC API */
+      async _rpc(method, body) {
+        const sapisidHash = await this._computeSAPISIDHash();
+        const apiKey = this._getApiKey();
+
+        return new Promise((resolve, reject) => {
+          const xhr = new XMLHttpRequest();
+          xhr.open('POST',
+            'https://alkalimakersuite-pa.clients6.google.com/'
+            + '$rpc/google.internal.alkali.applications.makersuite.v1.MakerSuiteService/'
+            + method
+          );
+          xhr.withCredentials = true;
+          xhr.setRequestHeader('Content-Type', 'application/json+protobuf');
+          xhr.setRequestHeader('X-Goog-Api-Key', apiKey);
+          xhr.setRequestHeader('X-Goog-AuthUser', this._authUserFromUrl());
+          xhr.setRequestHeader('Authorization', 'SAPISIDHASH ' + sapisidHash);
+
+          xhr.onload = () => {
+            if (xhr.status >= 200 && xhr.status < 300) {
+              try {
+                resolve(JSON.parse(xhr.responseText));
+              } catch (e) {
+                reject(new Error('响应解析失败: ' + e.message));
+              }
+            } else {
+              reject(new Error('API ' + xhr.status + ': ' + xhr.responseText.substring(0, 200)));
+            }
+          };
+          xhr.onerror = () => reject(new Error('API 网络错误'));
+          xhr.send(JSON.stringify(body));
+        });
+      },
+
+      /** 从 ResolveDriveResource 响应中提取消息 */
+      _parseConversation(raw, id) {
+        // 响应格式：[[实际数据...]] —— 外层数组包一层
+        // 实际数据：
+        // [
+        //   0: "prompts/{id}"  (resource name)
+        //   1: null
+        //   2: null
+        //   3: [..., "models/gemini-xxx", ...]  (model info)
+        //   4: ["标题", ...]  (title + author info)
+        //   ...
+        //   12: ["系统提示文本"]  (system prompt)
+        //   13: [  (conversation turns)
+        //     [
+        //       ["用户消息", ..., "user", ...],
+        //       ["模型回复", ...]
+        //     ]
+        //   ]
+        // ]
+        // 注意：外层可能有一层包装数组
+        let arr = Array.isArray(raw) ? raw : [];
+        // 解一层包装
+        if (arr.length === 1 && Array.isArray(arr[0])) arr = arr[0];
+
+        // 模型名 —— arr[3][2] = "models/gemini-3.1-pro-preview"
+        let modelName = 'Gemini';
+        if (Array.isArray(arr[3]) && typeof arr[3][2] === 'string') {
+          modelName = arr[3][2].replace('models/', '');
+        }
+
+        // 标题 —— arr[4][0]
+        let title = '';
+        if (Array.isArray(arr[4]) && typeof arr[4][0] === 'string') {
+          title = arr[4][0];
+        }
+
+        // 系统提示 —— arr[12]
+        const systemPrompt = Array.isArray(arr[12]) ? arr[12].filter(s => typeof s === 'string') : [];
+
+        // 对话轮次 —— arr[13]
+        const messages = [];
+        const turnGroups = Array.isArray(arr[13]) ? arr[13] : [];
+
+        if (systemPrompt.length > 0) {
+          messages.push({ role: 'system', parts: systemPrompt.map(t => ({ type: 'text', text: t })) });
+        }
+
+        for (const group of turnGroups) {
+          if (!Array.isArray(group)) continue;
+          let prevWasUser = false;
+          for (const msgArr of group) {
+            if (!Array.isArray(msgArr)) continue;
+            // 消息文本在 index 0
+            const text = typeof msgArr[0] === 'string' ? msgArr[0] : '';
+            if (!text || text.length < 2) continue;
+            // 角色：index 8 通常是 "user"，model 没有此标记
+            const role = msgArr[8] === 'user' ? 'user' : 'model';
+
+            // 判断是否为思考过程：
+            // 模型消息，以 ** 开头，且内容含分析/评估类关键词
+            let partType = 'text';
+            if (role === 'model' && /^\s*\*\*/.test(text)) {
+              const firstLine = text.split('\n')[0].replace(/\*\*/g, '').trim().toLowerCase();
+              if (/^(assess|evaluat|analyz|consider|classify|identif|defin|determin|reflect|break down|dissect|categoriz|think|thought|构思|评估|分析|思考|拆解)/.test(firstLine)) {
+                partType = 'thought';
+              }
+            }
+
+            messages.push({
+              role,
+              parts: [{ type: partType, text: text.trim() }],
+            });
+            prevWasUser = (role === 'user');
+          }
+        }
+
+        // 如果没找到对话，全量扫描
+        if (messages.length === 0) {
+          this._scanAllStrings(arr, messages);
+        }
+
+        // arr[4][4][0] = [seconds, nanos]（Google Timestamp），与 getAllConversations 取的是同一字段
+        const updatedAt = Array.isArray(arr[4]) && Array.isArray(arr[4][4]) ? arr[4][4][0] : null;
+
+        return { messages, modelName, title, promptId: id, updated_at: updatedAt };
+      },
+
+      /** 兜底：全量扫描所有长文本 */
+      _scanAllStrings(data, result) {
+        if (!data || typeof data !== 'object') return;
+        if (Array.isArray(data)) {
+          for (const item of data) {
+            if (typeof item === 'string' && item.length > 100 && item.length < 500000) {
+              result.push({ role: 'model', parts: [{ type: 'text', text: item }] });
+            } else if (Array.isArray(item)) {
+              this._scanAllStrings(item, result);
+            }
+          }
+        }
+      },
+    },
+
+    // ═══════════════════════════════════════════════════════
+    //  ADAPTER[openai]  OpenAI ChatGPT
+    // ═══════════════════════════════════════════════════════
+    // 两个 API 都是同源 /backend-api/*，页面 fetch 自动带 cookie；
+    // 认证头优先从 /api/auth/session 拿 accessToken，失败再扫 localStorage。
+    {
+      id: 'openai',
+      name: 'OpenAI ChatGPT',
+      detect: () => window.location.hostname === 'chatgpt.com',
+
+      getCurrentConversationId: () => {
+        // 支持普通会话 /c/{id} 以及项目内会话 /g/g-p-.../c/{id}
+        const match = window.location.pathname.match(/\/c\/([a-f0-9-]+)/i);
+        return match ? match[1] : null;
+      },
+
+      _projectCache: {},
+
+      _fetchProjectMeta(projectId) {
+        if (!projectId || (this._projectCache && this._projectCache[projectId])) return;
+        this._projectFetching = this._projectFetching || new Set();
+        if (this._projectFetching.has(projectId)) return;
+        this._projectFetching.add(projectId);
+        (async () => {
+          const headers = await this._headers();
+          const rGizmo = await fetch(`/backend-api/gizmos/${encodeURIComponent(projectId)}`, { headers });
+          if (!rGizmo.ok) return;
+          const gBody = await rGizmo.json();
+          const name = gBody?.gizmo?.display?.name?.trim();
+          if (name) {
+            this._projectCache = this._projectCache || {};
+            this._projectCache[projectId] = name;
+          }
+        })().catch(() => {}).finally(() => {
+          this._projectFetching.delete(projectId);
+        });
+      },
+
+      getCurrentProject() {
+        // 匹配项目文件夹路径 /g/(g-p-[0-9a-f]{32})[^/]*/project
+        const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
+        const match = pathname.match(/\/g\/(g-p-[0-9a-f]{32})[^/]*\/project/i);
+        if (!match) return null;
+        const id = match[1];
+        if (this._projectCache && this._projectCache[id]) {
+          return { id, name: this._projectCache[id] };
+        }
+        this._fetchProjectMeta(id);
+        return { id, name: '' };
+      },
+
+      async getProjectConversations(projectId, onProgress) {
+        const headers = await this._headers();
+        let projectName = (this._projectCache && this._projectCache[projectId]) || '';
+        try {
+          const rGizmo = await fetch(`/backend-api/gizmos/${encodeURIComponent(projectId)}`, { headers });
+          if (rGizmo.ok) {
+            const gBody = await rGizmo.json();
+            projectName = gBody?.gizmo?.display?.name?.trim() || projectName;
+            if (projectName) {
+              this._projectCache = this._projectCache || {};
+              this._projectCache[projectId] = projectName;
+            }
+          }
+        } catch (e) {
+          console.warn('[AfterChat] 获取 ChatGPT 项目详情失败:', e);
+        }
+
+        const conversations = [];
+        let cursor = 0;
+        const limit = CONFIG.DEBUG_LIMIT || Infinity;
+
+        while (conversations.length < limit && cursor !== null && cursor !== undefined) {
+          const url = `/backend-api/gizmos/${encodeURIComponent(projectId)}/conversations?cursor=${encodeURIComponent(String(cursor))}`;
+          const r = await fetch(url, { headers });
+          if (!r.ok) throw new Error(`项目会话列表API ${r.status}: ${r.statusText}`);
+          const body = await r.json();
+          const items = body.items || [];
+          if (!items.length) break;
+
+          for (const c of items) {
+            if (c.id) {
+              conversations.push({
+                id: c.id,
+                title: (c.title || '').trim(),
+                create_time: c.create_time,
+                update_time: c.update_time,
+              });
+            }
+          }
+          if (onProgress) onProgress(conversations.length);
+
+          if (body.cursor !== undefined && body.cursor !== null && items.length > 0) {
+            cursor = body.cursor;
+          } else {
+            break;
+          }
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        return {
+          name: projectName || projectId,
+          conversations: conversations.slice(0, limit),
+        };
+      },
+
+      /** 从 /api/auth/session 或 localStorage 中提取 accessToken */
+      async _token() {
+        try {
+          const r = await fetch('/api/auth/session', { headers: { 'accept': 'application/json' } });
+          const d = await r.json();
+          if (d && d.accessToken) return d.accessToken;
+        } catch (e) { /* 忽略 */ }
+        try {
+          for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i);
+            if (!key) continue;
+            const raw = localStorage.getItem(key);
+            if (!raw || !raw.includes('accessToken')) continue;
+            const parsed = JSON.parse(raw);
+            if (parsed && parsed.accessToken) return parsed.accessToken;
+          }
+        } catch (e) { /* 忽略 */ }
+        return '';
+      },
+
+      async _headers() {
+        const h = { 'accept': '*/*' };
+        const token = await this._token();
+        if (token) h['authorization'] = 'Bearer ' + token;
+        return h;
+      },
+
+      async getAllConversations(onProgress) {
+        const allChats = [];
+        const limit = CONFIG.DEBUG_LIMIT || Infinity;
+        const pageSize = 100; // 服务端支持一页 100 条（实测可一次拿全）；超大账号仍会循环翻页
+        let offset = 0;
+        const headers = await this._headers();
+
+        while (allChats.length < limit) {
+          const params = new URLSearchParams({
+            offset: String(offset),
+            limit: String(pageSize),
+            order: 'updated',
+            is_archived: 'false',
+            is_starred: 'false',
+          });
+          const r = await fetch(`/backend-api/conversations?${params}`, { headers });
+          if (!r.ok) throw new Error(`列表API ${r.status}: ${r.statusText}`);
+          const body = await r.json();
+          const items = body.items || [];
+          if (!items.length) break;
+
+          allChats.push(...items);
+          if (onProgress) onProgress(allChats.length);
+
+          // 注意：服务端 total 随 offset 漂移（非真实总数），不能作为停止条件
+          if (items.length < pageSize) break;  // 不足一页 = 到底了
+          offset += items.length;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        return allChats.slice(0, limit).map((c) => ({
+          id: c.id || '',
+          title: (c.title || '').trim(),
+          create_time: c.create_time,
+          update_time: c.update_time,
+        })).filter((c) => c.id);
+      },
+
+      async getConversationDetails(id) {
+        const headers = await this._headers();
+        const r = await fetch(`/backend-api/conversation/${encodeURIComponent(id)}`, { headers });
+        if (!r.ok) throw new Error(`详情API ${r.status}: ${r.statusText}`);
+        return r.json();
+      },
+
+      /** 提取一条消息的可导出正文（跳过工具调用/代码执行） */
+      _messageText(m) {
+        const c = m.content;
+        if (!c) return '';
+        if (typeof c === 'string') return c; // 旧格式兜底
+        if (c.content_type === 'text' && Array.isArray(c.parts)) {
+          // parts 可能是字符串，也可能是 {text, ...} 对象
+          return c.parts.map((p) => (typeof p === 'string' ? p : (p && p.text) || '')).join('');
+        }
+        // content_type === 'code'（工具调用 search/browser 等）不导出
+        return '';
+      },
+
+      /** 将 ChatGPT 对话数据转为 Markdown */
+      toMarkdown(data, title, convId) {
+        const mapping = data.mapping || {};
+        const messages = Object.values(mapping)
+          .filter((n) => n && n.message && n.message.author)
+          .map((n) => n.message)
+          .sort((a, b) => (a.create_time ?? 0) - (b.create_time ?? 0));
+        if (!messages.length) throw new Error('未找到消息数据');
+
+        // 模型名：优先取真实模型 slug（default_model_slug 常为 'auto'）
+        let model = data.default_model_slug || '';
+        if (!model || model === 'auto') {
+          const firstAssistant = messages.find((m) => m.author.role === 'assistant');
+          model = (firstAssistant?.metadata && firstAssistant.metadata.model_slug) || '';
+        }
+        model = model || 'unknown';
+
+        const createTime = data.create_time;
+        const timeStr = createTime
+          ? formatLocalTime(new Date(createTime * 1000))
+          : 'unknown';
+        const convUrl = convId
+          ? `https://chatgpt.com/c/${convId}`
+          : 'https://chatgpt.com';
+
+        // 去掉 canvas 标记行（:::writing{...} 等）
+        const stripCanvas = (s) => s.split('\n').filter((l) => !/^:::/.test(l.trim())).join('\n');
+        const clean = (s) => stripCanvas(stripHashes(s)).trim();
+
+        const lines = [];
+        lines.push('## Metadata');
+        lines.push('');
+        lines.push('- **Model:** `' + model + '`');
+        lines.push(`- **Time:** ${timeStr}`);
+        lines.push(`- **URL:** ${convUrl}`);
+        lines.push('');
+        lines.push('## Conversation');
+        lines.push('');
+
+        const refCollector = new ReferenceCollector();
+
+        for (const m of messages) {
+          const role = m.author.role;
+          let text = this._messageText(m);
+
+          // 引用占位符（\uE000cite\uE002turn0search0\uE001）→ [N]，并收集 References
+          const meta = m.metadata;
+          if (meta && Array.isArray(meta.content_references)) {
+            for (const ref of meta.content_references) {
+              const mt = ref.matched_text;
+              if (!mt || !mt.includes('cite')) continue; // 跳过 sources_footnote 等
+              if (!text.includes(mt)) continue;
+              const title = (ref.items?.[0]?.title || '').trim();
+              const url = ref.items?.[0]?.url || ref.safe_urls?.[0] || '';
+              const gNum = refCollector.add(title, url);
+              text = text.split(mt).join(`[${gNum}]`);
+            }
+          }
+
+          text = clean(text);
+          if (!text) continue;
+
+          if (role === 'user') {
+            lines.push('### 🧑‍💻 User');
+            lines.push('');
+            lines.push(text);
+            lines.push('');
+          } else if (role === 'assistant') {
+            lines.push('### 🤖 Assistant');
+            lines.push('');
+            lines.push(text);
+            lines.push('');
+          }
+          // system / tool 消息不导出
+        }
+
+        if (refCollector.hasReferences()) {
+          lines.push(...refCollector.render());
+        }
+
+        return lines.join('\n');
+      },
+    },
+
+    // ═══════════════════════════════════════════════════════
+    //  ADAPTER[grok]  Grok (x.com)
+    // ═══════════════════════════════════════════════════════
+    // 两个 API 都是 x.com 的 GraphQL 接口：
+    //   - 列表：GrokHistory，cursor 分页（variables.cursor，base64 游标）
+    //   - 单条：GrokConversationItemsByRestId，同样支持 cursor 翻页
+    // 认证：X 公共 Bearer token（硬编码）+ cookie 里的 ct0 作为 x-csrf-token。
+    {
+      id: 'grok',
+      name: 'Grok',
+      detect: () => window.location.hostname === 'x.com',
+      isPageSupported: () => window.location.pathname.startsWith('/i/grok'),
+
+      _headers() {
+        let ct0 = '';
+        try {
+          const m = document.cookie.match(/ct0=([^;]+)/);
+          if (m) ct0 = m[1];
+        } catch (e) { /* ignore */ }
+        return {
+          'authorization': 'Bearer AAAAAAAAAAAAAAAAAAAAANRILgAAAAAAnNwIzUejRCOuH5E6I8xnZz4puTs=1Zv7ttfk8LF81IUq16cHjhLTvJu4FA33AGWWjCpTnA',
+          'x-csrf-token': ct0,
+          'x-twitter-auth-type': 'OAuth2Session',
+          'content-type': 'application/json',
+          'accept': '*/*',
+        };
+      },
+
+      getCurrentConversationId: () => {
+        const m = window.location.search.match(/[?&]conversation=(\d+)/);
+        return m ? m[1] : null;
+      },
+
+      async getAllConversations(onProgress) {
+        const allChats = [];
+        const limit = CONFIG.DEBUG_LIMIT || Infinity;
+        const headers = this._headers();
+        let cursor = null;
+
+        while (allChats.length < limit) {
+          const variables = cursor ? { cursor } : {};
+          const url = `/i/api/graphql/9Hyh5D4-WXLnExZkONSkZg/GrokHistory?variables=${encodeURIComponent(JSON.stringify(variables))}`;
+          const r = await fetch(url, { headers });
+          if (!r.ok) throw new Error(`列表API ${r.status}: ${r.statusText}`);
+          const body = await r.json();
+          const history = body?.data?.grok_conversation_history;
+          const items = history?.items || [];
+          if (!items.length) break;
+
+          allChats.push(...items);
+          if (onProgress) onProgress(allChats.length);
+
+          cursor = history?.cursor || null;
+          if (!cursor) break;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        return allChats.slice(0, limit).map((c) => {
+          const item = {
+            id: c?.grokConversation?.rest_id || '',
+            title: (c.title || '').trim(),
+            created_at_ms: c.created_at_ms,
+          };
+          // 记录 id → 标题 缓存，供详情导出文件名使用（Grok 标题可编辑，以列表接口为准）
+          if (item.id) {
+            this._titleCache = this._titleCache || {};
+            this._titleCache[item.id] = item.title;
+          }
+          return item;
+        }).filter((c) => c.id);
+      },
+
+      /** 从列表 API 翻页查找单个对话的标题（用户可编辑的真实标题） */
+      async _lookupTitle(id) {
+        const headers = this._headers();
+        let cursor = null;
+        for (let i = 0; i < 20; i++) {
+          const variables = cursor ? { cursor } : {};
+          const url = `/i/api/graphql/9Hyh5D4-WXLnExZkONSkZg/GrokHistory?variables=${encodeURIComponent(JSON.stringify(variables))}`;
+          const r = await fetch(url, { headers });
+          if (!r.ok) break;
+          const body = await r.json();
+          const history = body?.data?.grok_conversation_history;
+          const items = history?.items || [];
+          const hit = items.find((c) => c?.grokConversation?.rest_id === String(id));
+          if (hit) return (hit.title || '').trim();
+          cursor = history?.cursor || null;
+          if (!cursor || !items.length) break;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+        return '';
+      },
+
+      async getConversationDetails(id) {
+        const headers = this._headers();
+        const allItems = [];
+        let cursor = null;
+
+        // 长对话分页拿完（每页约 20-50 条）
+        for (let i = 0; i < 50; i++) {
+          const variables = cursor ? { restId: id, cursor } : { restId: id };
+          const url = `/i/api/graphql/WVj1_t_sZOZSTB0kxDmDTw/GrokConversationItemsByRestId?variables=${encodeURIComponent(JSON.stringify(variables))}`;
+          const r = await fetch(url, { headers });
+          if (!r.ok) throw new Error(`详情API ${r.status}: ${r.statusText}`);
+          const body = await r.json();
+          const g = body?.data?.grok_conversation_items_by_rest_id;
+          const items = g?.items || [];
+          if (!items.length) break;
+
+          allItems.push(...items);
+          cursor = g?.cursor || null;
+          if (!cursor) break;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        // 详情 API 不含标题：优先用列表缓存，否则查列表接口（Grok 标题可编辑，以列表为准）
+        const title = (this._titleCache && this._titleCache[id]) || await this._lookupTitle(id);
+
+        return { items: allItems, title };
+      },
+
+      /** 将 Grok 对话数据转为 Markdown */
+      toMarkdown(data, title, convId) {
+        const items = data?.items || [];
+        // 同一时间戳 = 同一轮问答：User 提问必须排在 Agent 回答之前
+        const roleOrder = { User: 0, Agent: 1 };
+        const messages = [...items].sort((a, b) => {
+          const t = (a.created_at_ms ?? 0) - (b.created_at_ms ?? 0);
+          if (t !== 0) return t;
+          return (roleOrder[a.sender_type] ?? 2) - (roleOrder[b.sender_type] ?? 2);
+        });
+        if (!messages.length) throw new Error('未找到消息数据');
+
+        const firstTime = messages.find((m) => m.created_at_ms)?.created_at_ms;
+        const timeStr = firstTime
+          ? formatLocalTime(new Date(firstTime))
+          : 'unknown';
+        const convUrl = convId
+          ? `https://x.com/i/grok?conversation=${convId}`
+          : 'https://x.com/i/grok';
+
+
+        const lines = [];
+        lines.push('## Metadata');
+        lines.push('');
+        lines.push('- **Model:** `Grok`');
+        lines.push(`- **Time:** ${timeStr}`);
+        lines.push(`- **URL:** ${convUrl}`);
+        lines.push('');
+        lines.push('## Conversation');
+        lines.push('');
+
+        const refCollector = new ReferenceCollector();
+
+        for (const it of messages) {
+          const text = (it.message || '').trim();
+          if (!text) continue;
+
+          if (it.sender_type === 'User') {
+            lines.push('### 🧑‍💻 User');
+            lines.push('');
+            lines.push(stripHashes(text));
+            lines.push('');
+            continue;
+          }
+
+          // Agent：先把所有引用占位符换成 [[CITE:cardId]]，再统一编号
+          let body = text.replace(/<grok:render\s+card_id="([^"]+)"[^>]*>.*?<\/grok:render>/gs, (m, cardId) => `[[CITE:${cardId}]]`);
+          const cards = (it.card_attachments || [])
+            .map((c) => { try { return JSON.parse(c); } catch { return null; } })
+            .filter(Boolean);
+
+          const used = new Set();
+          body = body.replace(/\[\[CITE:([^\]]+)\]\]/g, (m, cardId) => {
+            if (used.has(cardId)) return ''; // 同一卡片重复引用只计一次
+            used.add(cardId);
+            const card = cards.find((c) => String(c.id) === String(cardId));
+            const url = card?.url || '';
+            const title = card?.title || '';
+            const gNum = refCollector.add(title, url);
+            return `[${gNum}]`;
+          });
+
+          lines.push('### 🤖 Assistant');
+          lines.push('');
+          lines.push(stripHashes(body));
+          lines.push('');
+        }
+
+        if (refCollector.hasReferences()) {
+          lines.push(...refCollector.render());
+        }
+
+        return lines.join('\n');
+      },
+    },
+
+    // ═══════════════════════════════════════════════════════
+    //  ADAPTER[grokcom]  Grok Web (grok.com)
+    // ═══════════════════════════════════════════════════════
+    // API 说明：
+    //   - 列表：GET /rest/app-chat/conversations?pageSize=60
+    //   - 节点：GET /rest/app-chat/conversations/{id}/response-node
+    //   - 详情：POST /rest/app-chat/conversations/{id}/load-responses
+    // 认证：同域 Cookie（credentials: 'include' 自动发送），无需额外 header。
+    {
+      id: 'grokcom',
+      name: 'Grok',
+      detect: () => window.location.hostname === 'grok.com',
+
+      getCurrentConversationId() {
+        // 1. 普通会话路径: /c/{id}
+        const m = window.location.pathname.match(/\/c\/([a-zA-Z0-9-]+)/i);
+        if (m) return m[1];
+        // 2. 项目内单会话 query 参数: ?chat={id}
+        try {
+          const params = new URLSearchParams(window.location.search);
+          const chat = params.get('chat');
+          if (chat && /^[a-zA-Z0-9-]+$/.test(chat)) return chat;
+        } catch (_) {}
+        return null;
+      },
+
+      _projectCache: {},
+
+      _fetchProjectMeta(projectId) {
+        if (!projectId || (this._projectCache && this._projectCache[projectId])) return;
+        this._projectFetching = this._projectFetching || new Set();
+        if (this._projectFetching.has(projectId)) return;
+        this._projectFetching.add(projectId);
+        fetch(`/rest/workspaces/${encodeURIComponent(projectId)}`, { credentials: 'include' })
+          .then(async (r) => {
+            if (!r.ok) return;
+            const pBody = await r.json().catch(() => null);
+            const name = pBody?.name?.trim();
+            if (name) {
+              this._projectCache = this._projectCache || {};
+              this._projectCache[projectId] = name;
+            }
+          }).catch(() => {}).finally(() => {
+            this._projectFetching.delete(projectId);
+          });
+      },
+
+      getCurrentProject() {
+        if (this.getCurrentConversationId && this.getCurrentConversationId()) return null;
+        const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
+        const m = pathname.match(/^\/(?:project|projects|workspace|workspaces)\/([0-9a-f-]{36}|[0-9a-z_-]{10,})/i);
+        if (!m) return null;
+        const id = m[1];
+        if (this._projectCache && this._projectCache[id]) {
+          return { id, name: this._projectCache[id] };
+        }
+        this._fetchProjectMeta(id);
+        return { id, name: '' };
+      },
+
+      async getProjectConversations(projectId, onProgress) {
+        let projectName = (this._projectCache && this._projectCache[projectId]) || '';
+        try {
+          const rProj = await fetch(`/rest/workspaces/${encodeURIComponent(projectId)}`, { credentials: 'include' });
+          if (rProj.ok) {
+            const pBody = await rProj.json();
+            projectName = pBody?.name?.trim() || projectName;
+            if (projectName) {
+              this._projectCache = this._projectCache || {};
+              this._projectCache[projectId] = projectName;
+            }
+          }
+        } catch (e) {
+          console.warn('[AfterChat] 获取 Grok 项目详情失败:', e);
+        }
+
+        const conversations = [];
+        const seen = new Set();
+        const limit = CONFIG.DEBUG_LIMIT || Infinity;
+        let pageToken = '';
+        const pageSize = 50;
+
+        while (conversations.length < limit) {
+          const params = new URLSearchParams({
+            pageSize: String(pageSize),
+            workspaceId: projectId,
+          });
+          if (pageToken) params.set('pageToken', pageToken);
+
+          const resp = await fetch(`/rest/app-chat/conversations?${params.toString()}`, { credentials: 'include' });
+          if (!resp.ok) throw new Error(`Grok 项目列表请求失败: HTTP ${resp.status}`);
+          const data = await resp.json();
+          const list = data?.conversations || [];
+          if (!list.length) break;
+
+          for (const c of list) {
+            const id = c.conversationId;
+            if (!id || seen.has(id)) continue;
+            // 防退化铁律：严格按 workspaceId 校验
+            if (c.workspaceId && c.workspaceId !== projectId) continue;
+
+            seen.add(id);
+            conversations.push({
+              id,
+              title: c.title || 'untitled',
+              createTimeUtc: c.createTime ? new Date(c.createTime).getTime() : Date.now(),
+              updateTimeUtc: c.modifyTime ? new Date(c.modifyTime).getTime() : Date.now(),
+              workspaceId: c.workspaceId || projectId,
+              project_id: projectId,
+            });
+            if (conversations.length >= limit) break;
+          }
+
+          if (onProgress) onProgress(conversations.length);
+          pageToken = data?.nextPageToken || '';
+          if (!pageToken) break;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        return {
+          name: projectName || projectId,
+          conversations: conversations.slice(0, limit),
+        };
+      },
+
+      async getAllConversations(onProgress) {
+        const allChats = [];
+        const limit = CONFIG.DEBUG_LIMIT || Infinity;
+        const resp = await fetch('/rest/app-chat/conversations?pageSize=60', { credentials: 'include' });
+        if (!resp.ok) throw new Error(`Grok 列表请求失败: HTTP ${resp.status}`);
+        const data = await resp.json();
+        const list = data?.conversations || [];
+        for (const c of list) {
+          allChats.push({
+            id: c.conversationId,
+            title: c.title || 'untitled',
+            createTimeUtc: c.createTime ? new Date(c.createTime).getTime() : Date.now(),
+            updateTimeUtc: c.modifyTime ? new Date(c.modifyTime).getTime() : Date.now(),
+          });
+        }
+        if (onProgress) onProgress(allChats.length);
+        return allChats.slice(0, limit);
+      },
+
+      async getConversationDetails(id) {
+        // 1. 获取 responseNode 树（确定消息节点拓扑与顺序）
+        const nodeResp = await fetch(`/rest/app-chat/conversations/${id}/response-node`, { credentials: 'include' });
+        if (!nodeResp.ok) throw new Error(`Grok response-node 请求失败: HTTP ${nodeResp.status}`);
+        const nodeData = await nodeResp.json();
+        const nodes = nodeData?.responseNodes || [];
+        const responseIds = nodes.map((n) => n.responseId).filter(Boolean);
+        if (!responseIds.length) throw new Error('对话未包含消息节点');
+
+        // 2. load-responses 批量获取详情
+        const loadResp = await fetch(`/rest/app-chat/conversations/${id}/load-responses`, {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          credentials: 'include',
+          body: JSON.stringify({ responseIds }),
+        });
+        if (!loadResp.ok) throw new Error(`Grok load-responses 请求失败: HTTP ${loadResp.status}`);
+        const loadData = await loadResp.json();
+        const rawResponses = loadData?.responses || [];
+
+        // 按 responseNode 顺序对齐返回
+        const map = new Map(rawResponses.map((r) => [r.responseId, r]));
+        const ordered = [];
+        for (const n of nodes) {
+          const r = map.get(n.responseId);
+          if (r) ordered.push(r);
+        }
+
+        // 尝试获取对话标题等元数据
+        let metaTitle = '';
+        try {
+          const metaResp = await fetch(`/rest/app-chat/conversations_v2/${id}?includeWorkspaces=true&includeTaskResult=true`, { credentials: 'include' });
+          if (metaResp.ok) {
+            const metaJson = await metaResp.json();
+            metaTitle = metaJson?.conversation?.title || '';
+          }
+        } catch (e) { /* ignore */ }
+
+        return {
+          conversation_id: id,
+          title: metaTitle || ordered[0]?.message || 'untitled',
+          createTime: ordered[0]?.createTime,
+          responses: ordered,
+        };
+      },
+
+      toMarkdown(data, title, convId) {
+        convId = convId || data?.conversation_id || 'test-id';
+        const responses = data?.responses || [];
+        if (!responses.length) throw new Error('未找到消息数据');
+
+        const model = responses.find((r) => r.model)?.model || 'Grok';
+        const firstTime = responses[0]?.createTime ? new Date(responses[0].createTime) : new Date();
+
+        const lines = [];
+        lines.push('## Metadata');
+        lines.push('');
+        lines.push(`- **Model:** \`${model}\``);
+        lines.push(`- **Time:** ${formatLocalTime(firstTime)}`);
+        lines.push(`- **URL:** https://grok.com/c/${convId}`);
+        lines.push('');
+        lines.push('## Conversation');
+        lines.push('');
+
+        const refCollector = new ReferenceCollector();
+        const cardMap = new Map();
+
+        for (const r of responses) {
+          const isUser = r.sender === 'human' || r.sender === 'user';
+          const text = String(r.message || '').trim();
+
+          if (isUser) {
+            lines.push('### 🧑‍💻 User');
+            lines.push('');
+            lines.push(stripHashes(text));
+            lines.push('');
+            continue;
+          }
+
+          // 收集 cardAttachmentsJson
+          const rawCards = (r.cardAttachmentsJson || r.card_attachments || [])
+            .map((c) => {
+              if (typeof c === 'object' && c !== null) return c;
+              try { return JSON.parse(c); } catch { return null; }
+            })
+            .filter(Boolean);
+
+          for (const card of rawCards) {
+            if (card && card.id && card.url) {
+              cardMap.set(String(card.id), { title: card.title || '', url: card.url });
+            }
+          }
+
+          let body = text.replace(/<grok:render\s+card_id="([^"]+)"[^>]*>.*?<\/grok:render>/gs, (m, cardId) => `[[CITE:${cardId}]]`);
+
+          body = body.replace(/\[\[CITE:([^\]]+)\]\]/g, (m, cardId) => {
+            const card = cardMap.get(String(cardId));
+            if (!card?.url) return '';
+            const gNum = refCollector.add(card.title, card.url);
+            return `[${gNum}]`;
+          });
+
+          lines.push('### 🤖 Assistant');
+          lines.push('');
+          lines.push(stripHashes(body));
+          lines.push('');
+        }
+
+        if (refCollector.hasReferences()) {
+          lines.push(...refCollector.render());
+        }
+
+        return lines.join('\n').replace(/\n{3,}/g, '\n\n').trimEnd() + '\n';
+      },
+    },
+
+    // ═══════════════════════════════════════════════════════
+    //  ADAPTER[gemini]  Google Gemini
+    // ═══════════════════════════════════════════════════════
+    // 走 Google batchexecute RPC（_/BardChatUi/data/batchexecute）：
+    //   - 列表：MaZiqc，参数 [20, "<游标protobuf>", [0,null,1]]，每页 20 条，响应带新游标
+    //   - 单条：hNvQHb，参数 ["c_<会话ID>", 500, null, 1, [0], [4], null, 1]（500 = 一次拿全）
+    // 认证：同源 cookie；每个请求需先取 xsrf（响应 48448350 字段）再带 at 参数重试。
+    {
+      id: 'gemini',
+      name: 'Google Gemini',
+      detect: () => window.location.hostname === 'gemini.google.com',
+
+      /** 从页面已发出的 batchexecute 请求里提取 bl（构建版本）和 f.sid */
+      _pageParams() {
+        let bl = 'boq_assistant-bard-web-server_20260730.21_p0';
+        let sid = '0';
+        try {
+          const e = performance.getEntriesByType('resource').find((x) => x.name.includes('batchexecute'));
+          if (e) {
+            const blm = e.name.match(/bl=([^&]+)/);
+            if (blm) bl = decodeURIComponent(blm[1]);
+            const s = e.name.match(/f\.sid=(-?\d+)/);
+            if (s) sid = s[1];
+          }
+        } catch (e) { /* ignore */ }
+        return { bl, sid };
+      },
+
+      /** batchexecute 通用调用：单次请求，at 从页面 HTML 提取 */
+      async _rpc(rpc, proto, path) {
+        const { bl, sid } = this._pageParams();
+
+        // XSRF/at：页面 HTML 里 "SNlM0e":"<token>:<timestamp>"（备用正则兜底）
+        let at = '';
+        try {
+          const html = document.documentElement.innerHTML;
+          const m = html.match(/"SNlM0e":"([^"]+)"/);
+          if (m) at = m[1];
+          else {
+            const m2 = html.match(/[A-Za-z0-9_-]{20,}:\d{13}/);
+            if (m2) at = m2[0];
+          }
+        } catch (e) { /* ignore */ }
+
+        // 客户端会话 UUID（服务端不校验，随机即可）
+        let uuid = '';
+        try {
+          uuid = (crypto.randomUUID
+            ? crypto.randomUUID()
+            : 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
+                const r = Math.random() * 16 | 0;
+                const v = c === 'x' ? r : (r & 0x3 | 0x8);
+                return v.toString(16);
+              })).toUpperCase();
+        } catch (e) { /* ignore */ }
+
+        const headers = {
+          'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
+          'X-Same-Domain': '1',
+          'x-goog-ext-73010989-jspb': '[0]',
+          'x-goog-ext-525001261-jspb': `[1,null,null,null,null,null,null,null,[4,5,6,8],null,null,null,null,null,3,1,"${uuid}"]`,
+        };
+
+        const params = new URLSearchParams({
+          rpcids: rpc,
+          'source-path': path,
+          bl,
+          'f.sid': sid,
+          hl: 'en',
+          _reqid: String(Date.now() % 10000000),
+          rt: 'c',
+        });
+
+        // f.req 需要三层数组：[[["rpc","<proto>",null,"generic"]]]（两层会被 400 拒绝）
+        const body = 'f.req=' + encodeURIComponent(JSON.stringify([[[rpc, proto, null, 'generic']]])) + '&at=' + encodeURIComponent(at) + '&';
+
+        const r = await fetch('/_/BardChatUi/data/batchexecute?' + params.toString(), { method: 'POST', headers, body });
+        if (!r.ok) throw new Error(`RPC ${rpc} ${r.status}: ${r.statusText}`);
+        const t = await r.text();
+        const m = t.match(/^\)\]\}['"]?\s*\n\d+\n([\s\S]*?)\n\d+\n/);
+        if (!m) throw new Error(`RPC ${rpc} 响应解析失败`);
+        const arr = JSON.parse(m[1]);
+        const wrb = arr.find((x) => Array.isArray(x) && x[0] === 'wrb.fr');
+        if (!wrb || wrb[2] === undefined) throw new Error(`RPC ${rpc} 无数据`);
+        return JSON.parse(wrb[2]);
+      },
+
+      getCurrentConversationId: () => {
+        const match = window.location.pathname.match(/^\/app\/([^\/?]+)/);
+        return match ? match[1] : null;
+      },
+
+      _projectCache: {},
+
+      _fetchNotebookTitle(cleanId) {
+        if (!cleanId) return;
+        this._projectCache = this._projectCache || {};
+        if (this._projectCache[cleanId] || this._fetchingNotebookId === cleanId) return;
+        this._fetchingNotebookId = cleanId;
+        const notebookFullId = 'notebooks/' + cleanId;
+        this._rpc('HcT8bb', JSON.stringify([notebookFullId]), `/notebook/${cleanId}`)
+          .then((hData) => {
+            const nName = hData?.[0]?.[1]?.[0];
+            if (nName && typeof nName === 'string') {
+              const s = nName.trim();
+              if (s && !/^((Google\s+)?Gemini)$/i.test(s)) {
+                this._projectCache[cleanId] = s;
+                if (typeof window !== 'undefined' && window.__m365Controller?.updateLabel) {
+                  window.__m365Controller.updateLabel();
+                }
+              }
+            }
+          })
+          .catch(() => {})
+          .finally(() => {
+            this._fetchingNotebookId = null;
+          });
+      },
+
+      getCurrentProject() {
+        const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
+        if (pathname.includes('/app/')) return null;
+        const m = pathname.match(/^\/notebook\/([0-9a-f-]{36}|[0-9a-zA-Z_-]{8,})/i);
+        if (!m) return null;
+        const id = m[1];
+
+        // 1. 优先读取项目元数据缓存
+        if (this._projectCache && this._projectCache[id]) {
+          return { id, name: this._projectCache[id] };
+        }
+
+        // 2. 静默通过后端 HcT8bb RPC 预取 Notebook 名称（严禁 DOM 探测）
+        if (typeof this._fetchNotebookTitle === 'function') {
+          this._fetchNotebookTitle(id);
+        }
+
+        return { id, name: '' };
+      },
+
+      async getAllConversations(onProgress) {
+        const allChats = [];
+        const limit = CONFIG.DEBUG_LIMIT || Infinity;
+        let cursor = null;
+
+        for (let i = 0; i < 100; i++) {
+          const proto = JSON.stringify([20, cursor || '', [0, null, 1]]);
+          const data = await this._rpc('MaZiqc', proto, '/app');
+          const items = (data && data[2]) || [];
+          if (!items.length) break;
+
+          for (const c of items) {
+            const id = (c[0] || '').replace(/^c_/, '');
+            const title = c[1] || '';
+            // 记录 id → 标题 缓存，供详情导出文件名使用
+            if (id) {
+              this._titleCache = this._titleCache || {};
+              this._titleCache[id] = title;
+            }
+            allChats.push({ id, title, t: c[5] });
+          }
+          if (onProgress) onProgress(allChats.length);
+
+          cursor = (data && data[1]) || null;
+          if (!cursor || !cursor.length) break;
+          if (allChats.length >= limit) break;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        return allChats.slice(0, limit);
+      },
+
+      async getProjectConversations(projectId, onProgress) {
+        const cleanId = String(projectId).replace(/^notebooks\//, '');
+        const notebookFullId = 'notebooks/' + cleanId;
+        let projectName = `Notebook ${cleanId}`;
+
+        try {
+          const hData = await this._rpc('HcT8bb', JSON.stringify([notebookFullId]), `/notebook/${cleanId}`);
+          const nName = hData?.[0]?.[1]?.[0];
+          if (nName) {
+            projectName = nName;
+            this._projectCache = this._projectCache || {};
+            this._projectCache[cleanId] = nName;
+          }
+        } catch (e) {
+          const cur = this.getCurrentProject();
+          if (cur?.name) projectName = cur.name;
+        }
+
+        const allChats = [];
+        const limit = CONFIG.DEBUG_LIMIT || Infinity;
+        let cursor = null;
+
+        for (let i = 0; i < 100; i++) {
+          const proto = JSON.stringify([20, cursor, [null, null, 1, notebookFullId, 1]]);
+          const data = await this._rpc('MaZiqc', proto, `/notebook/${cleanId}`);
+          const items = (data && data[2]) || [];
+          if (!items.length) break;
+
+          for (const c of items) {
+            const id = (c[0] || '').replace(/^c_/, '');
+            const title = c[1] || '';
+            if (id) {
+              this._titleCache = this._titleCache || {};
+              this._titleCache[id] = title;
+            }
+            allChats.push({ id, title, t: c[5] });
+          }
+
+          if (onProgress) onProgress(allChats.length);
+          cursor = (data && data[1]) || null;
+          if (!cursor || !cursor.length) break;
+          if (allChats.length >= limit) break;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        return {
+          id: cleanId,
+          name: projectName,
+          conversations: allChats.slice(0, limit),
+        };
+      },
+
+      /** 从列表 API 翻页查找单个对话的标题 */
+      async _lookupTitle(id) {
+        let cursor = null;
+        for (let i = 0; i < 20; i++) {
+          const proto = JSON.stringify([20, cursor || '', [0, null, 1]]);
+          const data = await this._rpc('MaZiqc', proto, '/app');
+          const items = (data && data[2]) || [];
+          const hit = items.find((c) => (c[0] || '').replace(/^c_/, '') === String(id));
+          if (hit) return hit[1] || '';
+          cursor = (data && data[1]) || null;
+          if (!cursor || !cursor.length) break;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+        return '';
+      },
+
+      async getConversationDetails(id) {
+        const proto = JSON.stringify(['c_' + id, 500, null, 1, [0], [4], null, 1]);
+        const data = await this._rpc('hNvQHb', proto, '/app/' + id);
+        // 标题优先用列表缓存，否则查列表接口（详情接口不含标题）
+        const title = (this._titleCache && this._titleCache[id]) || await this._lookupTitle(id);
+        // 时间：每个回合自带时间戳 turn[4]=[秒,纳秒]，最新回合的即最后活跃时间（详情接口就有，无需回查列表）
+        const turns = (data && data[0]) || [];
+        let updatedMs = null;
+        if (turns.length) {
+          const ts = turns[0][4];
+          if (Array.isArray(ts) && typeof ts[0] === 'number') {
+            updatedMs = ts[0] * 1000 + Math.floor((ts[1] || 0) / 1e6);
+          }
+        }
+        return { turns, title, updatedMs };
+      },
+
+      /** 将 Gemini 对话数据转为 Markdown */
+      toMarkdown(data, title, convId) {
+        // API 返回最新轮次在前，反转成时间正序
+        const turns = [...((data && data.turns) || [])].reverse();
+        if (!turns.length) throw new Error('未找到消息数据');
+
+        // 模型名：取第一条助手消息的模型字段（turn[3][21]）
+        let model = 'Gemini';
+        for (const turn of turns) {
+          const asst = turn && turn[3];
+          if (asst && typeof asst[21] === 'string' && asst[21].trim()) {
+            model = asst[21].trim();
+            break;
+          }
+        }
+
+        const convUrl = convId
+          ? `https://gemini.google.com/app/${convId}`
+          : 'https://gemini.google.com/app';
+
+
+        const lines = [];
+        lines.push('## Metadata');
+        lines.push('');
+        lines.push('- **Model:** `' + model + '`');
+        lines.push('- **Time:** ' + ((data && data.updatedMs) ? formatLocalTime(new Date(data.updatedMs)) : 'unknown'));
+        lines.push(`- **URL:** ${convUrl}`);
+        lines.push('');
+        lines.push('## Conversation');
+        lines.push('');
+
+        const refCollector = new ReferenceCollector();
+
+        for (const turn of turns) {
+          // 用户消息：turn[2] = [["文本", ...], ...]
+          const user = turn && turn[2];
+          if (user && Array.isArray(user[0]) && typeof user[0][0] === 'string') {
+            const text = user[0][0].trim();
+            if (text) {
+              lines.push('### 🧑‍💻 User');
+              lines.push('');
+              lines.push(stripHashes(text));
+              lines.push('');
+            }
+          }
+
+          // 助手消息：turn[3][0] = [block...]，block = ["rc_id", [正文], [null, 引用列表]]
+          const asst = turn && turn[3];
+          if (asst && Array.isArray(asst[0])) {
+            const blocks = asst[0];
+            for (const block of blocks) {
+              if (!Array.isArray(block) || !Array.isArray(block[1])) continue;
+              let body = block[1].join('');
+
+              // 引用：block[2] = [null, [ref...]]，ref = [content, [1], [[url,title]], "spp_id"]
+              //        content = ["引用文本", null, null, [[s,e]...]]（spans 标记正文中引用文本的范围）
+              const refsData = block[2];
+              const refList = (refsData && Array.isArray(refsData[1])) ? refsData[1] : [];
+              const all = [];
+              for (const r of refList) {
+                const content = Array.isArray(r) ? r[0] : null;
+                const urls = Array.isArray(r) && Array.isArray(r[2]) ? r[2] : [];
+                const first = Array.isArray(urls[0]) ? urls[0] : [];
+                let url = first[0] || '';
+                if (!url) continue;
+                url = url.split('#:~:')[0]; // 去掉引文锚点
+                const title = first[1] || '';
+                const gNum = refCollector.add(title, url);
+                const spans = (content && Array.isArray(content[3])) ? content[3] : [];
+                for (const sp of spans) {
+                  if (Array.isArray(sp) && sp.length === 2) {
+                    all.push({ s: sp[0], e: sp[1], n: gNum });
+                  }
+                }
+              }
+
+              // 保留引用文本，在其结尾插入 [N]（按位置从后往前，偏移不受影响）
+              all.sort((a, b) => b.s - a.s);
+              for (const { s, e, n } of all) {
+                if (s >= 0 && e >= s && e <= body.length) {
+                  body = body.slice(0, e) + `[${n}]` + body.slice(e);
+                }
+              }
+
+              body = body.trim();
+              if (!body) continue;
+              lines.push('### 🤖 Assistant');
+              lines.push('');
+              lines.push(stripHashes(body));
+              lines.push('');
+            }
+          }
+        }
+
+        if (refCollector.hasReferences()) {
+          lines.push(...refCollector.render());
+        }
+
+        return lines.join('\n');
+      },
+    },
+
+    // ═══════════════════════════════════════════════════════
+    //  ADAPTER[gaim]  Google AI Mode (google.com/ai)
+    // ═══════════════════════════════════════════════════════
+    // www.google.com/ai 会跳转到 /search?udm=50（AI 模式），左侧“线程”即对话历史。
+    //   - 列表：AimThreadsService/ListThreads（GET /httpservice/web/...，返回 [线程, 游标, flag]）
+    //   - 详情：无 JSON 接口。线程对话由服务端渲染在
+    //     /search?udm=50&mtid=<id>&mstk=<token>&csuir=1&q=<标题>&atvm=2&aep=26
+    //     页面里（fetch 请求拿不到个性化内容，必须真导航），故用隐藏 iframe 导航 + DOM 提取。
+    //   正文语义块：div.n6owBd（段落）/ div.otQkpb（小节标题→加粗）/ ul.KsbFXc（列表）/
+    //   table.NRefec（表格）；引用 chip（span.WBgIic）内嵌 a.PMDqCb → [N] 汇总 References。
+    {
+      id: 'gaim',
+      name: 'Google AI Mode',
+      detect: () => {
+        try {
+          if (window.location.hostname !== 'www.google.com') return false;
+          const p = window.location.pathname;
+          if (p.startsWith('/ai')) return true; // google.com/ai 入口（未跳转时兜底）
+          if (p.startsWith('/search') || p === '/') {
+            return new URLSearchParams(window.location.search).get('udm') === '50';
+          }
+        } catch (e) { /* ignore */ }
+        return false;
+      },
+
+      getCurrentConversationId() {
+        try {
+          const m = new URLSearchParams(window.location.search).get('mtid');
+          if (m) return m;
+          // 未登录或新对话/随便聊聊：若页面已渲染对话回合，识别为当前单条会话
+          if (typeof document !== 'undefined' && this._countTurns && this._countTurns(document) > 0) {
+            return 'current';
+          }
+        } catch (e) { return null; }
+        return null;
+      },
+
+      getCurrentProject: () => {
+        try {
+          const params = new URLSearchParams(window.location.search);
+          if (params.get('mtid')) return null;
+          const ajid = params.get('ajid');
+          if (!ajid) return null;
+          let name = '';
+          try {
+            const t = document.title || '';
+            if (t) {
+              name = t.replace(/\s*-\s*(Google\s*AI\s*Mode|Google|Google\s*搜索).*$/i, '').trim();
+            }
+          } catch (e) { /* ignore */ }
+          return { id: ajid, name: name || `Project ${ajid}` };
+        } catch (e) { return null; }
+      },
+
+      /** 列表元数据缓存：mtid -> { title, mstk, createdMs, updatedMs } */
+      _threadsMeta: new Map(),
+
+      /** 调 ListThreads：reqpld=[游标,null,0]，第一页传 null */
+      async _listThreads(cursor) {
+        const reqpld = cursor ? `[null,${JSON.stringify(cursor)},0]` : '[null,null,0]';
+        const url = '/httpservice/web/AimThreadsService/ListThreads?aep=26&udm=50&reqpld='
+          + encodeURIComponent(reqpld) + '&msc=gwsclient&opi=89978449';
+        const resp = await fetch(url, { credentials: 'include' });
+        if (!resp.ok) throw new Error(`ListThreads ${resp.status}: ${resp.statusText}`);
+        const text = await resp.text();
+        return JSON.parse(text.replace(/^\)\]\}['"]?\s*\n?/, ''));
+      },
+
+      /** 解析 ListThreads 响应 → { threads:[{id,title,mstk,createdMs,updatedMs}], cursor } */
+      _parseThreadList(raw) {
+        const list = Array.isArray(raw) && Array.isArray(raw[0]) ? raw[0] : [];
+        const threads = [];
+        for (const c of list) {
+          if (!Array.isArray(c)) continue;
+          const kv = {};
+          const metaPairs = Array.isArray(c[22]) ? c[22] : [];
+          for (const pair of metaPairs) {
+            if (Array.isArray(pair) && pair.length >= 2) kv[pair[0]] = pair[1];
+          }
+          // 线程条目形如 [ [mstkToken, mtid], 标题, …, [秒,纳秒]创建, [秒,纳秒]更新, …, metaPairs, …]
+          const id = kv.mtid || (Array.isArray(c[0]) ? c[0][1] : '') || '';
+          if (!id) continue;
+          const title = (typeof c[1] === 'string' && c[1].trim()) || '';
+          const toMs = (t) => (Array.isArray(t)
+            ? t[0] * 1000 + Math.floor((t[1] || 0) / 1e6)
+            : null);
+          threads.push({
+            id,
+            title,
+            mstk: kv.mstk || (Array.isArray(c[0]) ? c[0][0] : '') || '',
+            createdMs: toMs(c[5]),
+            updatedMs: toMs(c[6]),
+          });
+        }
+        const cursor = (Array.isArray(raw) && typeof raw[1] === 'string' && raw[1]) ? raw[1] : null;
+        return { threads, cursor };
+      },
+
+      async getAllConversations(onProgress) {
+        const all = [];
+        const limit = CONFIG.DEBUG_LIMIT || Infinity;
+        let cursor = null;
+        for (let i = 0; i < 50; i++) {
+          const raw = await this._listThreads(cursor);
+          const { threads, cursor: next } = this._parseThreadList(raw);
+          for (const t of threads) {
+            if (this._threadsMeta.has(t.id)) {
+              // 只补缺字段，不重复 push
+              const prev = this._threadsMeta.get(t.id);
+              this._threadsMeta.set(t.id, { ...prev, ...t });
+              continue;
+            }
+            this._threadsMeta.set(t.id, t);
+            all.push({
+              id: t.id,
+              title: t.title,
+              updateTimeUtc: t.updatedMs,
+              t: t.updatedMs,
+            });
+          }
+          if (onProgress) onProgress(all.length);
+          if (!next) break;
+          cursor = next;
+          if (all.length >= limit) break;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+        return all.slice(0, limit);
+      },
+
+      async getProjectConversations(projectId, onProgress) {
+        const ajid = projectId;
+        let projectName = `Project ${ajid}`;
+        const reqpld = `[null,[${JSON.stringify(ajid)}]]`;
+        const url = `/httpservice/web/AimThreadsService/GetJourney?aep=151&udm=50&reqpld=${encodeURIComponent(reqpld)}&msc=gwsclient&opi=89978449`;
+
+        const resp = await fetch(url, { credentials: 'include' });
+        if (!resp.ok) throw new Error(`GetJourney ${resp.status}: ${resp.statusText}`);
+        const text = await resp.text();
+        const raw = JSON.parse(text.replace(/^\)\]\}['"]?\s*\n?/, ''));
+
+        const journey = Array.isArray(raw) && Array.isArray(raw[0]) ? raw[0] : null;
+        if (journey) {
+          if (typeof journey[2] === 'string' && journey[2].trim()) {
+            projectName = journey[2].trim();
+          }
+        }
+
+        const threadRawList = journey && Array.isArray(journey[10]) ? journey[10] : [];
+        const { threads } = this._parseThreadList([threadRawList, null]);
+
+        const conversations = [];
+        for (const t of threads) {
+          this._threadsMeta.set(t.id, t);
+          conversations.push({
+            id: t.id,
+            title: t.title || t.id,
+            created_at: t.createdMs,
+            updated_at: t.updatedMs,
+          });
+        }
+
+        if (onProgress) onProgress(conversations.length);
+
+        return {
+          id: ajid,
+          name: projectName,
+          conversations,
+        };
+      },
+
+      /** 拼线程页 URL（mtid + mstk + q + atvm/aep 是服务端渲染线程对话的必要参数） */
+      _threadUrl(id, meta) {
+        const base = new URL('https://www.google.com/search');
+        base.searchParams.set('udm', '50');
+        base.searchParams.set('mtid', id);
+        base.searchParams.set('csuir', '1');
+        if (meta.mstk) base.searchParams.set('mstk', meta.mstk);
+        if (meta.title) base.searchParams.set('q', meta.title);
+        base.searchParams.set('atvm', '2');
+        base.searchParams.set('aep', '26');
+        return base.href;
+      },
+
+      /** 找某线程元数据：先查缓存；当前页就是该线程时从 URL 抄参数 */
+      _metaOf(id) {
+        const cached = this._threadsMeta.get(String(id));
+        if (cached) return cached;
+        try {
+          if (this.getCurrentConversationId() === String(id)) {
+            const qs = new URLSearchParams(window.location.search);
+            return {
+              id: String(id),
+              title: qs.get('q') || '',
+              mstk: qs.get('mstk') || '',
+              createdMs: null,
+              updatedMs: null,
+            };
+          }
+        } catch (e) { /* ignore */ }
+        return null;
+      },
+
+      /** 翻 ListThreads 找某线程元数据（含精确时间），找不到返回 null；顺带填充缓存 */
+      async _lookupMeta(id) {
+        const s = String(id);
+        const cached = this._threadsMeta.get(s);
+        if (cached && cached.updatedMs) return cached;
+        let cursor = null;
+        for (let i = 0; i < 50; i++) {
+          const raw = await this._listThreads(cursor);
+          const { threads, cursor: next } = this._parseThreadList(raw);
+          for (const t of threads) this._threadsMeta.set(t.id, t);
+          const hit = this._threadsMeta.get(s);
+          if (hit) return hit;
+          if (!next) break;
+          cursor = next;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+        return null;
+      },
+
+      /** 本轮包含几个用户提问/回答 = 渲染了几个对话回合 */
+      _countTurns(doc) {
+        try {
+          if (!doc) return 0;
+          let n = 0;
+          for (const el of doc.querySelectorAll('div.CKgc1d')) {
+            if (!(el.parentElement && el.parentElement.closest('div.CKgc1d'))) {
+              if (el.querySelector('h2.iMqumd') || el.querySelector('div.pWvJNd') || el.querySelector('div.n6owBd')) n++;
+            }
+          }
+          return n;
+        } catch (e) { return 0; }
+      },
+
+      /** 隐藏 iframe 打开线程页并解析（fetch 拿不到 AI 模式个性化正文，必须真导航） */
+      _loadOneThreadDoc(url) {
+        return new Promise((resolve, reject) => {
+          let settled = false;
+          const frame = document.createElement('iframe');
+          frame.style.cssText = 'display:none;width:1px;height:1px;border:0;';
+          frame.setAttribute('tabindex', '-1');
+          frame.setAttribute('aria-hidden', 'true');
+          const cleanup = () => { try { frame.remove(); } catch (e) { /* ignore */ } };
+          const done = (fn, v) => { if (settled) return; settled = true; cleanup(); fn(v); };
+          const deadAt = Date.now() + 30000;
+          const poll = () => {
+            let doc = null;
+            try { doc = frame.contentDocument; } catch (e) { /* 跨域/未就绪 */ }
+            if (doc && this._countTurns(doc) > 0) {
+              clearInterval(iv);
+              done(resolve, doc);
+              return;
+            }
+            if (Date.now() > deadAt) {
+              clearInterval(iv);
+              done(reject, new Error('线程页等待对话内容超时'));
+            }
+          };
+          const iv = setInterval(poll, 400);
+          frame.addEventListener('load', () => poll());
+          try { document.body.appendChild(frame); } catch (e) { clearInterval(iv); done(reject, e); return; }
+          frame.src = url;
+          setTimeout(() => { clearInterval(iv); done(reject, new Error('线程页导航超时')); }, 32000);
+        });
+      },
+
+      /** 打开线程页（带重试：偶发返回无内容的降级页/风控页，间隔重试） */
+      async _openThreadDoc(id, meta) {
+        const url = this._threadUrl(id, meta);
+        let lastErr = null;
+        for (let attempt = 0; attempt < 3; attempt++) {
+          if (attempt) await sleep(2500 * attempt);
+          try {
+            const doc = await this._loadOneThreadDoc(url);
+            return this._parseThreadDoc(doc, url, meta);
+          } catch (e) { lastErr = e; }
+        }
+        throw lastErr || new Error('无法加载线程页');
+      },
+
+      /** 从线程页 DOM 提取对话 → 归一化数据 */
+      _parseThreadDoc(doc, url, meta) {
+        meta = meta || {};
+        const messages = [];
+        const fallbackQ = meta.title || (typeof window !== 'undefined' ? new URLSearchParams(window.location.search).get('q') : '') || '';
+        for (const el of doc.querySelectorAll('div.CKgc1d')) {
+          if (el.parentElement && el.parentElement.closest('div.CKgc1d')) continue; // 只要最外层回合
+          const h2 = el.querySelector('h2.iMqumd');
+          let userText = h2 ? h2.textContent.replace(/^您说：/, '').trim() : '';
+          if (!userText && messages.length === 0 && fallbackQ) {
+            userText = fallbackQ;
+          }
+          if (userText) messages.push({ role: 'user', text: userText });
+          const bodyMd = this._extractAnswerMd(el);
+          if (bodyMd) messages.push({ role: 'assistant', text: bodyMd });
+        }
+        if (!messages.length) throw new Error('线程内容为空');
+        return {
+          id: meta.id || String(url.match(/mtid=([^&]+)/)?.[1] || 'current'),
+          title: meta.title || (messages[0]?.text) || fallbackQ || 'untitled',
+          model: 'Gemini (AI Mode)',
+          url: url || (typeof window !== 'undefined' ? window.location.href : ''),
+          timeMs: meta.updatedMs || meta.createdMs || Date.now(),
+          messages,
+        };
+      },
+
+      /** 回合内全部 pWvJNd 正文 → markdown 字符串（引用跨块连续编号，末尾汇总 References） */
+      _extractAnswerMd(turnEl) {
+        const refs = [];
+        const blocks = [];
+        for (const pWvJNd of turnEl.querySelectorAll('div.pWvJNd')) {
+          blocks.push(...this._bodyBlocks(pWvJNd, refs));
+        }
+        if (!blocks.length) return '';
+        const chunks = [];
+        for (const b of blocks) {
+          const piece = b.type === 'table' || b.type === 'list' ? b.md : b.text;
+          if (piece) chunks.push(piece);
+        }
+        let md = chunks.join('\n\n').replace(/\n{3,}/g, '\n\n');
+        if (refs.length) {
+          md += '\n\n### References\n\n';
+          md += refs
+            .map((r) => (r.title && r.title !== r.url ? `- [${r.n}] [${r.title}](${r.url})` : `- [${r.n}] [${r.url}](${r.url})`))
+            .join('\n');
+        }
+        return md.trim();
+      },
+
+      /** 收集 pWvJNd 内的顶层内容块（段落/小节标题/列表/表格），引用写进 refs */
+      _bodyBlocks(pWvJNd, refs) {
+        const blocks = [];
+        const ALLOW = 'div.n6owBd.awi2gc, div.otQkpb, ul.KsbFXc, table.NRefec';
+        for (const el of pWvJNd.querySelectorAll(ALLOW)) {
+          if (el.closest('.DBd2Wb, .RkJvxe')) continue;   // 复制/分享/反馈等 UI
+          if (blocks.some((b) => b.dom && b.dom.contains(el))) continue; // 嵌套块
+          if (el.tagName === 'UL' && el.closest('li')) continue; // 由外层列表递归
+          if (el.tagName === 'TABLE' && el.closest('li, div.n6owBd')) continue; // 表格在段落内罕见，跳过避免与段落串扰
+          if (el.classList.contains('otQkpb') && el.closest('div.n6owBd, li')) continue;
+          if (el.classList.contains('n6owBd') && el.closest('li')) continue;
+          let b = null;
+          if (el.classList.contains('otQkpb')) {
+            const t = this._inline(el, refs);
+            if (t) {
+              const bold = (t.startsWith('**') && t.endsWith('**')) ? t : '**' + t + '**';
+              b = { type: 'heading', text: bold };
+            }
+          } else if (el.tagName === 'TABLE') {
+            const md = this._tableMd(el, refs);
+            if (md) b = { type: 'table', md };
+          } else if (el.tagName === 'UL') {
+            const md = this._listMd(el, 0, refs);
+            if (md) b = { type: 'list', md };
+          } else {
+            const t = this._inline(el, refs);
+            if (t) b = { type: 'para', text: t };
+          }
+          if (b) { b.dom = el; blocks.push(b); }
+        }
+        return blocks;
+      },
+
+      /** 解码 HTML 实体 & 规范化 LaTeX */
+      _formatLatex(raw) {
+        if (!raw) return '';
+        let latex = String(raw)
+          .replace(/&amp;/g, '&')
+          .replace(/&lt;/g, '<')
+          .replace(/&gt;/g, '>')
+          .replace(/&quot;/g, '"')
+          .replace(/&#39;/g, "'")
+          .trim();
+        // 规范化 \^{x} 为 \hat{x}
+        latex = latex.replace(/\\\^\{([^}]+)\}/g, '\\hat{$1}');
+        return latex;
+      },
+
+      /** 纯文本（只收文本节点，跳过 script/style/svg/math/公式容器） */
+      _textOf(el) {
+        if (!el) return '';
+        const acc = [];
+        const walk = (n) => {
+          n.childNodes.forEach((c) => {
+            if (c.nodeType === 3) { acc.push(c.textContent); return; }
+            if (c.nodeType !== 1) return;
+            const tag = c.tagName;
+            if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'SVG' || tag === 'MATH') return;
+            if (c.hasAttribute?.('data-xpm-copy-root') || c.classList?.contains('mTEjhd') || c.classList?.contains('cPGBZb')) {
+              return;
+            }
+            walk(c);
+          });
+        };
+        walk(el);
+        return acc.join('').replace(/\s+/g, ' ').trim();
+      },
+
+      /** 行内序列化：公式处理；strong→**；code→`；引用 chip→[N] 并登记 refs；普通 a→纯文本 */
+      _inline(root, refs) {
+        const parts = [];
+        const walk = (el) => {
+          el.childNodes.forEach((n) => {
+            if (n.nodeType === 3) { parts.push(n.textContent); return; }
+            if (n.nodeType !== 1) return;
+            const tag = n.tagName;
+            const cls = String(n.className || '');
+            if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'SVG') return;
+
+            // 1. 数学公式（span.mTEjhd 行内, span.cPGBZb 块级, 或任意 data-xpm-copy-root / [data-xpm-latex]）
+            if (cls.includes('mTEjhd') || cls.includes('cPGBZb') || n.hasAttribute('data-xpm-copy-root') || n.hasAttribute('data-xpm-latex')) {
+              const img = n.hasAttribute('data-xpm-latex') ? n : n.querySelector('[data-xpm-latex]');
+              if (img) {
+                const raw = img.getAttribute('data-xpm-latex') || '';
+                const latex = this._formatLatex(raw);
+                const isBlock = cls.includes('cPGBZb') ||
+                  (n.style && n.style.display && n.style.display.includes('flex') && !cls.includes('mTEjhd')) ||
+                  /\\begin\{(aligned|matrix|cases|gather|align)\}/.test(latex);
+                if (isBlock) {
+                  parts.push('\n\n$$\n' + latex + '\n$$\n\n');
+                } else {
+                  parts.push('$' + latex + '$');
+                }
+                return;
+              }
+            }
+
+            // 独立 <math> 兜底
+            if (tag === 'MATH') {
+              const texAnno = n.querySelector?.('annotation[encoding="application/x-tex"], annotation[encoding="LaTeX"]');
+              if (texAnno && texAnno.textContent) {
+                parts.push('$' + this._formatLatex(texAnno.textContent) + '$');
+              }
+              return;
+            }
+
+            // 2. 行内代码
+            if (tag === 'CODE') {
+              const t = this._textOf(n);
+              if (t) parts.push('`' + t + '`');
+              return;
+            }
+
+            // 3. 加粗
+            if (tag === 'STRONG' || tag === 'B') {
+              const t = this._textOf(n);
+              if (t && !/^[\s\p{P}\p{S}]+$/u.test(t)) parts.push('**' + t + '**');
+              else parts.push(t);
+              return;
+            }
+
+            // 4. 引用 chip
+            if (tag === 'SPAN' && cls.includes('WBgIic')) {
+              // 引用 chip：读站点名 + 提取所有有效链接；无链接的纯图标 chip 静默丢弃
+              const label = this._textOf(n.querySelector('.QNca8b'));
+              const links = n.querySelectorAll('a.PMDqCb, a[href]');
+              const seenHref = new Set();
+              for (const a of links) {
+                const href = (a.getAttribute('href') || '').split('#')[0];
+                if (!href || href.startsWith('javascript:') || seenHref.has(href)) continue;
+                seenHref.add(href);
+                const title = this._textOf(a) || label;
+                refs.push({ n: refs.length + 1, title: title || label, url: href });
+                parts.push('[' + refs.length + ']');
+              }
+              return;
+            }
+
+            // 5. 链接
+            if (tag === 'A') {
+              // 引用锚文本/普通链接：正文优先可读性，链接不内嵌（编号引用已由 chip 表达）
+              const t = this._textOf(n);
+              if (t) parts.push(t);
+              return;
+            }
+
+            // 6. 换行
+            if (tag === 'BR') { parts.push('\n'); return; }
+
+            walk(n);
+          });
+        };
+        walk(root);
+
+        let s = parts.join('');
+        // 将行内的连续水平空白缩减为一个空格（保留换行）
+        s = s.replace(/[^\S\r\n]+/g, ' ');
+        // 去除每行首尾空格
+        s = s.split('\n').map((line) => line.trim()).join('\n');
+        // 连续 3 个及以上换行收敛为 2 个
+        s = s.replace(/\n{3,}/g, '\n\n');
+        // 中文全角标点后紧随角标，收敛多余空格：`…文本。 [1]` → `…文本。[1]`
+        s = s.replace(/([。，！？；：）”’]) +(?=\[\d+\])/g, '$1');
+        // 英文半角标点后紧随角标，收敛多余空格：`…example. [1]` → `…example.[1]`
+        s = s.replace(/([.,!?;:]) +(?=\[\d+\])/g, '$1');
+        // 连续引用紧凑连排：`[1] [2]` → `[1][2]`
+        s = s.replace(/(?<=\[\d+\]) +(?=\[\d+\])/g, '');
+        return s.trim();
+      },
+
+      /** 表格 → 管道表格 */
+      _tableMd(table, refs) {
+        const rows = [...table.querySelectorAll('tr')];
+        const grids = rows.map((tr) => [...tr.children]
+          .map((td) => this._inline(td, refs).replace(/\|/g, '\\|')));
+        const cols = Math.max(0, ...grids.map((r) => r.length));
+        const norm = (r) => { const a = r.slice(); while (a.length < cols) a.push(''); return a; };
+        const g = grids.map(norm);
+        const lines = [];
+        if (g.length) {
+          lines.push('| ' + g[0].join(' | ') + ' |');
+          lines.push('| ' + Array(cols).fill('---').join(' | ') + ' |');
+          for (let i = 1; i < g.length; i++) lines.push('| ' + g[i].join(' | ') + ' |');
+        }
+        return lines.join('\n');
+      },
+
+      /** 嵌套列表 → markdown 无序列表 */
+      _listMd(ul, depth, refs) {
+        const lines = [];
+        const pad = '  '.repeat(depth);
+        for (const li of ul.children) {
+          if (li.tagName !== 'LI') continue;
+          const sub = [...li.children].filter((c) => c.tagName === 'UL' || c.tagName === 'OL');
+          const wrap = document.createElement('span');
+          for (const c of li.childNodes) {
+            if (c.nodeType === 1 && (c.tagName === 'UL' || c.tagName === 'OL')) continue;
+            wrap.appendChild(c.cloneNode(true));
+          }
+          const text = this._inline(wrap, refs);
+          if (text) lines.push(pad + '- ' + text);
+          for (const s of sub) {
+            const inner = this._listMd(s, depth + 1, refs);
+            if (inner) inner.split('\n').forEach((l) => lines.push(l));
+          }
+        }
+        return lines.join('\n');
+      },
+
+      async getConversationDetails(id) {
+        id = String(id || 'current');
+        if (id === 'current' || (this.getCurrentConversationId() === id && this._countTurns(document) > 0)) {
+          // 单条导出且当前页已有对话（含未登录/随便聊聊新搜索场景）：直接解析当前 DOM，无需网络接口
+          let meta = this._metaOf(id) || {
+            id,
+            title: new URLSearchParams(window.location.search).get('q') || document.title || '当前对话',
+            mstk: '',
+            createdMs: Date.now(),
+            updatedMs: Date.now(),
+          };
+          return this._parseThreadDoc(document, window.location.href, meta);
+        }
+        let meta = this._metaOf(id);
+        if (!meta || !meta.updatedMs) {
+          // 当前页 URL 没有精确时间：回头查一次 ListThreads 补齐（标题/时间/mstk）
+          const found = await this._lookupMeta(id);
+          if (found) meta = meta ? { ...meta, ...found } : found;
+        }
+        if (!meta) throw new Error('缺少线程元数据（请先刷新 AI 模式页面再导出）');
+        return this._openThreadDoc(id, meta);
+      },
+
+      /** 将 AI Mode 对话转为 Markdown */
+      toMarkdown(data, title, convId) {
+        const messages = (data && data.messages) || [];
+        if (!messages.length) throw new Error('未找到消息数据');
+        const model = (data && data.model) || 'Gemini (AI Mode)';
+        const timeMs = (data && data.timeMs) || null;
+        const convUrl = (data && data.url) || (convId && convId !== 'current' ? `https://www.google.com/search?udm=50&mtid=${convId}` : (typeof window !== 'undefined' ? window.location.href : 'https://www.google.com/search?udm=50'));
+
+        const normalizeUrl = (rawUrl) => {
+          if (!rawUrl) return '';
+          try {
+            const u = new URL(rawUrl.trim());
+            u.hash = '';
+            for (const p of ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'spm', 'from', 'source', 'feature', 'ref', 'ref_src']) {
+              u.searchParams.delete(p);
+            }
+            let res = u.toString();
+            if (res.endsWith('/') && !res.endsWith('://')) res = res.slice(0, -1);
+            return res;
+          } catch (e) {
+            return String(rawUrl).trim().split('#')[0].replace(/\/+$/, '');
+          }
+        };
+
+        const parseRefEntry = (line) => {
+          const mLine = line.trim().match(/^-\s*\[(\d+)\]\s*(.*)$/);
+          if (!mLine) return null;
+          const localNum = Number(mLine[1]);
+          const rest = mLine[2].trim();
+          const mdMatch = rest.match(/^\[(.*?)\]\((https?:\/\/[^\s)]+)\)$/);
+          if (mdMatch) {
+            return { localNum, title: mdMatch[1].trim(), url: mdMatch[2].trim() };
+          }
+          const parenMatch = rest.match(/^(.*?)\s*\((https?:\/\/[^\s)]+)\)$/);
+          if (parenMatch) {
+            return { localNum, title: parenMatch[1].trim(), url: parenMatch[2].trim() };
+          }
+          const spaceMatch = rest.match(/^(.*?)\s+(https?:\/\/\S+)$/);
+          if (spaceMatch) {
+            return { localNum, title: spaceMatch[1].trim(), url: spaceMatch[2].trim() };
+          }
+          if (/^https?:\/\/\S+$/.test(rest)) {
+            return { localNum, title: '', url: rest };
+          }
+          return { localNum, title: rest, url: '' };
+        };
+
+        // ---- 第一遍：解析各 Assistant 消息尾部的 References，建立全局递增编号与 URL 去重映射 ----
+        const msgRefMap = new Map(); // msgIndex -> Map<localNum, globalNum>
+        const allRefs = [];           // array of { num, title, url }
+        const urlToGlobalNum = new Map(); // normalizedUrl -> globalNum
+        let nextGlobalNum = 1;
+
+        for (let i = 0; i < messages.length; i++) {
+          const m = messages[i];
+          if (m?.role !== 'assistant') continue;
+          const text = String(m?.text || '').trim();
+          const refMatch = text.match(/\n\n(?:#{1,4}\s+|\*\*)References(?:\*\*|)?\s*\n+([\s\S]*)$/i);
+          if (!refMatch) continue;
+          const localMap = new Map();
+          const refLines = refMatch[1].trim().split(/\r?\n/).filter((l) => l.trim().startsWith('- '));
+          for (const l of refLines) {
+            const entry = parseRefEntry(l);
+            if (!entry) continue;
+            const normUrl = normalizeUrl(entry.url);
+            let gNum;
+            if (normUrl && urlToGlobalNum.has(normUrl)) {
+              gNum = urlToGlobalNum.get(normUrl);
+            } else {
+              gNum = nextGlobalNum++;
+              if (normUrl) urlToGlobalNum.set(normUrl, gNum);
+              allRefs.push({ num: gNum, title: entry.title, url: normUrl || entry.url });
+            }
+            localMap.set(entry.localNum, gNum);
+          }
+          msgRefMap.set(i, localMap);
+        }
+
+        const lines = [];
+        lines.push('## Metadata');
+        lines.push('');
+        lines.push('- **Model:** `' + model + '`');
+        lines.push('- **Time:** ' + (timeMs ? formatLocalTime(new Date(timeMs)) : 'unknown'));
+        lines.push(`- **URL:** ${convUrl}`);
+        lines.push('');
+        lines.push('## Conversation');
+        lines.push('');
+
+        for (let i = 0; i < messages.length; i++) {
+          const m = messages[i];
+          let text = String(m?.text || '').trim();
+          if (!text) continue;
+          if (m.role === 'assistant') {
+            const refMatch = text.match(/\n\n(?:#{1,4}\s+|\*\*)References(?:\*\*|)?\s*\n+([\s\S]*)$/i);
+            if (refMatch) {
+              text = text.slice(0, refMatch.index).trim();
+              const localMap = msgRefMap.get(i);
+              if (localMap && localMap.size > 0) {
+                text = text.replace(/\[(\d+)\]/g, (orig, numStr) => {
+                  const gNum = localMap.get(Number(numStr));
+                  return gNum !== undefined ? `[${gNum}]` : orig;
+                });
+              }
+            }
+          }
+          lines.push(m.role === 'user' ? '### 🧑‍💻 User' : '### 🤖 Assistant');
+          lines.push('');
+          lines.push(stripHashes(text));
+          lines.push('');
+        }
+
+        if (allRefs.length > 0) {
+          lines.push('### References');
+          lines.push('');
+          for (const r of allRefs) {
+            if (r.title && r.title !== r.url) {
+              lines.push(`- [${r.num}] [${r.title}](${r.url})`);
+            } else if (r.url) {
+              lines.push(`- [${r.num}] [${r.url}](${r.url})`);
+            } else {
+              lines.push(`- [${r.num}] ${r.title}`);
+            }
+          }
+          lines.push('');
+        }
+
+        return lines.join('\n');
+      },
+    },
+
+    // ═══════════════════════════════════════════════════════
+    //  ADAPTER[arena]  Arena AI
+    // ═══════════════════════════════════════════════════════
+    {
+      id: 'arena',
+      name: 'Arena AI',
+      detect: () => window.location.hostname === 'arena.ai',
+
+      /** 会话元信息缓存：id -> history/unified 条目（含 type / title / createdAt） */
+      _convMeta: new Map(),
+
+      /** 模型注册表缓存：modelId -> displayName（从页面 RSC 的 initialModels 解析） */
+      _models: null,
+
+      getCurrentConversationId: () => {
+        const m1 = window.location.pathname.match(/^\/c\/([^\/?]+)/);
+        if (m1) return m1[1];
+        const m2 = window.location.pathname.match(/^\/agent\/([^\/?]+)/);
+        return m2 ? m2[1] : null;
+      },
+
+      /** 从页面 RSC（initialModels）加载 模型id -> 显示名 映射 */
+      async _loadModels() {
+        if (this._models) return this._models;
+        const map = new Map();
+        try {
+          const chunks = [];
+          for (const s of document.querySelectorAll('script')) {
+            const t = s.textContent || '';
+            const re = /__next_f\.push\(\[1,"((?:\\.|[^"\\])*)"\]\)/g;
+            let m;
+            while ((m = re.exec(t))) {
+              try { chunks.push(JSON.parse('"' + m[1] + '"')); } catch (e) { /* ignore */ }
+            }
+          }
+          const flight = chunks.join('');
+          const idx = flight.indexOf('initialModels');
+          if (idx >= 0) {
+            const arrStart = flight.indexOf('[', idx);
+            let depth = 0, inStr = false, esc = false, end = -1;
+            for (let i = arrStart; i < flight.length; i++) {
+              const c = flight[i];
+              if (inStr) {
+                if (esc) { esc = false; continue; }
+                if (c === '\\') { esc = true; continue; }
+                if (c === '"') inStr = false;
+                continue;
+              }
+              if (c === '"') { inStr = true; continue; }
+              if (c === '[') depth++;
+              else if (c === ']') { depth--; if (depth === 0) { end = i + 1; break; } }
+            }
+            if (end > 0) {
+              for (const mod of JSON.parse(flight.slice(arrStart, end))) {
+                const name = mod.displayName || mod.publicName || mod.name;
+                if (mod.id && name) map.set(mod.id, name);
+              }
+            }
+          }
+        } catch (e) { /* 模型名解析失败时用 modelId 兜底 */ }
+        this._models = map;
+        return map;
+      },
+
+      _modelName(id) {
+        if (!id) return 'unknown';
+        return (this._models && this._models.get(id)) || id;
+      },
+
+      /** 拉取单个会话的列表元信息（agent 模式需要 title/createdAt） */
+      async _ensureConvMeta(id) {
+        if (this._convMeta.has(id)) return this._convMeta.get(id);
+        try {
+          const r = await fetch('/api/history/unified?limit=50&includeArchived=false', { headers: { accept: '*/*' } });
+          if (r.ok) {
+            const body = await r.json();
+            for (const e of body?.entries || []) this._convMeta.set(e.id, e);
+          }
+        } catch (e) { /* ignore */ }
+        return this._convMeta.get(id) || null;
+      },
+
+      async getAllConversations(onProgress) {
+        const all = [];
+        let cursor = '';
+        const limit = CONFIG.DEBUG_LIMIT || Infinity;
+
+        while (all.length < limit) {
+          const url = '/api/history/unified?limit=50&includeArchived=false'
+            + (cursor ? '&cursor=' + encodeURIComponent(cursor) : '');
+          const r = await fetch(url, { headers: { accept: '*/*' } });
+          if (!r.ok) throw new Error('history API ' + r.status + ': ' + r.statusText);
+          const body = await r.json();
+          const entries = body?.entries || [];
+          if (!entries.length) break;
+
+          for (const e of entries) this._convMeta.set(e.id, e);
+          all.push(...entries);
+          if (onProgress) onProgress(all.length);
+
+          const pag = body?.pagination || {};
+          if (!pag.hasMore || !pag.cursor) break;
+          cursor = pag.cursor;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        return all.slice(0, limit).map((e) => ({
+          id: e.id,
+          title: e.title || '',
+          type: e.type,
+          mode: e.mode,
+          productMode: e.productMode,
+          createdAt: e.createdAt,
+          updatedAt: e.updatedAt,
+          modelAId: e.modelAId,
+          modelBId: e.modelBId,
+          modelAOrganization: e.modelAOrganization,
+          modelBOrganization: e.modelBOrganization,
+        }));
+      },
+
+      async getConversationDetails(id) {
+        const meta = this._convMeta.get(id);
+        const type = meta?.type || (window.location.pathname.startsWith('/agent/') ? 'agentic' : 'evaluation');
+        await this._loadModels(); // toMarkdown 是同步的，模型名必须提前就绪
+        if (type === 'agentic') return this._getAgentConversation(id);
+        return this._getEvaluation(id);
+      },
+
+      async _getEvaluation(id) {
+        const r = await fetch('/api/evaluation/' + id, { headers: { accept: '*/*' } });
+        if (!r.ok) throw new Error('evaluation API ' + r.status + ': ' + r.statusText);
+        return r.json();
+      },
+
+      async _getAgentConversation(id) {
+        const r = await fetch('/agent/' + id + '?_rsc=1', { headers: { accept: '*/*', rsc: '1' } });
+        if (!r.ok) throw new Error('agent RSC ' + r.status + ': ' + r.statusText);
+        const flight = await r.text();
+        const meta = await this._ensureConvMeta(id);
+        return {
+          type: 'agentic',
+          sessionId: id,
+          title: meta?.title || '',
+          createdAt: meta?.createdAt || null,
+          messages: this._parseAgentRsc(flight),
+        };
+      },
+
+      /** 解析 Next.js RSC（Flight）payload：取 messages 数组并解析 $id 引用
+       * 注意 1：不能假设 messages 是所在对象的首键（实测键序会变），故直接定位 `"messages":[`；
+       *         页面 i18n 也有 "messages" 键（值为对象），必须只认后面紧跟 `[` 的那个。
+       * 注意 2：Flight 的 T chunk 会粘在前一个 chunk 内容末尾（不换行），且内容长度按字节计 */
+      _parseAgentRsc(flight) {
+        const text = String(flight);
+        const bytes = new TextEncoder().encode(text);
+        const decoder = new TextDecoder('utf-8');
+
+        // 1. 定位并解析 messages 数组字面量
+        const reMsgs = /"messages"\s*:\s*\[/g;
+        let messages = null;
+        let mm;
+        while ((mm = reMsgs.exec(text))) {
+          const arrStart = mm.index + mm[0].length - 1; // 指向 '['
+          try {
+            const parsed = JSON.parse(this._extractBalancedJson(text, arrStart));
+            if (Array.isArray(parsed)) { messages = parsed; break; }
+          } catch (e) { /* 不是消息数组，继续找下一个候选 */ }
+        }
+        if (!messages) throw new Error('agent RSC: messages block not found');
+
+        // 2. 扫描所有 `id:T<hex>,` 文本 chunk（任意位置，含粘在行中的）
+        const tChunks = new Map();
+        const re = /(^|[^0-9a-f])([0-9a-f]+):T([0-9a-fA-F]+),/g;
+        let m;
+        while ((m = re.exec(text))) {
+          const id = m[2];
+          if (tChunks.has(id)) continue;
+          const len = parseInt(m[3], 16);
+          const contentStartStr = m.index + m[0].length;
+          const byteStart = new TextEncoder().encode(text.slice(0, contentStartStr)).length;
+          const contentBytes = bytes.subarray(byteStart, byteStart + len);
+          tChunks.set(id, decoder.decode(contentBytes));
+        }
+
+        // 3. 递归解析 $id 引用（仅文本 chunk）
+        const resolve = (value) => {
+          if (typeof value === 'string') {
+            const ref = value.match(/^\$([0-9a-zA-Z]+)$/);
+            if (ref) {
+              const content = tChunks.get(ref[1]);
+              if (content !== undefined) return content;
+            }
+            return value;
+          }
+          if (Array.isArray(value)) return value.map((v) => resolve(v));
+          if (value && typeof value === 'object') {
+            const out = {};
+            for (const k of Object.keys(value)) out[k] = resolve(value[k]);
+            return out;
+          }
+          return value;
+        };
+
+        const resolved = resolve(messages);
+        return Array.isArray(resolved) ? resolved : [];
+      },
+
+      /** 从 start 起提取配平的 JSON 块（start 处须为 '{' 或 '['） */
+      _extractBalancedJson(s, start) {
+        const open = s[start];
+        const close = open === '[' ? ']' : '}';
+        let depth = 0, inStr = false, esc = false;
+        for (let i = start; i < s.length; i++) {
+          const c = s[i];
+          if (inStr) {
+            if (esc) { esc = false; continue; }
+            if (c === '\\') { esc = true; continue; }
+            if (c === '"') inStr = false;
+            continue;
+          }
+          if (c === '"') { inStr = true; continue; }
+          if (c === open) depth++;
+          else if (c === close) {
+            depth--;
+            if (depth === 0) return s.slice(start, i + 1);
+          }
+        }
+        throw new Error('agent RSC: unbalanced JSON');
+      },
+
+      /** 将 Arena 数据转为 Markdown（契约见 docs/ChatFormat.arena.md） */
+      toMarkdown(data, title, convId) {
+        const mode = this._detectMode(data);
+
+        const lines = [];
+        lines.push('## Metadata');
+        lines.push('');
+        lines.push('- **Mode:** `' + mode + '`');
+        if (mode !== 'agent') {
+          const models = this._collectModels(data);
+          if (models.length) lines.push('- **Models:** ' + models.map((m) => '`' + m + '`').join(', '));
+        }
+        const votes = this._collectVotes(data);
+        if (votes.length) lines.push('- **Votes:** ' + votes.join(', '));
+        lines.push('- **Time:** ' + this._formatTime(data?.createdAt));
+        const url = mode === 'agent'
+          ? 'https://arena.ai/agent/' + convId
+          : 'https://arena.ai/c/' + convId;
+        lines.push('- **URL:** ' + url);
+        lines.push('');
+        lines.push('## Conversation');
+        lines.push('');
+
+        if (mode === 'agent') this._renderAgentBody(lines, data, stripHashes);
+        else this._renderEvaluationBody(lines, data, stripHashes);
+
+        return lines.join('\n');
+      },
+
+      _detectMode(data) {
+        if (data?.type === 'agentic') return 'agent';
+        const m = data?.mode;
+        if (m === 'direct-battle') return 'direct-chat';
+        return m || 'unknown';
+      },
+
+      /** battle / side-by-side / direct-chat 共用渲染：一轮 = User + 各模型回答 + 投票 */
+      _renderEvaluationBody(lines, data, stripHashes) {
+        const messages = data?.messages || [];
+        const pendingVotes = new Map();
+        for (const fb of data?.pairwiseFeedbacks || []) {
+          if (fb && fb.id) pendingVotes.set(fb.id, { fb, emitted: new Set() });
+        }
+
+        for (const msg of messages) {
+          if (msg?.status && msg.status !== 'success') continue;
+          const content = String(msg?.content || '').trim();
+          if (!content) continue;
+
+          if (msg.role === 'user') {
+            lines.push('### 🧑‍💻 User');
+            lines.push('');
+            lines.push(stripHashes(content));
+            lines.push('');
+            continue;
+          }
+
+          lines.push('### 🤖 Assistant — ' + this._modelName(msg.modelId));
+          lines.push('');
+          lines.push(stripHashes(content));
+          lines.push('');
+
+          // 投票行：该轮两条助手消息都输出后追加
+          for (const pv of pendingVotes.values()) {
+            const { fb, emitted } = pv;
+            if (fb.messageAId === msg.id || fb.messageBId === msg.id) {
+              emitted.add(msg.id);
+              if (emitted.size >= 2) {
+                lines.push('> 🏆 **Vote:** ' + this._voteText(fb));
+                lines.push('');
+                pendingVotes.delete(fb.id);
+              }
+              break;
+            }
+          }
+        }
+      },
+
+      /** agent 模式渲染：Thought Process + Response 固定两段，引用收集到末尾 */
+      _renderAgentBody(lines, data, stripHashes) {
+        const messages = data?.messages || [];
+        const refCollector = new ReferenceCollector();
+
+        for (const msg of messages) {
+          if (msg.role === 'user') {
+            const texts = (msg.parts || [])
+              .filter((p) => p.type === 'text' && p.text)
+              .map((p) => p.text);
+            const text = texts.join('\n\n').trim();
+            if (!text) continue;
+            lines.push('### 🧑‍💻 User');
+            lines.push('');
+            lines.push(stripHashes(text));
+            lines.push('');
+          } else if (msg.role === 'assistant') {
+            const thoughts = (msg.parts || [])
+              .filter((p) => p.type === 'reasoning' && p.text)
+              .map((p) => p.text);
+            const texts = (msg.parts || [])
+              .filter((p) => p.type === 'text' && p.text)
+              .map((p) => p.text);
+            if (!thoughts.length && !texts.length) continue;
+
+            lines.push('### 🤖 Assistant');
+            lines.push('');
+            if (thoughts.length) {
+              lines.push('#### 🤔 Thought Process');
+              lines.push('');
+              lines.push(stripHashes(thoughts.join('\n\n')));
+              lines.push('');
+            }
+            if (texts.length) {
+              const joined = texts.join('\n\n');
+              lines.push('#### 💡 Response');
+              lines.push('');
+              lines.push(stripHashes(this._processCitations(joined, refCollector)));
+              lines.push('');
+            }
+          }
+        }
+
+        if (refCollector.hasReferences()) {
+          lines.push(...refCollector.render());
+        }
+      },
+
+      /** 正文 [N](url) 引用 → [N]，URL 去重后按序编号（全局跨消息） */
+      _processCitations(text, refCollector) {
+        const re = /\[(\d+)\]\((https?:\/\/[^)\s]+)\)/g;
+        const matches = [];
+        let m;
+        while ((m = re.exec(text))) {
+          const num = refCollector.add('', m[2]);
+          matches.push({ start: m.index, end: m.index + m[0].length, num });
+        }
+        let out = text;
+        for (let i = matches.length - 1; i >= 0; i--) {
+          const mm = matches[i];
+          out = out.slice(0, mm.start) + '[' + mm.num + ']' + out.slice(mm.end);
+        }
+        return out;
+      },
+
+      _collectModels(data) {
+        const seen = new Set();
+        const out = [];
+        for (const msg of data?.messages || []) {
+          if (msg?.role !== 'assistant' || !msg.modelId) continue;
+          const name = this._modelName(msg.modelId);
+          if (!seen.has(name)) {
+            seen.add(name);
+            out.push(name);
+          }
+        }
+        return out;
+      },
+
+      _collectVotes(data) {
+        const counts = new Map();
+        for (const fb of data?.pairwiseFeedbacks || []) {
+          const v = this._voteText(fb);
+          if (!v) continue;
+          counts.set(v, (counts.get(v) || 0) + 1);
+        }
+        return [...counts.entries()].map(([v, n]) => v + ' × ' + n);
+      },
+
+      _voteText(fb) {
+        const v = fb?.value;
+        if (v === 'a' || v === 'model_a') return this._modelName(fb.modelAId) + ' wins';
+        if (v === 'b' || v === 'model_b') return this._modelName(fb.modelBId) + ' wins';
+        if (v === 'tie') return 'tie';
+        if (v === 'both_bad') return 'both bad';
+        if (v === 'both_good') return 'both good';
+        return v || '';
+      },
+
+      _formatTime(str) {
+        if (!str) return 'unknown';
+        // 补全 +00 → +00:00，否则 V8 解析不了
+        const norm = String(str).replace(' ', 'T').replace(/([+-]\d{2})$/, '$1:00');
+        const d = new Date(norm);
+        if (isNaN(d.getTime())) return String(str);
+        return formatLocalTime(d);
+      },
+    },
+
+    // ═══════════════════════════════════════════════════════
+    //  ADAPTER[mistral]  Mistral Le Chat
+    // ═══════════════════════════════════════════════════════
+    // 列表: tRPC GET /api/trpc/chat.last?batch=1&input=...（cursor 翻页, nextCursor 结束）
+    // 详情: Next.js RSC 流 GET /chat/<id>?_rsc=<nonce>（需 RSC: 1 头），
+    //       从 flight 流提取 "chat":{...} 元数据 + "initialMessages":[...] 消息数组。
+    //       flight 里的 Date 带 $D 前缀（"$D2026-..."），提取后需剥离。
+    // 消息: {role: user|assistant, content: markdown 正文,
+    //        contentChunks: [{type:'tool_call', publicResult:{<id>:{url,title,rank}}},
+    //                        {type:'reference', referenceIds:[...]}, {type:'text', text}]}
+    {
+      id: 'mistral',
+      name: 'Mistral Le Chat',
+      detect: () => window.location.hostname === 'chat.mistral.ai',
+
+      getCurrentConversationId: () => {
+        const pathname = window.location.pathname;
+        if (pathname.startsWith('/chat/projects')) return null;
+        const m = pathname.match(/^\/chat\/([0-9a-f-]{36}|[a-zA-Z0-9_-]{10,})/i);
+        return m ? m[1] : null;
+      },
+
+      _projectCache: {},
+
+      _fetchProjectMeta(projectId) {
+        if (!projectId || (this._projectCache && this._projectCache[projectId])) return;
+        this._projectFetching = this._projectFetching || new Set();
+        if (this._projectFetching.has(projectId)) return;
+        this._projectFetching.add(projectId);
+        this._trpc('project.byId', { 0: { id: projectId } })
+          .then((resp) => {
+            const proj = this._findProjectPayload(resp);
+            const name = proj?.name?.trim();
+            if (name) {
+              this._projectCache = this._projectCache || {};
+              this._projectCache[projectId] = name;
+            }
+          }).catch(() => {}).finally(() => {
+            this._projectFetching.delete(projectId);
+          });
+      },
+
+      getCurrentProject() {
+        const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
+        const m = pathname.match(/^\/chat\/projects\/([0-9a-f-]{36}|[a-zA-Z0-9_-]{8,})/i);
+        if (!m) return null;
+        const id = m[1];
+        if (this._projectCache && this._projectCache[id]) {
+          return { id, name: this._projectCache[id] };
+        }
+        this._fetchProjectMeta(id);
+        return { id, name: '' };
+      },
+
+      _findProjectPayload(data) {
+        if (!data) return null;
+        let found = null;
+        const walk = (o) => {
+          if (found || !o || typeof o !== 'object') return;
+          if (o.chats && typeof o.chats === 'object' && o.name) {
+            found = o;
+            return;
+          }
+          for (const v of Object.values(o)) {
+            walk(v);
+          }
+        };
+        walk(data);
+        return found;
+      },
+
+      async _trpc(procedures, inputs) {
+        const input = encodeURIComponent(JSON.stringify(
+          Object.fromEntries(Object.entries(inputs).map(([k, v]) => [k, { json: v }]))
+        ));
+        const r = await fetch(`/api/trpc/${procedures}?batch=1&input=${input}`, {
+          method: 'GET',
+          credentials: 'include',
+          headers: { 'accept': 'application/json' },
+        });
+        const text = await r.text();
+        if (!r.ok) throw new Error(`Mistral API ${r.status}: ${text.slice(0, 120)}`);
+        let data;
+        try {
+          data = JSON.parse(text);
+        } catch (e) {
+          const lines = text.trim().split('\n').filter(Boolean);
+          data = [];
+          for (const line of lines) {
+            try { data.push(JSON.parse(line)); } catch (_) {}
+          }
+        }
+        return data;
+      },
+
+      /** 从 RSC flight 流里提取 "key":<json 值>（括号配对，支持嵌套对象/数组；fromIndex 可选搜索起点） */
+      _extractRscValue(t, key, fromIndex = 0) {
+        const start = t.indexOf(`"${key}":`, fromIndex);
+        if (start < 0) return undefined;
+        let i = start + key.length + 3; // 跳过 "key":
+        while (i < t.length && /\s/.test(t[i])) i++;
+        const ch = t[i];
+        if (ch === '{' || ch === '[') {
+          const open = ch;
+          const close = ch === '{' ? '}' : ']';
+          let depth = 0, inStr = false, esc = false;
+          for (let j = i; j < t.length; j++) {
+            const c = t[j];
+            if (inStr) {
+              if (esc) esc = false;
+              else if (c === '\\') esc = true;
+              else if (c === '"') inStr = false;
+              continue;
+            }
+            if (c === '"') inStr = true;
+            else if (c === open) depth++;
+            else if (c === close) { depth--; if (depth === 0) return t.slice(i, j + 1); }
+          }
+        } else if (ch === '"') {
+          for (let j = i + 1; j < t.length; j++) {
+            if (t[j] === '\\') j++;
+            else if (t[j] === '"') return t.slice(i, j + 1);
+          }
+        }
+        return undefined;
+      },
+
+      /** flight 流里可能有多处 "chat":，锚定到真正的对话对象（带 id 的那个） */
+      _findChatAnchor(t) {
+        const a = t.indexOf('"chat":{"id"');
+        if (a >= 0) return a;
+        // 兜底：没有 id 开头也试第一个
+        return t.indexOf('"chat":');
+      },
+
+      /** 从 RSC flight 流里解析 $N 引用（reasoning 文本以 "$90" 形式存在，指向流中 "90:" 行）
+       *  行格式: "90:T<hex>,<utf-8 文本...>" 或 "90:\"<json 字符串>\""；文本到下一个行号前缀结束 */
+      _resolveFlightRef(t, ref) {
+        const num = String(ref || '').replace(/^\$/, '');
+        if (!/^[0-9a-fA-F]+$/.test(num)) return '';
+        const m = t.match(new RegExp('(?:^|\\n)' + num + ':', 'm'));
+        if (!m) return '';
+        let rest = t.slice(m.index + m[0].length);
+        if (rest.startsWith('"')) {
+          let out = '';
+          for (let i = 1; i < rest.length; i++) {
+            const ch = rest[i];
+            if (ch === '\\') {
+              const n = rest[i + 1];
+              if (n === 'n') out += '\n';
+              else if (n === 't') out += '\t';
+              else if (n === 'r') out += '\r';
+              else if (n === '"') out += '"';
+              else if (n === '\\') out += '\\';
+              else out += n;
+              i++;
+              continue;
+            }
+            if (ch === '"') break;
+            out += ch;
+          }
+          return out;
+        }
+        if (rest.startsWith('T')) {
+          // T<hex 字节长度>,<utf-8 文本>：按长度精确截取（reasoning 文本可能含字面换行）
+          const comma = rest.indexOf(',');
+          if (comma < 0) return '';
+          const byteLen = parseInt(rest.slice(1, comma), 16);
+          const body = rest.slice(comma + 1);
+          if (byteLen > 0 && body.length >= byteLen) {
+            try {
+              const bytes = new TextEncoder().encode(body);
+              return new TextDecoder().decode(bytes.slice(0, byteLen)).trim();
+            } catch (e) { /* fallthrough */ }
+          }
+          // 兜底：到下一个行号前缀（\n<hex>:）
+          const end = body.search(/\n[0-9a-fA-F]+:/);
+          return (end >= 0 ? body.slice(0, end) : body).trim();
+        }
+        return '';
+      },
+
+      /** 消息里 reasoning（思考）块文本：contentChunks 中 _context.type === 'reasoning' 的 text chunk */
+      _extractThinking(m) {
+        const parts = [];
+        for (const ch of (m?.contentChunks || [])) {
+          if (ch?.type === 'text' && ch?._context?.type === 'reasoning' && ch.text) {
+            parts.push(ch.text);
+          }
+        }
+        return parts.join('\n\n').trim();
+      },
+
+      async getAllConversations(onProgress) {
+        const all = [];
+        let cursor = null;
+        while (true) {
+          const input = {
+            chatVisibility: 'private',
+            chatPermission: 'write',
+            includeProjectChats: false,
+            productType: 'chat',
+            direction: 'forward',
+          };
+          if (cursor) input.cursor = cursor;
+          const resp = await this._trpc('chat.last', { 0: input });
+          const json = resp?.[0]?.result?.data?.json || {};
+          const items = Array.isArray(json.items) ? json.items : [];
+          let added = 0;
+          for (const it of items) {
+            if (!it.id) continue;
+            all.push({
+              id: it.id,
+              title: (it.userTitle || it.generatedTitle || it.title || it.id).trim(),
+              updated_at: it.updatedAt,
+            });
+            added++;
+          }
+          if (onProgress) onProgress(all.length);
+          if (!items.length || !added || !json.nextCursor) break;
+          cursor = json.nextCursor;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+        return all;
+      },
+
+      async getProjectConversations(projectId, onProgress) {
+        let projectName = `Project ${projectId}`;
+        const conversations = [];
+
+        // 1. 优先从 project.byId 提取项目内会话
+        try {
+          const resp = await this._trpc('project.byId', { 0: { id: projectId } });
+          const proj = this._findProjectPayload(resp);
+          if (proj) {
+            if (proj.name) projectName = proj.name;
+            if (proj.chats && typeof proj.chats === 'object') {
+              for (const [chatId, c] of Object.entries(proj.chats)) {
+                if (!chatId) continue;
+                conversations.push({
+                  id: chatId,
+                  title: (c?.userTitle || c?.generatedTitle || c?.title || chatId).trim(),
+                  created_at: c?.createdAt,
+                  updated_at: c?.updatedAt,
+                });
+              }
+            }
+          }
+        } catch (e) {
+          // ignore and fallback
+        }
+
+        // 2. 兜底方案：通过 chat.last 带有 includeProjectChats 过滤
+        if (conversations.length === 0) {
+          try {
+            let cursor = null;
+            while (true) {
+              const input = {
+                chatVisibility: 'private',
+                chatPermission: 'write',
+                includeProjectChats: true,
+                productType: 'chat',
+                direction: 'forward',
+              };
+              if (cursor) input.cursor = cursor;
+              const resp = await this._trpc('chat.last', { 0: input });
+              const json = resp?.[0]?.result?.data?.json || {};
+              const items = Array.isArray(json.items) ? json.items : [];
+              let added = 0;
+              for (const it of items) {
+                if (it.projectId === projectId || it.project_id === projectId) {
+                  conversations.push({
+                    id: it.id,
+                    title: (it.userTitle || it.generatedTitle || it.title || it.id).trim(),
+                    updated_at: it.updatedAt,
+                  });
+                  added++;
+                }
+              }
+              if (!items.length || !json.nextCursor) break;
+              cursor = json.nextCursor;
+              await sleep(CONFIG.API_PAGE_DELAY);
+            }
+          } catch (e) {
+            // ignore
+          }
+        }
+
+        if (onProgress) onProgress(conversations.length);
+
+        return {
+          id: projectId,
+          name: projectName,
+          conversations,
+        };
+      },
+
+      async getConversationDetails(id) {
+        if (!id) throw new Error('缺少 Mistral chatId');
+        const r = await fetch(`/chat/${id}?_rsc=${Date.now().toString(36)}${Math.random().toString(36).slice(2, 6)}`, {
+          credentials: 'include',
+          headers: { 'RSC': '1', 'accept': '*/*' },
+        });
+        const text = await r.text();
+        if (!r.ok) throw new Error(`Mistral RSC ${r.status}: ${text.slice(0, 120)}`);
+
+        let chat = null;
+        try {
+          const anchor = this._findChatAnchor(text);
+          const raw = anchor >= 0 ? this._extractRscValue(text, 'chat', anchor) : undefined;
+          chat = raw ? JSON.parse(raw) : null;
+        } catch (e) { chat = null; }
+        let messages = [];
+        try {
+          const raw = this._extractRscValue(text, 'initialMessages');
+          messages = raw ? JSON.parse(raw) : [];
+        } catch (e) { messages = []; }
+        if (!Array.isArray(messages)) messages = [];
+
+        // 剥离 flight 的 $D Date 前缀（"$D2026-08-12T..." → "2026-08-12T..."）
+        const stripDates = (obj) => {
+          if (typeof obj === 'string') return obj.replace(/^\$D/, '');
+          if (Array.isArray(obj)) return obj.map(stripDates);
+          if (obj && typeof obj === 'object') {
+            const out = {};
+            for (const k of Object.keys(obj)) out[k] = stripDates(obj[k]);
+            return out;
+          }
+          return obj;
+        };
+        if (chat) chat = stripDates(chat);
+        if (messages.length) {
+          // reasoning chunk 的 text 是 "$N" 引用 → 在原始 flight 流里解析成真实文本
+          const resolveChunk = (ch) => {
+            if (ch?._context?.type === 'reasoning' && /^\$[0-9a-fA-F]+$/.test(String(ch.text || ''))) {
+              ch.text = this._resolveFlightRef(text, ch.text) || ch.text;
+            }
+            return ch;
+          };
+          messages = stripDates(messages.map((m) => ({
+            ...m,
+            contentChunks: Array.isArray(m?.contentChunks) ? m.contentChunks.map(resolveChunk) : m.contentChunks,
+          })));
+        }
+
+        const title = (chat?.userTitle || chat?.generatedTitle || '').trim();
+        return { id, title, chat, initialMessages: messages };
+      },
+
+      _collectRefs(contentChunks) {
+        // tool_call.publicResult: {<id>: {url, title, rank, ...}}
+        const byId = new Map();
+        for (const ch of (contentChunks || [])) {
+          if (ch?.type !== 'tool_call' || !ch.publicResult) continue;
+          for (const [k, v] of Object.entries(ch.publicResult)) {
+            if (!v?.url) continue;
+            if (!byId.has(k)) byId.set(k, { url: v.url, title: v.title || '', rank: Number(v.rank) || 999 });
+          }
+        }
+        return [...byId.values()].sort((a, b) => a.rank - b.rank);
+      },
+
+      toMarkdown(data, title, convId) {
+        const id = convId || data?.id || data?.chatId || '';
+        // flight 流里 initialMessages 是逆序的（最新在前），按 createdAt 升序排回时间正序
+        const timeOf = (m) => {
+          const t = new Date(m?.createdAt || '').getTime();
+          return Number.isFinite(t) ? t : Number.MAX_SAFE_INTEGER;
+        };
+        const messages = [...(Array.isArray(data?.initialMessages) ? data.initialMessages : [])]
+          .sort((a, b) => timeOf(a) - timeOf(b));
+        const updatedAt = data?.chat?.updatedAt || data?.updatedAt;
+        const timeStr = updatedAt ? formatLocalTime(new Date(updatedAt)) : 'unknown';
+        const url = id ? `https://chat.mistral.ai/chat/${id}` : 'https://chat.mistral.ai';
+
+        const refCollector = new ReferenceCollector();
+        for (const m of messages) {
+          for (const ref of this._collectRefs(m?.contentChunks)) {
+            if (ref?.url) refCollector.add(ref.title || '', ref.url);
+          }
+        }
+
+        const lines = [];
+        lines.push('## Metadata');
+        lines.push('');
+        lines.push('- **Model:** `Mistral Le Chat`');
+        lines.push(`- **Time:** ${timeStr}`);
+        lines.push(`- **URL:** ${url}`);
+        lines.push('');
+        lines.push('## Conversation');
+        lines.push('');
+
+        for (const m of messages) {
+          if (!m || typeof m !== 'object') continue;
+          const role = String(m.role || '').toLowerCase();
+          const body = stripHashes(m.content || '').trim();
+          if (!body) continue;
+          if (role === 'user') {
+            lines.push('### 🧑‍💻 User');
+            lines.push('');
+            lines.push(body);
+            lines.push('');
+          } else {
+            const thinking = stripHashes(this._extractThinking(m));
+            lines.push('### 🤖 Assistant');
+            lines.push('');
+            if (thinking) {
+              lines.push('#### 🤔 Thought Process');
+              lines.push('');
+              lines.push(thinking);
+              lines.push('');
+              lines.push('#### 💡 Response');
+              lines.push('');
+            }
+            lines.push(body);
+            lines.push('');
+          }
+        }
+
+        if (refCollector.hasReferences()) {
+          lines.push(...refCollector.render());
+        }
+
+        return lines.join('\n').replace(/\n{3,}/g, '\n\n');
+      },
+    },
+
+    // ═══════════════════════════════════════════════════════
+    //  ADAPTER[sakana]  Sakana AI Chat
+    // ═══════════════════════════════════════════════════════
+    // 列表: GET /api/v2/conversations（一次返回全部，无分页）→ {json:{conversations:[{id,title,updatedAt}]}}
+    // 详情: GET /api/v2/conversations/<id> → {json:{messages:[{from,content,order,...}], title}}
+    // thinking 在 content 里：<plan>...</plan>（Osaka 方言模型）或 <think>...</think>（thinking 模式），
+    //   正文在 <answer>...</answer>；部分消息 <think><think> 双开但单个闭合，取第一个 </think>。
+    {
+      id: 'sakana',
+      name: 'Sakana AI',
+      detect: () => window.location.hostname === 'chat.sakana.ai',
+
+      getCurrentConversationId: () => {
+        const m = window.location.pathname.match(/^\/conversation\/([^\/?]+)/);
+        return m ? m[1] : null;
+      },
+
+      async _get(path) {
+        const r = await fetch(path, {
+          credentials: 'include',
+          headers: { 'accept': 'application/json' },
+        });
+        const text = await r.text();
+        if (!r.ok) throw new Error(`Sakana API ${r.status}: ${text.slice(0, 120)}`);
+        let data;
+        try { data = JSON.parse(text); } catch (e) { data = {}; }
+        return data?.json ?? data;
+      },
+
+      async getAllConversations(onProgress) {
+        const data = await this._get('/api/v2/conversations');
+        const list = Array.isArray(data?.conversations) ? data.conversations : [];
+        const all = [];
+        for (const c of list) {
+          const cid = c.id || c._id;
+          if (!cid) continue;
+          all.push({
+            id: cid,
+            title: (c.title || cid).trim(),
+            updated_at: c.updatedAt,
+          });
+        }
+        if (onProgress) onProgress(all.length);
+        return all;
+      },
+
+      async getConversationDetails(id) {
+        if (!id) throw new Error('缺少 Sakana conversationId');
+        const data = await this._get(`/api/v2/conversations/${encodeURIComponent(id)}`);
+        return {
+          id,
+          title: data?.title || '',
+          updatedAt: data?.updatedAt,
+          messages: Array.isArray(data?.messages) ? data.messages : [],
+        };
+      },
+
+      /** 拆 content：<plan>/<think> → 思考，<answer> → 正文，其余 → 正文 */
+      _splitContent(content) {
+        const text = String(content || '');
+        const thoughts = [];
+        let m;
+        const planRe = /<plan>([\s\S]*?)<\/plan>/g;
+        while ((m = planRe.exec(text))) thoughts.push(m[1]);
+        const thinkRe = /<think>([\s\S]*?)<\/think>/g;
+        while ((m = thinkRe.exec(text))) thoughts.push(m[1].replace(/^<think>\s*/, ''));
+        const answers = [];
+        const ansRe = /<answer>([\s\S]*?)<\/answer>/g;
+        while ((m = ansRe.exec(text))) answers.push(m[1]);
+        let answer;
+        if (answers.length) {
+          answer = answers.join('\n\n');
+        } else {
+          answer = text
+            .replace(/<plan>[\s\S]*?<\/plan>/g, '')
+            .replace(/<think>[\s\S]*?<\/think>/g, '')
+            .replace(/<\/?[a-zA-Z_]+>/g, '')
+            .trim();
+        }
+        return { thought: thoughts.join('\n\n').trim(), answer: answer.trim() };
+      },
+
+      /** 清理 content：把搜索引用标签 <source-chip title="X" url="Y" /> 转成 [N] 并收集信源 */
+      _cleanContent(s, refCollector) {
+        return String(s || '').replace(/<source-chip\b[^>]*>/gi, (match) => {
+          const t = (match.match(/title="([^"]*)"/i) || [])[1] || '';
+          const u = (match.match(/url="([^"]*)"/i) || [])[1] || '';
+          if (u) {
+            if (refCollector) {
+              const num = refCollector.add(t, u);
+              return `[${num}]`;
+            }
+            return t ? `[${t}](${u})` : `<${u}>`;
+          }
+          return '';
+        });
+      },
+
+      toMarkdown(data, title, convId) {
+        const id = convId || data?.id || '';
+        const messages = [...(Array.isArray(data?.messages) ? data.messages : [])]
+          .sort((a, b) => (Number(a.order) || 0) - (Number(b.order) || 0));
+        const timeStr = data?.updatedAt
+          ? formatLocalTime(new Date(data.updatedAt))
+          : 'unknown';
+        const url = id ? `https://chat.sakana.ai/conversation/${id}` : 'https://chat.sakana.ai';
+        const refCollector = new ReferenceCollector();
+
+        const lines = [];
+        lines.push('## Metadata');
+        lines.push('');
+        lines.push('- **Model:** `Sakana AI`');
+        lines.push(`- **Time:** ${timeStr}`);
+        lines.push(`- **URL:** ${url}`);
+        lines.push('');
+        lines.push('## Conversation');
+        lines.push('');
+
+        for (const m of messages) {
+          if (!m || typeof m !== 'object') continue;
+          const from = String(m.from || '').toLowerCase();
+          if (from === 'system') continue;
+          const parts = this._splitContent(m.content);
+          const thought = this._cleanContent(parts.thought, refCollector);
+          const answer = this._cleanContent(parts.answer, refCollector);
+          if (!thought && !answer) continue;
+          if (from === 'user') {
+            lines.push('### 🧑‍💻 User');
+            lines.push('');
+            lines.push(stripHashes(answer));
+            lines.push('');
+          } else {
+            lines.push('### 🤖 Assistant');
+            lines.push('');
+            if (thought) {
+              lines.push('#### 🤔 Thought Process');
+              lines.push('');
+              lines.push(stripHashes(thought));
+              lines.push('');
+              if (answer) {
+                lines.push('#### 💡 Response');
+                lines.push('');
+              }
+            }
+            if (answer) {
+              lines.push(stripHashes(answer));
+              lines.push('');
+            }
+          }
+        }
+
+        if (refCollector.hasReferences()) {
+          lines.push(...refCollector.render());
+        }
+
+        return lines.join('\n').replace(/\n{3,}/g, '\n\n');
+      },
+    },
+
+    // ═══════════════════════════════════════════════════════
+    //  ADAPTER[claude]  Claude (claude.ai)
+    //  ═══════════════════════════════════════════════════════
+    //  LLM 注意:
+    //  - 详情 API（真实账号实测 2026-09，查询串与前端一致）:
+    //      GET /api/organizations/{orgId}/chat_conversations/{id}?tree=True&rendering_mode=messages&render_all_tools=true&include_inline_comparison=true&consistency=strong
+    //    orgId 从 lastActiveOrg cookie 读，同源请求用会话 cookie 认证，无需额外 token。
+    //  - 列表 API: GET /api/organizations/{orgId}/chat_conversations_v2?limit=30&offset={n}&consistency=eventual
+    //    响应 { data: [{uuid,name,created_at,updated_at,...}], has_more }，offset 翻页（非 GraphQL）。
+    //  - 真实响应里 tool_use.input 是 JSON 字符串（不是对象），一律用 _toolInput() 解析。
+    {
+      id: 'claude',
+      name: 'Claude',
+      detect: () => ['claude.ai', 'claude.com'].includes(window.location.hostname),
+
+      getCurrentConversationId: () => {
+        // 支持普通会话 /chat/{id} 以及项目内会话 /project/{projId}/chat/{id}
+        const m = window.location.pathname.match(/\/chat\/([^\/?#]+)/);
+        const id = m ? m[1] : null;
+        // Claude 对话 ID 是 UUID；/new、/projects 等页面返回 null
+        return id && id.length >= 20 && id.includes('-') ? id : null;
+      },
+
+      _projectCache: {},
+
+      _fetchProjectMeta(projectId) {
+        if (!projectId || (this._projectCache && this._projectCache[projectId])) return;
+        const orgId = this._orgId();
+        if (!orgId) return;
+        this._projectFetching = this._projectFetching || new Set();
+        if (this._projectFetching.has(projectId)) return;
+        this._projectFetching.add(projectId);
+        fetch(`/api/organizations/${orgId}/projects/${encodeURIComponent(projectId)}`, {
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+        }).then(async (r) => {
+          if (!r.ok) return;
+          const body = await r.json().catch(() => null);
+          const name = body?.name?.trim();
+          if (name) {
+            this._projectCache = this._projectCache || {};
+            this._projectCache[projectId] = name;
+          }
+        }).catch(() => {}).finally(() => {
+          this._projectFetching.delete(projectId);
+        });
+      },
+
+      getCurrentProject() {
+        // 匹配 /project/{projectId}（且当前不在具体 /chat/ 页面内）
+        const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
+        if (pathname.includes('/chat/')) return null;
+        const m = pathname.match(/\/project\/([0-9a-f-]{36}|[0-9a-z]{20,})/i);
+        if (!m) return null;
+        const id = m[1];
+        if (this._projectCache && this._projectCache[id]) {
+          return { id, name: this._projectCache[id] };
+        }
+        this._fetchProjectMeta(id);
+        return { id, name: '' };
+      },
+
+      async getProjectConversations(projectId, onProgress) {
+        const orgId = this._orgId();
+        if (!orgId) throw new Error('无法读取 Claude 会话（lastActiveOrg cookie 缺失）——请确认已登录 claude.ai');
+
+        let projectName = (this._projectCache && this._projectCache[projectId]) || '';
+        try {
+          const rProj = await fetch(`/api/organizations/${orgId}/projects/${projectId}`, {
+            credentials: 'include',
+            headers: { 'Content-Type': 'application/json' },
+          });
+          if (rProj.ok) {
+            const pBody = await rProj.json();
+            projectName = pBody?.name?.trim() || projectName;
+            if (projectName) {
+              this._projectCache = this._projectCache || {};
+              this._projectCache[projectId] = projectName;
+            }
+          }
+        } catch (e) {
+          console.warn('[AfterChat] 获取 Claude 项目详情失败:', e);
+        }
+
+        const limit = CONFIG.DEBUG_LIMIT || Infinity;
+
+        // 1. 优先调用 Claude 官方原生项目对话接口：GET /api/organizations/{orgId}/projects/{projectId}/conversations
+        try {
+          const projUrl = `/api/organizations/${orgId}/projects/${projectId}/conversations`;
+          const rConvs = await fetch(projUrl, {
+            credentials: 'include',
+            headers: { 'Content-Type': 'application/json' },
+          });
+          if (rConvs.ok) {
+            const list = await rConvs.json();
+            if (Array.isArray(list)) {
+              if (onProgress) onProgress(list.length);
+              console.log(`[AfterChat] Claude 原生项目对话接口获取成功: 共 ${list.length} 条会话`);
+              return {
+                name: projectName || projectId,
+                conversations: list.map((c) => ({
+                  id: c.uuid || c.id,
+                  title: c.name || c.title || '',
+                  created_at: c.created_at,
+                  updated_at: c.updated_at,
+                  project_uuid: c.project_uuid || projectId,
+                })).slice(0, limit),
+              };
+            }
+          }
+        } catch (e) {
+          console.warn('[AfterChat] Claude 原生项目对话接口调用失败，尝试本地过滤兜底:', e);
+        }
+
+        // 2. 兜底策略：拉取全量会话后，严格按 project_uuid 精确过滤（绝不包含 project_uuid 为空的普通会话）
+        const allChats = await this.getAllConversations((count) => {
+          if (onProgress) onProgress(count);
+        });
+
+        const targetId = String(projectId).toLowerCase().trim();
+        const filtered = allChats.filter((c) => {
+          const p = String(c.project_uuid || c.projectId || '').toLowerCase().trim();
+          return p && p === targetId;
+        });
+
+        console.log(`[AfterChat] Claude 项目 [${projectName || projectId}] 本地兜底过滤完成: 全部 ${allChats.length} 条中命中 ${filtered.length} 条`);
+
+        return {
+          name: projectName || projectId,
+          conversations: filtered.slice(0, limit),
+        };
+      },
+
+      /** 从 cookie 读取当前组织 ID（HN 参考脚本用 intercomSettings，留作兜底） */
+      _orgId() {
+        const cookie = typeof document !== 'undefined' ? (document.cookie || '') : '';
+        const m = cookie.match(/lastActiveOrg=([^;]+)/);
+        if (m && m[1]) return m[1];
+        try { return window.intercomSettings?.lastActiveOrgUuid || ''; } catch { return ''; }
+      },
+
+      /** tool_use.input 可能是对象或 JSON 字符串，统一返回对象 */
+      _toolInput(block) {
+        const raw = block && block.input;
+        if (typeof raw === 'string') {
+          try { return JSON.parse(raw); } catch { return {}; }
+        }
+        return (raw && typeof raw === 'object') ? raw : {};
+      },
+
+      /** 列表 API：chat_conversations_v2，offset 翻页 */
+      async getAllConversations(onProgress) {
+        const orgId = this._orgId();
+        if (!orgId) throw new Error('无法读取 Claude 会话（lastActiveOrg cookie 缺失）——请确认已登录 claude.ai');
+        const all = [];
+        const PAGE = 30; // 与前端一致的分页大小
+        const limit = CONFIG.DEBUG_LIMIT || Infinity;
+        let offset = 0;
+
+        while (all.length < limit) {
+          const url = `/api/organizations/${orgId}/chat_conversations_v2?limit=${PAGE}&offset=${offset}&consistency=eventual`;
+          const r = await fetch(url, {
+            credentials: 'include',
+            headers: { 'Content-Type': 'application/json' },
+          });
+          if (!r.ok) {
+            const hint = (r.status === 401 || r.status === 403) ? '（会话可能已过期，请刷新并重新登录）' : '';
+            throw new Error(`Claude 列表API ${r.status}: ${r.statusText}${hint}`);
+          }
+          const body = await r.json();
+          const chats = body?.data || [];
+          if (!chats.length) break;
+
+          all.push(...chats.map((c) => ({
+            id: c.uuid,
+            title: c.name || '',
+            created_at: c.created_at,
+            updated_at: c.updated_at,
+            project_uuid: c.project_uuid || c.project?.uuid || null,
+          })));
+          if (onProgress) onProgress(all.length);
+
+          if (!body.has_more) break;
+          offset += chats.length;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        return all.slice(0, limit);
+      },
+
+      /** 单条对话详情（真实账号实测；查询串与前端一致） */
+      async getConversationDetails(id) {
+        const orgId = this._orgId();
+        if (!orgId) {
+          throw new Error('无法读取 Claude 会话（lastActiveOrg cookie 缺失）——请确认已登录 claude.ai');
+        }
+        const url = `/api/organizations/${orgId}/chat_conversations/${id}?tree=True&rendering_mode=messages&render_all_tools=true&include_inline_comparison=true&consistency=strong`;
+        const r = await fetch(url, {
+          credentials: 'include',
+          headers: { 'Content-Type': 'application/json' },
+        });
+        if (!r.ok) {
+          const hint = (r.status === 401 || r.status === 403) ? '（会话可能已过期，请刷新并重新登录）' : '';
+          throw new Error(`Claude 详情API ${r.status}: ${r.statusText}${hint}`);
+        }
+        const body = await r.json();
+        if (!body || !Array.isArray(body.chat_messages)) {
+          throw new Error('Claude 详情API 响应结构异常（chat_messages 缺失，接口可能已变更）');
+        }
+        // 标题归一化：Claude 详情顶层字段叫 name，核心 getChatTitle 只认 title（核心区不改）
+        if (body && !body.title && typeof body.name === 'string') body.title = body.name;
+        return body;
+      },
+
+      /** 将 Claude 聊天数据转为 Markdown */
+      toMarkdown(data, title, convId) {
+        const all = data?.chat_messages || [];
+        if (!all.length) throw new Error('未找到消息数据');
+
+        // 沿当前分支排序：从 current_leaf_message_uuid 沿 parent 链回溯再反转。
+        // 重新生成过的回复只导出屏幕上当前分支（与 MIT 参考项目一致）。
+        const byUuid = new Map(all.map((m) => [m.uuid, m]));
+        let ordered = null;
+        const leaf = data.current_leaf_message_uuid;
+        if (leaf && byUuid.has(leaf)) {
+          const path = [];
+          const seen = new Set();
+          let cur = byUuid.get(leaf);
+          while (cur && !seen.has(cur.uuid)) {
+            seen.add(cur.uuid);
+            path.push(cur);
+            cur = cur.parent_message_uuid ? byUuid.get(cur.parent_message_uuid) : null;
+          }
+          if (path.length) ordered = path.reverse();
+        }
+        if (!ordered) {
+          // 兜底：按 index 排序（分支会话可能不准）
+          ordered = [...all].sort((a, b) => (a.index ?? 0) - (b.index ?? 0));
+        }
+
+        // 先把所有 artifact 折叠到最终版本（create/rewrite 全量、update 局部替换）
+        const artifacts = this._collectArtifacts(ordered);
+
+        const lines = [];
+        const model = data.model || 'claude';
+        const convTime = data.created_at || all[0]?.created_at || null;
+        const timeStr = convTime ? formatLocalTime(new Date(convTime)) : 'unknown';
+        const convUrl = convId ? `https://claude.ai/chat/${convId}` : 'https://claude.ai';
+
+        lines.push('## Metadata');
+        lines.push('');
+        lines.push('- **Model:** `' + model + '`');
+        lines.push(`- **Time:** ${timeStr}`);
+        lines.push(`- **URL:** ${convUrl}`);
+        lines.push('');
+        lines.push('## Conversation');
+        lines.push('');
+
+
+        for (const m of ordered) {
+          // content 块按顺序交错；thinking / tool_result 不直接输出
+          const thinkParts = [];
+          const bodyParts = [];
+          for (const block of (m.content || [])) {
+            if (block.type === 'thinking' && typeof block.thinking === 'string' && block.thinking.trim()) {
+              thinkParts.push(stripHashes(block.thinking.trim()));
+            } else if (block.type === 'text' && typeof block.text === 'string' && block.text.trim()) {
+              bodyParts.push(stripHashes(block.text.trim()));
+            } else if (block.type === 'tool_use') {
+              const rendered = this._renderToolUse(block, artifacts);
+              if (rendered) bodyParts.push(rendered);
+            }
+          }
+
+          const attachments = this._describeAttachments(m);
+          const body = [attachments, ...bodyParts].filter(Boolean).join('\n\n');
+          if (!body && !thinkParts.length) continue; // 隐藏/系统消息
+
+          const isHuman = m.sender === 'human';
+          lines.push(isHuman ? '### 🧑‍💻 User' : '### 🤖 Assistant');
+          lines.push('');
+
+          if (!isHuman && thinkParts.length) {
+            lines.push('#### 🤔 Thought Process');
+            lines.push('');
+            lines.push(thinkParts.join('\n\n'));
+            lines.push('');
+            lines.push('#### 💡 Response');
+            lines.push('');
+          }
+          if (body) {
+            lines.push(body);
+            lines.push('');
+          }
+
+          // 未完成标记（与 MIT 参考项目一致的两种信号）
+          if (m.truncated) {
+            lines.push('> **Truncated:** 消息在源数据中被截断，可能不完整。');
+            lines.push('');
+          } else if (m.stop_reason === 'user_canceled') {
+            lines.push('> **Interrupted:** 该回复在 Claude 完成前被停止。');
+            lines.push('');
+          }
+        }
+
+        return lines.join('\n');
+      },
+
+      /** 将 artifact（按 id）折叠到最终状态；update 是 old_str→new_str 局部替换 */
+      _collectArtifacts(ordered) {
+        const artifacts = new Map();
+        for (const m of ordered) {
+          for (const block of (m.content || [])) {
+            if (block.type !== 'tool_use' || block.name !== 'artifacts') continue;
+            const input = this._toolInput(block);
+            const id = input.id || '__artifact__';
+            let a = artifacts.get(id);
+            if (!a) { a = { content: '' }; artifacts.set(id, a); }
+
+            if (input.command === 'update') {
+              if (typeof input.old_str === 'string' && typeof input.new_str === 'string') {
+                if (a.content.indexOf(input.old_str) === -1) {
+                  console.warn(`Claude artifact "${a.title || id}" 的 update 无法应用（源文本未找到），内容可能不完整`);
+                } else {
+                  // 用函数替换器，避免 new_str 里的 $& / $` / $' / $$ 被当替换模式
+                  a.content = a.content.replace(input.old_str, () => input.new_str);
+                }
+              }
+            } else if (typeof input.content === 'string') {
+              a.content = input.content; // create / rewrite → 全量
+            }
+            if (input.title) a.title = input.title;
+            if (input.type) a.type = input.type;
+            if (input.language) a.language = input.language;
+            a.lastVersionUuid = input.version_uuid; // 最后一次写赢 → 最终版
+          }
+        }
+        return artifacts;
+      },
+
+      /** 渲染 tool_use 块：只输出 artifact / create_file / visualize 三种内容型工具 */
+      _renderToolUse(block, artifacts) {
+        const input = this._toolInput(block);
+        const name = block.name || '';
+
+        // 围栏长度超过源码里最长的反引号串，避免冲突
+        const fenceFor = (src) => '`'.repeat(Math.max(3, ...(src.match(/`+/g) || []).map((s) => s.length + 1)));
+        const codeBlock = (label, source, lang) => {
+          const fence = fenceFor(source);
+          return `**${label}**\n\n${fence}${lang || ''}\n${source}\n${fence}`;
+        };
+
+        if (name === 'artifacts') {
+          const a = artifacts.get(input.id || '__artifact__');
+          // 只在最后一次编辑处渲染；之前的 create/update/rewrite 块不输出
+          if (!a || input.version_uuid !== a.lastVersionUuid || !a.content) return '';
+          const TYPE = {
+            'application/vnd.ant.react': { lang: 'jsx', label: 'React' },
+            'text/html': { lang: 'html', label: 'HTML' },
+            'image/svg+xml': { lang: 'svg', label: 'SVG' },
+            'application/vnd.ant.mermaid': { lang: 'mermaid', label: 'Mermaid' },
+            'text/markdown': { lang: 'markdown', label: 'Markdown' },
+            'application/vnd.ant.code': { lang: a.language || '', label: a.language || 'Code' },
+          };
+          const t = TYPE[a.type] || { lang: a.language || '', label: a.language || '' };
+          const label = `Artifact: ${a.title || 'untitled'}${t.label ? ` · ${t.label}` : ''}`;
+          return codeBlock(label, a.content, t.lang);
+        }
+
+        if (name === 'create_file' && typeof input.file_text === 'string' && input.file_text) {
+          const file = String(input.path || 'file').split('/').pop();
+          const ext = file.includes('.') ? file.split('.').pop().toLowerCase() : '';
+          const EXT_LANG = {
+            py: 'python', js: 'javascript', jsx: 'jsx', ts: 'typescript', tsx: 'tsx',
+            md: 'markdown', html: 'html', css: 'css', json: 'json', sh: 'bash',
+            yml: 'yaml', yaml: 'yaml', sql: 'sql', java: 'java', rb: 'ruby', go: 'go',
+            rs: 'rust', c: 'c', cpp: 'cpp', txt: '',
+          };
+          return codeBlock(`File: ${file}`, input.file_text, EXT_LANG[ext] ?? '');
+        }
+
+        if (name === 'visualize:show_widget' && typeof input.widget_code === 'string' && input.widget_code.trim()) {
+          const src = input.widget_code;
+          // widget 是独立渲染的 HTML/CSS/JS 片段（真实数据以 < 开头）；JSX 风格时按代码兜底
+          const lang = /^\s*</.test(src) ? 'html' : '';
+          return codeBlock(`Widget: ${input.title || 'untitled'}`, src, lang);
+        }
+
+        return ''; // 其余工具（web_search、bash、display 等）跳过
+      },
+
+      /** 附件 → markdown：图片内嵌、文档链接、文本附件块引用 */
+      _describeAttachments(m) {
+        const toAbsolute = (u) => {
+          if (!u || typeof u !== 'string') return null;
+          try { return new URL(u, 'https://claude.ai').href; } catch { return null; }
+        };
+        const meta = (...bits) => bits.filter(Boolean).join(' · ');
+
+        const parts = [];
+
+        for (const file of (m.files || [])) {
+          const name = file.file_name || 'file';
+
+          if (file.file_kind === 'image') {
+            const url = toAbsolute(file.preview_url || file.preview_asset?.url);
+            const label = `**Attachment: ${meta(name, 'image')}**`;
+            parts.push(url ? `${label}\n\n![${name}](${url})` : label);
+          } else if (file.file_kind === 'document') {
+            const url = toAbsolute(file.document_asset?.url);
+            const pages = file.document_asset?.page_count;
+            const info = meta('document', pages ? `${pages} page${pages === 1 ? '' : 's'}` : null);
+            const nameLink = url ? `[${name}](${url})` : name;
+            parts.push(`**Attachment: ${meta(nameLink, info)}**`);
+          } else {
+            // blob 或未知类型：无可靠 URL
+            parts.push(`**Attachment: ${meta(name, file.file_kind, this._formatBytes(file.size_bytes))}**`);
+          }
+        }
+
+        for (const attachment of (m.attachments || [])) {
+          const name = attachment.file_name || attachment.name || 'attachment';
+          const info = meta(attachment.file_type, this._formatBytes(attachment.file_size));
+          const label = `**Attachment: ${meta(name, info)}**`;
+          const content = typeof attachment.extracted_content === 'string'
+            ? attachment.extracted_content.trim()
+            : '';
+
+          const lines = [label];
+          if (content) {
+            lines.push('');
+            for (const line of content.split('\n')) lines.push(line);
+          }
+          // 整体块引用：附件自己的标题不进大纲
+          parts.push(lines.map((line) => (line ? `> ${line}` : '>')).join('\n'));
+        }
+
+        return parts.join('\n\n');
+      },
+
+      /** 人类可读字节数，如 "4.7 KB" */
+      _formatBytes(n) {
+        if (n == null || isNaN(n)) return null;
+        if (n < 1024) return `${n} B`;
+        if (n < 1024 * 1024) return `${(n / 1024).toFixed(1)} KB`;
+        return `${(n / (1024 * 1024)).toFixed(1)} MB`;
+      },
+    },
+
+    // ═══════════════════════════════════════════════════════
+    //  ADAPTER[poe]  Poe (poe.com)
+    //  ═══════════════════════════════════════════════════════
+    //  LLM 注意（真实账号实测 2026-09，全部走 /api/gql_POST）:
+    //  - 列表: chatsHistoryPageQuery（首屏 50 条）→ ChatHistoryListWithMessageSearchPaginationQuery
+    //    （{ count, cursor }，cursor = 上一页 pageInfo.endCursor，形如 ":微秒:chatId"），hasNextPage 为 false 结束
+    //  - 详情: ChatPageQuery { chatCode } → chatOfCode.messagesConnection.edges（最近一页）；
+    //    hasPreviousPage 时用 ChatListPaginationQuery { count, cursor: 最老messageId, id: chat节点 } 向前翻全（实测）
+    //  - 请求头: poegraphql + poe-queryname + poe-tag-id 必须；poe-revision 实测任意值均可；
+    //    poe-formkey / poe-tchannel 实测可省略。hash/tag-id 为抓包常量，若后端更新需同步。
+    {
+      id: 'poe',
+      name: 'Poe',
+      detect: () => window.location.hostname === 'poe.com',
+
+      getCurrentConversationId: () => {
+        const m = window.location.pathname.match(/^\/chat\/([a-z0-9]+)/i);
+        return m ? m[1] : null; // Poe chatCode（base36 短码）；/chats 等页面返回 null
+      },
+
+      _ms(v) {
+        const n = Number(v);
+        if (!Number.isFinite(n)) return null;
+        return n > 1e14 ? Math.floor(n / 1000) : n; // Poe 时间戳是微秒
+      },
+
+      _gqlHeaders(queryName, tagId, pg) {
+        // poe-revision 服务端不校验值；buildId 有就拿，没有用占位
+        let rev = 'afterchat';
+        try { rev = window.__NEXT_DATA__?.buildId || rev; } catch { /* 非浏览器环境 */ }
+        return {
+          'content-type': 'application/json',
+          poegraphql: pg,
+          'poe-queryname': queryName,
+          'poe-tag-id': tagId,
+          'poe-revision': rev,
+        };
+      },
+
+      /** 统一 gql_POST 调用（hash 为抓包所得持久化查询常量） */
+      async _gql(queryName, variables, tagId, pg, hash) {
+        const r = await fetch('/api/gql_POST', {
+          method: 'POST',
+          headers: this._gqlHeaders(queryName, tagId, pg),
+          credentials: 'include',
+          body: JSON.stringify({ queryName, variables, extensions: { hash } }),
+        });
+        if (!r.ok) {
+          const hint = (r.status === 401 || r.status === 403) ? '（登录态可能已过期，请刷新页面）' : '';
+          throw new Error(`Poe ${queryName} ${r.status}: ${r.statusText}${hint}`);
+        }
+        const body = await r.json();
+        if (body?.errors?.length) {
+          throw new Error('Poe ' + queryName + ': ' + (body.errors[0]?.message || 'GraphQL error'));
+        }
+        return body;
+      },
+
+      async getAllConversations(onProgress) {
+        const all = [];
+        const limit = CONFIG.DEBUG_LIMIT || Infinity;
+        let cursor = null;
+
+        while (all.length < limit) {
+          // 首页 chatsHistoryPageQuery（无 cursor），后续 ChatHistoryListWithMessageSearchPaginationQuery
+          const isFirst = !cursor;
+          const body = isFirst
+            ? await this._gql(
+                'chatsHistoryPageQuery',
+                { handle: '', useBot: false },
+                '6150ca8d3d6664d4bce8cdf8a92ac5bf',
+                '1',
+                '7f7c6b3d348be34312ad66d53fd7e2b860094fa6caf6cb85321c2b2ae698d357')
+            : await this._gql(
+                'ChatHistoryListWithMessageSearchPaginationQuery',
+                { count: 10, cursor },
+                'c7fb5dc11dde1707fb00eebe7bb04761',
+                '0',
+                '115be578cf6b1914d7139f7258325c5d1418f5e24b104bfe1d639067887974cd');
+          const conn = body?.data?.chats;
+          const edges = conn?.edges || [];
+          if (!edges.length) break;
+
+          for (const e of edges) {
+            const n = e.node || {};
+            if (!n.chatCode) continue;
+            all.push({
+              id: n.chatCode,
+              title: n.title || '',
+              created_at: this._ms(n.creationTime),
+              updated_at: this._ms(n.lastInteractionTime),
+            });
+          }
+          if (onProgress) onProgress(all.length);
+
+          if (!conn?.pageInfo?.hasNextPage) break;
+          cursor = conn.pageInfo.endCursor;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        return all.slice(0, limit);
+      },
+
+      async getConversationDetails(id) {
+        const body = await this._gql(
+          'ChatPageQuery',
+          { chatCode: id },
+          'e7bcd0a5b4bf315a62cdc5140c49e278',
+          '1',
+          '1c929ada3d107cd28b4df143bbf7305f51eb6cd9dcf89b6cb3bd6a7cc0112121');
+        const coc = body?.data?.chatOfCode;
+        if (!coc || !Array.isArray(coc.messagesConnection?.edges)) {
+          throw new Error('Poe 详情响应结构异常（chatOfCode.messagesConnection 缺失，接口可能已变更）');
+        }
+
+        // ChatPageQuery 只给「最近一页」；hasPreviousPage 时用 ChatListPaginationQuery 往前翻
+        const conn = coc.messagesConnection;
+        let cursor = conn.pageInfo?.startCursor || null; // 当前最老 messageId
+        let hasPrev = !!conn.pageInfo?.hasPreviousPage;
+        const chatNodeId = coc.id; // base64 "Chat:{chatId}"，如 Q2hhdDoxNDk3NzExODg1
+        let allEdges = [...(conn.edges || [])];
+        let guard = 0;
+        while (hasPrev && cursor && guard < 100) {
+          guard++;
+          const p = await this._gql(
+            'ChatListPaginationQuery',
+            { count: 25, cursor, id: chatNodeId },
+            '1abdd4f1d403008901cdfacd10b95d4f',
+            '1',
+            'a294b112132f513a057b103d9dc2cc777c64a426850411fe9e7b1b822da2e087');
+          const mc = p?.data?.node?.messagesConnection;
+          const edges = mc?.edges || [];
+          if (!edges.length) break;
+          allEdges = [...edges, ...allEdges]; // 返回块内时间升序、越翻越老，往前插
+          hasPrev = !!mc?.pageInfo?.hasPreviousPage;
+          cursor = edges[0]?.node?.messageId ?? null; // 本块最老 messageId 继续翻
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        // 去重 + 按时间升序，拼成完整可见对话
+        const seen = new Set();
+        const merged = [];
+        for (const e of allEdges) {
+          const mid = e?.node?.messageId;
+          if (mid != null) {
+            if (seen.has(mid)) continue;
+            seen.add(mid);
+          }
+          merged.push(e);
+        }
+        merged.sort((a, b) => (Number(a?.node?.creationTime) || 0) - (Number(b?.node?.creationTime) || 0));
+        coc.messagesConnection.edges = merged;
+
+        // 标题归一化：核心 getChatTitle 只认 title（核心区不改）
+        if (!body.title && coc.title) body.title = coc.title;
+        return body;
+      },
+
+      toMarkdown(data, title, convId) {
+        const d = data?.data || {};
+        const coc = d.chatOfCode || {};
+        const viewerUid = d.viewer?.uid;
+        const nodes = (coc.messagesConnection?.edges || [])
+          .map((e) => e.node)
+          .filter((m) => m && typeof m.text === 'string' && m.text.trim());
+        if (!nodes.length) throw new Error('未找到消息数据');
+
+        // Poe 返回已是时间升序；保险起见按 creationTime 升序排
+        const ordered = [...nodes].sort((a, b) => {
+          const ta = Number(a.creationTime) || 0;
+          const tb = Number(b.creationTime) || 0;
+          return ta === tb ? 0 : (ta || 0) - (tb || 0);
+        });
+
+        const lines = [];
+        const timeMs = this._ms(coc.lastInteractionTime) || this._ms(ordered[ordered.length - 1]?.creationTime);
+        lines.push('## Metadata');
+        lines.push('');
+        lines.push(`- **Time:** ${timeMs ? formatLocalTime(new Date(timeMs)) : 'unknown'}`);
+        lines.push(`- **URL:** ${convId ? `https://poe.com/chat/${convId}` : 'https://poe.com'}`);
+        lines.push('');
+        lines.push('## Conversation');
+        lines.push('');
+
+
+        for (const m of ordered) {
+          if (m.isChatAnnouncement) continue;
+          const text = stripHashes(m.text.trim());
+          if (!text) continue;
+          // 本人消息看 authorUser.uid === viewer.uid；其余（bot 或群聊他人）统一按 Assistant 兜底
+          const isSelf = m.authorUser && viewerUid != null && m.authorUser.uid === viewerUid;
+          lines.push(isSelf ? '### \u{1F9D1}\u{200D}\u{1F4BB} User' : '### \u{1F916} Assistant');
+          lines.push('');
+          lines.push(text);
+          lines.push('');
+        }
+
+        return lines.join('\n').replace(/\n{3,}/g, '\n\n');
+      },
+    },
+
+    // ═══════════════════════════════════════════════════════
+    //  ADAPTER[monica]  Monica (monica.im)
+    //  ═══════════════════════════════════════════════════════
+    //  LLM 注意（真实账号实测 2026-09，后端在 api.monica.im，CORS + 同源 session_id cookie 认证）:
+    //  - 列表: POST /agent_v1/session.v1.SessionService/ListSessions  body {limit, search:"", useV2:true}
+    //    → sessions[]（节点 uid=conv:{uuid} / title / updatedAt）。无显式游标：返回条数 < limit 即到底。
+    //  - 详情: POST /api/custom_bot/get_chat_item_list_v2  body {conversation_id, limit, [offset]}
+    //    → data.chat_item_list { total, item_list[], next_offset }。item_list 是**倒序**（新在前），按 seq 升序还原。
+    //    next_offset > 0 时带 offset 继续翻，= 0 到底；item_type: question=用户 / reply=助手（seq1 欢迎语跳过）。
+    {
+      id: 'monica',
+      name: 'Monica',
+      detect: () => /(^|\.)monica\.(im|com)$/.test(window.location.hostname),
+
+      getCurrentConversationId: () => {
+        try {
+          const c = new URLSearchParams(window.location.search).get('convId');
+          return c && c.startsWith('conv:') ? c : null;
+        } catch { return null; }
+      },
+
+      // 真机实测（2026-09）：get_chat_item_list_v2 缺 X-Client-* 头时只回 1 条欢迎语（total 正常但 item_list 截断），
+      // 带 app 同款头才返回完整列表。X-Client-Id 为按安装生成的 uuid：localStorage 持久化复用（服务端按格式校验）。
+      // X-Client-Version 5.4.3 随 app 发版变动，若后端收紧版本需重新抓包更新。
+      _monicaHeaders() {
+        let clientId = '';
+        try {
+          clientId = localStorage.getItem('afterchat-monica-client-id') || '';
+        } catch { /* 隐私模式等场景 localStorage 不可用 */ }
+        if (!clientId) {
+          clientId = (typeof crypto !== 'undefined' && crypto.randomUUID)
+            ? crypto.randomUUID()
+            : String(Date.now()) + '-' + Math.random().toString(16).slice(2);
+          try { localStorage.setItem('afterchat-monica-client-id', clientId); } catch { /* 同上 */ }
+        }
+        return {
+          'Content-Type': 'application/json',
+          'X-Client-Locale': 'zh_CN',
+          'X-Product-Name': 'Monica',
+          'X-Client-Type': 'web',
+          'X-From-Channel': 'NA',
+          'X-Time-Zone': 'Asia/Shanghai;-480',
+          'X-Client-Version': '5.4.3',
+          'X-Client-Id': clientId,
+        };
+      },
+
+      async _apiPost(path, body) {
+        const r = await fetch('https://api.monica.im' + path, {
+          method: 'POST',
+          headers: this._monicaHeaders(),
+          credentials: 'include',
+          body: JSON.stringify(body),
+        });
+        if (!r.ok) {
+          const hint = (r.status === 401 || r.status === 403) ? '（登录态可能已过期，请刷新页面）' : '';
+          throw new Error(`Monica ${path} ${r.status}: ${r.statusText}${hint}`);
+        }
+        const json = await r.json();
+        if (json && typeof json === 'object' && json.code !== undefined && json.code !== 0) {
+          throw new Error(`Monica ${path}: ${json.msg || json.code}`);
+        }
+        return json;
+      },
+
+      async getAllConversations(onProgress) {
+        const body = await this._apiPost('/agent_v1/session.v1.SessionService/ListSessions', {
+          limit: 100, // 服务端返回即全量（实测 12 条）；无显式游标
+          search: '',
+          useV2: true,
+        });
+        const sessions = body?.sessions || [];
+        if (!sessions.length) throw new Error('Monica 列表为空或结构异常（sessions 缺失）');
+        const all = sessions.map((s) => ({
+          id: s.uid || s.conversationId,
+          title: s.title || '',
+          created_at: s.createdAt || null,
+          updated_at: s.updatedAt || null,
+        })).filter((c) => c.id);
+        if (onProgress) onProgress(all.length);
+        return all;
+      },
+
+      async getConversationDetails(id) {
+        const merged = [];
+        const seen = new Set();
+        let offset = 0;
+        let conv = null;
+        let guard = 0;
+
+        while (guard < 100) {
+          guard++;
+          const params = offset > 0
+            ? { limit: 30, offset, conversation_id: id }
+            : { limit: 30, conversation_id: id };
+          const body = await this._apiPost('/api/custom_bot/get_chat_item_list_v2', params);
+          const list = body?.data?.chat_item_list;
+          if (!list || !Array.isArray(list.item_list)) {
+            throw new Error('Monica 详情结构异常（chat_item_list 缺失，接口可能已变更）');
+          }
+          if (!conv && body?.data?.conversation) conv = body.data.conversation;
+          for (const it of list.item_list || []) {
+            const key = it.item_id || it.id;
+            if (key != null) {
+              if (seen.has(key)) continue;
+              seen.add(key);
+            }
+            merged.push(it);
+          }
+          const nxt = Number(list.next_offset) || 0;
+          if (nxt <= 0) break;
+          offset = nxt;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        if (!merged.length) throw new Error('未找到消息数据');
+        const out = { conversation: conv || {}, chat_item_list: { item_list: merged, total: merged.length } };
+        if (conv?.title) out.title = conv.title; // 供核心 getChatTitle 识别为文件名
+        return out;
+      },
+
+      toMarkdown(data, title, convId) {
+        const conv = data?.conversation || {};
+        const items = data?.chat_item_list?.item_list || [];
+        if (!items.length) throw new Error('未找到消息数据');
+
+        // item_list 倒序（新在前）；按 seq 升序还原真实对话顺序
+        const ordered = [...items].sort((a, b) => (Number(a.seq) || 0) - (Number(b.seq) || 0));
+
+        // 模型名优先取最近一条 assistant 回复的 use_model（如 claude-haiku-4-5）；
+        // 兜底：chat_bot_name 常是泛化的 "monica"（该 conv 对象自身数据不准），退回 chat_bot_uid（如 claude_4_5_haiku）
+        let useModel = '';
+        for (const it of ordered) {
+          if (it.item_type === 'reply' && it.data?.use_model) useModel = it.data.use_model;
+        }
+        let model = useModel || '';
+        if (!model) {
+          const botName = String(conv.chat_bot_name || '');
+          const botUid = String(conv.chat_bot_uid || '');
+          if (botName && botName !== 'monica') model = botName;
+          else if (botUid) model = botUid.replace(/_/g, '-');
+          else model = 'monica';
+        }
+        const lines = [];
+        const timeStr = conv.updated_at ? formatLocalTime(new Date(conv.updated_at)) : 'unknown';
+        // URL 优先当前页面（含正确 bot 路径 + convId）；测试/兜底用 conv.origin
+        let url = '';
+        try {
+          url = typeof location !== 'undefined' && location.href && location.href.includes('monica.') ? location.href : (conv.origin || '');
+        } catch { url = conv.origin || ''; }
+        if (!url) url = 'https://monica.im';
+        lines.push('## Metadata');
+        lines.push('');
+        lines.push('- **Model:** `' + model + '`');
+        lines.push(`- **Time:** ${timeStr}`);
+        lines.push(`- **URL:** ${url}`);
+        lines.push('');
+        lines.push('## Conversation');
+        lines.push('');
+
+        // 搜索引用（与豆包等一致）：不嵌入正文，收集后汇总到对话末尾 ### References。
+        // 每条 reply 的 data.sources[] 有 key（消息内编号）+ data.text（首行形如 [标题](url)；url 含 \u003d/\u0026 类 JSON 二次转义需还原）
+        const unescapeUnicode = (s) => s.replace(/\\u([0-9a-fA-F]{4})/g, (_m, h) => String.fromCharCode(parseInt(h, 16)));
+        const parseSource = (s) => {
+          const first = String(s?.data?.text || '').trim().split('\n')[0];
+          const mm = first.match(/^\[([\s\S]*)\]\((https?:\/\/[^)\s]*)\)/);
+          if (mm) return { title: unescapeUnicode(mm[1]).trim(), url: unescapeUnicode(mm[2]) };
+          return { title: '', url: '' };
+        };
+        const refCollector = new ReferenceCollector();
+
+        for (const it of ordered) {
+          const kind = it.item_type;
+          if (kind !== 'question' && kind !== 'reply') continue;
+          const content = it.data && typeof it.data.content === 'string' ? it.data.content.trim() : '';
+          if (!content || content.startsWith('__RENDER_')) continue; // 欢迎语/哨兵
+          if (kind === 'reply' && Array.isArray(it.data?.sources)) {
+            const byKey = [...it.data.sources].sort((a, b) => Number(a.key || 0) - Number(b.key || 0));
+            for (const s of byKey) {
+              const { title, url } = parseSource(s);
+              if (url) refCollector.add(title, url);
+            }
+          }
+          const body = stripHashes(content);
+          const isUser = kind === 'question';
+          lines.push(isUser ? '### \u{1F9D1}\u{200D}\u{1F4BB} User' : '### \u{1F916} Assistant');
+          lines.push('');
+          lines.push(body);
+          lines.push('');
+        }
+
+        // ---- References ----
+        if (refCollector.hasReferences()) {
+          lines.push(...refCollector.render());
+        }
+
+        return lines.join('\n').replace(/\n{3,}/g, '\n\n');
+      },
+    },
+
+    // ═══════════════════════════════════════════════════════
+    //  ADAPTER[stepfun]  StepFun AI Studio（阶跃星辰）
+    // ═══════════════════════════════════════════════════════
+    // 国际版 studio.stepfun.ai / 国内版 studio.stepfun.com（API 同构，appid 同为 20700）
+    // Connect 风格 RPC，统一前缀 /api/step.openapi.devcenter.Dashboard/<Method>
+    //   列表 ListConversations {limit,cursor,conversationId} → {items,next_cursor,has_more}
+    //   消息 ListMessages {conversationId,limit,cursor} → {message_ids,next_cursor,has_more}
+    //   正文 BatchGetMessages {messageIds} → {items:[{blocks:[{type,text,payload}]}]}
+    //   block.type: 1=TEXT 2=THINKING 3=TOOL_CALL 4=ASSETS；role: 1=user 2=assistant 3=system
+    //   认证走同源 Cookie（oasis-* 头仅标记应用/平台，无需显式 token）
+    {
+      id: 'stepfun',
+      name: 'StepFun',
+      detect: () => window.location.hostname === 'studio.stepfun.ai'
+        || window.location.hostname === 'studio.stepfun.com',
+
+      getCurrentConversationId: () => {
+        const m = window.location.pathname.match(/^\/playground\/([^\/?]+)/);
+        return m ? m[1] : null;
+      },
+
+      /** RPC 必需的应用/平台标记头（认证依赖同源 Cookie，浏览器自动携带） */
+      _headers() {
+        const lang = (navigator.language || '').toLowerCase().startsWith('zh') ? 'zh' : 'en';
+        return {
+          'content-type': 'application/json',
+          'connect-protocol-version': '1',
+          'oasis-appid': '20700',
+          'oasis-language': lang,
+          'oasis-platform': 'web',
+          'oasis-webid': localStorage.getItem('web_id') || '',
+        };
+      },
+
+      async _rpc(method, body) {
+        const r = await fetch('/api/step.openapi.devcenter.Dashboard/' + method, {
+          method: 'POST',
+          headers: this._headers(),
+          body: JSON.stringify(body || {}),
+          credentials: 'include',
+        });
+        if (!r.ok) throw new Error(`${method} ${r.status}: ${r.statusText}`);
+        return await r.json();
+      },
+
+      async getAllConversations(onProgress) {
+        const all = [];
+        const limit = CONFIG.DEBUG_LIMIT || Infinity;
+        const seen = new Set();
+        let cursor = '';
+        let pages = 0;
+        const MAX_PAGES = 1000; // 安全上限：50/页 = 5 万条会话，防止服务端游标异常时死循环
+
+        while (all.length < limit && pages < MAX_PAGES) {
+          pages++;
+          const d = await this._rpc('ListConversations', { limit: 50, cursor });
+          const items = Array.isArray(d.items) ? d.items : [];
+          for (const c of items) {
+            if (!c || !c.conversation_id || seen.has(c.conversation_id)) continue;
+            seen.add(c.conversation_id);
+            all.push({
+              id: c.conversation_id,
+              title: (c.title || '').trim(),
+              updated_at: c.last_message_at,
+            });
+          }
+          if (onProgress) onProgress(all.length);
+
+          // 终止条件：空页 / 服务端无更多 / 无下一页游标 / 游标未前进（防死循环）
+          if (!items.length || !d.has_more || !d.next_cursor || d.next_cursor === cursor) break;
+          cursor = d.next_cursor;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        return all.slice(0, limit);
+      },
+
+      async getConversationDetails(id) {
+        // 标题/时间：ListConversations 按 conversationId 精确查询
+        let meta = {};
+        try {
+          const d = await this._rpc('ListConversations', { limit: 1, conversationId: id });
+          meta = (Array.isArray(d.items) && d.items[0]) || {};
+        } catch (e) { /* 标题拿不到时回退到 document.title */ }
+
+        const items = await this._fetchAllMessages(id);
+        return {
+          title: (meta.title || '').trim(),
+          conversation_id: id,
+          updated_at: meta.last_message_at,
+          items,
+        };
+      },
+
+      /** ListMessages 收集全部 id（游标翻页）→ BatchGetMessages 分批拉正文，按时间正序排列 */
+      async _fetchAllMessages(id) {
+        const ids = [];
+        const seen = new Set();
+        let cursor = '';
+        let pages = 0;
+        const PAGE = 200;
+        const MAX_PAGES = 1000; // 安全上限：200/页 = 20 万条消息，防止游标异常时死循环
+
+        while (pages < MAX_PAGES) {
+          pages++;
+          const d = await this._rpc('ListMessages', { conversationId: id, limit: PAGE, cursor });
+          const batch = Array.isArray(d.message_ids) ? d.message_ids : [];
+          for (const mid of batch) {
+            if (!mid || seen.has(mid)) continue;
+            seen.add(mid);
+            ids.push(mid);
+          }
+          // 终止条件：空页 / 服务端无更多 / 无下一页游标 / 游标未前进（防死循环）
+          if (!batch.length || !d.has_more || !d.next_cursor || d.next_cursor === cursor) break;
+          cursor = d.next_cursor;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        const byId = new Map();
+        const CHUNK = 50;
+        for (let i = 0; i < ids.length; i += CHUNK) {
+          const d = await this._rpc('BatchGetMessages', { messageIds: ids.slice(i, i + CHUNK) });
+          for (const m of (d.items || [])) byId.set(m.message_id, m);
+          if (i + CHUNK < ids.length) await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        const items = ids.map((x) => byId.get(x)).filter(Boolean);
+        return this._sortAsc(items);
+      },
+
+      /** 按 message_id（雪花 ID）升序 = 时间正序 */
+      _sortAsc(items) {
+        const key = (m) => {
+          try { return BigInt(m && m.message_id); } catch (e) { return 0n; }
+        };
+        return [...items].sort((a, b) => {
+          const ka = key(a), kb = key(b);
+          return ka < kb ? -1 : ka > kb ? 1 : 0;
+        });
+      },
+
+      _blocksText(blocks, type) {
+        return (blocks || [])
+          .filter((b) => b && b.type === type && typeof b.text === 'string')
+          .map((b) => b.text.trim())
+          .filter(Boolean)
+          .join('\n\n');
+      },
+
+      toMarkdown(data, title, convId) {
+        const items = this._sortAsc(data?.items || []);
+        if (!items.length) throw new Error('未找到消息数据');
+
+        const modelMsg = items.find((m) => m.role === 2 && m.model_id && m.model_id.trim());
+        const model = (modelMsg && modelMsg.model_id) || 'step';
+        const timeStr = data?.updated_at ? formatLocalTime(new Date(Number(data.updated_at))) : 'unknown';
+        let host = 'studio.stepfun.ai';
+        try {
+          if (typeof window !== 'undefined' && window.location && window.location.hostname) {
+            host = window.location.hostname;
+          }
+        } catch (e) { /* Node/无 window 环境回退默认域名 */ }
+        const convUrl = convId ? `https://${host}/playground/${convId}` : `https://${host}`;
+
+        const lines = [];
+        lines.push('## Metadata');
+        lines.push('');
+        lines.push('- **Model:** `' + model + '`');
+        lines.push(`- **Time:** ${timeStr}`);
+        lines.push(`- **URL:** ${convUrl}`);
+        lines.push('');
+        lines.push('## Conversation');
+        lines.push('');
+
+        for (const m of items) {
+          const blocks = m.blocks || [];
+
+          if (m.role === 1) {
+            const text = this._blocksText(blocks, 1);
+            if (!text) continue;
+            lines.push('### \u{1F9D1}\u200D\u{1F4BB} User');
+            lines.push('');
+            lines.push(stripHashes(text));
+            lines.push('');
+          } else if (m.role === 2) {
+            const thinking = this._blocksText(blocks, 2);
+            const answer = this._blocksText(blocks, 1);
+            if (!thinking && !answer) continue;
+            lines.push('### \u{1F916} Assistant');
+            lines.push('');
+            if (thinking) {
+              lines.push('#### \u{1F914} Thought Process');
+              lines.push('');
+              lines.push(stripHashes(thinking));
+              lines.push('');
+              lines.push('#### \u{1F4A1} Response');
+              lines.push('');
+            }
+            if (answer) {
+              lines.push(stripHashes(answer));
+              lines.push('');
+            }
+          } else if (m.role === 3) {
+            const text = this._blocksText(blocks, 1);
+            if (!text) continue;
+            lines.push('### \u{2699}\uFE0F System');
+            lines.push('');
+            lines.push(stripHashes(text));
+            lines.push('');
+          }
+        }
+
+        return lines.join('\n');
+      },
+    },
+
+    // ═══════════════════════════════════════════════════════
+    //  ADAPTER[stepfunchat]  StepFun Chat（阶跃 AI 对话端）
+    // ═══════════════════════════════════════════════════════
+    // 站点 chat.stepfun.com（与 Studio studio.stepfun.* 是两套独立应用）
+    // Connect 风格 RPC，统一前缀 /api/agent/capy.agent.v1.AgentService/<Method>
+    //   列表 ListChatSessions {pageSize,pageToken} → {chatSessions,nextPageToken}
+    //   单条 GetChatSessionByID {sessionId} → {chatSession}
+    //   消息 ListMessages {chatSessionId,pageSize,pageToken} → {messages,nextPageToken}
+    //   分页：页序最新在前，页内 messageId 升序；汇总后按 messageId 升序还原时间正序
+    //   认证走 localStorage 'oasis-token'（appid 10200，与 Studio 的 20700 不同）
+    //   思考链在 assistantMessage.qa.pipeSteps[type=PIPE_STEP_TYPE_REASONING]
+    //   引用在 assistantMessage.qa.indexReferences（正文无行内标号，汇总到文末 References）
+    {
+      id: 'stepfunchat',
+      name: 'StepFun Chat',
+      detect: () => window.location.hostname === 'chat.stepfun.com',
+
+      getCurrentConversationId: () => {
+        const m = window.location.pathname.match(/^\/chats\/([^\/?]+)/);
+        return m ? m[1] : null;
+      },
+
+      _headers() {
+        let token = '', lang = 'zh';
+        try {
+          token = localStorage.getItem('oasis-token') || '';
+          lang = localStorage.getItem('i18nextLng') || 'zh';
+        } catch (e) { /* localStorage 不可用时留空 */ }
+        return {
+          'content-type': 'application/json',
+          'oasis-appid': '10200',
+          'oasis-platform': 'web',
+          'oasis-language': lang,
+          'oasis-token': token,
+        };
+      },
+
+      async _rpc(method, body) {
+        const r = await fetch('/api/agent/capy.agent.v1.AgentService/' + method, {
+          method: 'POST',
+          headers: this._headers(),
+          body: JSON.stringify(body || {}),
+          credentials: 'include',
+        });
+        if (r.status === 401 || r.status === 403) {
+          throw new Error(`${method} ${r.status}: 登录态失效，请刷新页面后重试`);
+        }
+        if (!r.ok) throw new Error(`${method} ${r.status}: ${r.statusText}`);
+        return await r.json();
+      },
+
+      async getAllConversations(onProgress) {
+        const all = [];
+        const limit = CONFIG.DEBUG_LIMIT || Infinity;
+        const seen = new Set();
+        let cursor = '';
+        let pages = 0;
+        const MAX_PAGES = 1000; // 安全上限：50/页 = 5 万条会话，防游标异常死循环
+
+        while (all.length < limit && pages < MAX_PAGES) {
+          pages++;
+          const d = await this._rpc('ListChatSessions', { pageSize: 50, pageToken: cursor });
+          const items = Array.isArray(d.chatSessions) ? d.chatSessions : [];
+          for (const c of items) {
+            if (!c || !c.chatSessionId || seen.has(c.chatSessionId)) continue;
+            seen.add(c.chatSessionId);
+            all.push({
+              id: c.chatSessionId,
+              title: (c.displayName || '').trim(),
+              updated_at: c.updateTime,
+              created_at: c.createTime,
+            });
+          }
+          if (onProgress) onProgress(all.length);
+
+          // 终止条件：空页 / 无下一页游标 / 游标未前进（防死循环）
+          if (!items.length || !d.nextPageToken || d.nextPageToken === cursor) break;
+          cursor = d.nextPageToken;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        return all.slice(0, limit);
+      },
+
+      async getConversationDetails(id) {
+        let meta = {};
+        try {
+          const d = await this._rpc('GetChatSessionByID', { sessionId: id });
+          meta = d.chatSession || {};
+        } catch (e) { /* 标题拿不到时回退 document.title */ }
+
+        const messages = await this._fetchAllMessages(id);
+        return {
+          title: (meta.displayName || '').trim(),
+          conversation_id: id,
+          updated_at: meta.updateTime || meta.createTime,
+          messages,
+        };
+      },
+
+      async _fetchAllMessages(id) {
+        const all = [];
+        const seen = new Set();
+        let cursor = '';
+        let pages = 0;
+        const PAGE = 200;
+        const MAX_PAGES = 1000;
+
+        while (pages < MAX_PAGES) {
+          pages++;
+          const d = await this._rpc('ListMessages', { chatSessionId: id, pageSize: PAGE, pageToken: cursor });
+          const batch = Array.isArray(d.messages) ? d.messages : [];
+          for (const m of batch) {
+            if (!m || !m.messageId || seen.has(m.messageId)) continue;
+            seen.add(m.messageId);
+            all.push(m);
+          }
+          if (!batch.length || !d.nextPageToken || d.nextPageToken === cursor) break;
+          cursor = d.nextPageToken;
+          await sleep(CONFIG.API_PAGE_DELAY);
+        }
+
+        return this._sortAsc(all);
+      },
+
+      /** 按 messageId（雪花 ID）升序 = 时间正序 */
+      _sortAsc(messages) {
+        const key = (m) => {
+          try { return BigInt(m && m.messageId); } catch (e) { return 0n; }
+        };
+        return [...messages].sort((a, b) => {
+          const ka = key(a), kb = key(b);
+          return ka < kb ? -1 : ka > kb ? 1 : 0;
+        });
+      },
+
+      /** 从 oneof 内容对象里取第一个存在的分支 */
+      _pick(obj, keys) {
+        if (!obj) return null;
+        for (const k of keys) {
+          if (obj[k]) return obj[k];
+        }
+        return null;
+      },
+
+      _userContent(m) {
+        const c = m && m.content && m.content.userMessage;
+        const p = this._pick(c, ['qa', 'creation', 'deepResearch', 'deep_research', 'studioAgent', 'studio_agent', 'drWeb', 'dr_web', 'desktopAgent', 'desktop_agent', 'artifactAgent', 'artifact_agent', 'userCall', 'user_call']);
+        return p && typeof p.content === 'string' ? p.content.trim() : '';
+      },
+
+      /** 助手消息：正文 / 思考链 / 引用 */
+      _assistantParts(m) {
+        const am = m && m.content && m.content.assistantMessage;
+        if (!am) return null;
+        const qa = am.qa;
+        if (qa) {
+          let reasoning = (qa.reasoningContent || '').trim();
+          if (!reasoning) {
+            reasoning = (qa.pipeSteps || [])
+              .filter((s) => s && s.type === 'PIPE_STEP_TYPE_REASONING')
+              .map((s) => (s.data && s.data.eventReasoning && s.data.eventReasoning.reasoningContent) || '')
+              .map((t) => t.trim())
+              .filter(Boolean)
+              .join('\n\n');
+          }
+          return {
+            content: (qa.content || '').trim(),
+            reasoning,
+            references: Array.isArray(qa.indexReferences) ? qa.indexReferences : [],
+          };
+        }
+        // 非 QA 分支（dr_web / creation 等）尽力取 content
+        const other = this._pick(am, ['drWeb', 'dr_web', 'creation']);
+        if (other && typeof other.content === 'string' && other.content.trim()) {
+          return { content: other.content.trim(), reasoning: '', references: [] };
+        }
+        return null;
+      },
+
+      toMarkdown(data, title, convId) {
+        const messages = this._sortAsc(data?.messages || []);
+        if (!messages.length) throw new Error('未找到消息数据');
+
+        // 模型：取最后一条助手消息（会话中可切换模型）
+        let model = '';
+        for (let i = messages.length - 1; i >= 0; i--) {
+          const m = messages[i];
+          if (m.role === 'assistant' && m.model && m.model.model) { model = m.model.model; break; }
+        }
+        const timeStr = data?.updated_at ? formatLocalTime(new Date(data.updated_at)) : 'unknown';
+        const convUrl = convId ? `https://chat.stepfun.com/chats/${convId}` : 'https://chat.stepfun.com';
+
+        const lines = [];
+        lines.push('## Metadata');
+        lines.push('');
+        lines.push('- **Model:** `' + (model || 'step') + '`');
+        lines.push(`- **Time:** ${timeStr}`);
+        lines.push(`- **URL:** ${convUrl}`);
+        lines.push('');
+        lines.push('## Conversation');
+        lines.push('');
+
+        const refCollector = new ReferenceCollector();
+
+        for (const m of messages) {
+          if (m.role === 'user') {
+            const text = this._userContent(m);
+            if (!text) continue;
+            lines.push('### \u{1F9D1}\u200D\u{1F4BB} User');
+            lines.push('');
+            lines.push(stripHashes(text));
+            lines.push('');
+          } else if (m.role === 'assistant') {
+            const parts = this._assistantParts(m);
+            if (!parts || (!parts.content && !parts.reasoning)) continue;
+            lines.push('### \u{1F916} Assistant');
+            lines.push('');
+            if (parts.reasoning) {
+              lines.push('#### \u{1F914} Thought Process');
+              lines.push('');
+              lines.push(stripHashes(parts.reasoning));
+              lines.push('');
+              lines.push('#### \u{1F4A1} Response');
+              lines.push('');
+            }
+            if (parts.content) {
+              lines.push(stripHashes(parts.content));
+              lines.push('');
+            }
+            for (const ref of parts.references || []) {
+              const url = ref && ref.url;
+              if (url) refCollector.add(ref.title || '', url);
+            }
+          } else if (m.role === 'system') {
+            const sc = m.content && m.content.systemMessage;
+            const text = sc && sc.newSession && typeof sc.newSession.content === 'string' ? sc.newSession.content.trim() : '';
+            if (!text) continue;
+            lines.push('### \u{2699}\uFE0F System');
+            lines.push('');
+            lines.push(stripHashes(text));
+            lines.push('');
+          }
+        }
+
+        if (refCollector.hasReferences()) {
+          lines.push(...refCollector.render());
+        }
+
+        return lines.join('\n');
+      },
+    },
+  ];
+
+
+  // =============================================================
+  //  ⚙️  核心引擎（平台无关 — 不要改！）
+  //  =============================================================
+  //  LLM 注意: 从这里往下到文件末尾是平台无关的通用逻辑。
+  //  你不需要、也不应该修改它们。所有供应商差异都在上面的
+  //  PLATFORM_ADAPTERS 里处理。改这里 = 所有平台一起坏。
+  //  =============================================================
+
+  // ---- i18n ----
+  const LANG = (navigator.language || '').startsWith('zh') ? 'zh' : 'en';
+  const TXT = {
+    exportAll:   LANG === 'zh' ? '导出全部聊天' : 'Export all chats',
+    exportSingle: LANG === 'zh' ? '导出当前对话' : 'Export this chat',
+    exportProject: (name) => LANG === 'zh' ? (name ? `导出项目「${name}」` : '导出当前项目') : (name ? `Export project "${name}"` : 'Export current project'),
+    fetching:    LANG === 'zh' ? (n) => `获取列表 ${n} 条` : (n) => `Fetching ${n} chats`,
+    packing:     LANG === 'zh' ? '打包 ZIP' : 'Packing ZIP',
+    saveAfterChat: LANG === 'zh' ? '保存到 AfterChat' : 'Save to AfterChat',
+    singleOnly: LANG === 'zh' ? '请在单条对话页使用' : 'Open one chat first',
+    noNew:       LANG === 'zh' ? '没有新会话 · Shift + 单击全部导出' : 'No new chats · Shift + click for full export',
+    shiftFull:   LANG === 'zh' ? '全部导出' : 'Full export',
+    editStart:   LANG === 'zh' ? '点击修改' : 'Click to edit',
+    reportExported: (n) => LANG === 'zh' ? `已导出 ${n} 条` : `Exported ${n}`,
+  };
+
+  // ---- 通用工具（不要改） ----
+  function sleep(ms) { return new Promise((r) => setTimeout(r, ms)); }
+
+  /** 将字符串转为安全的文件名（替换非法字符、限制长度） */
+  function sanitizeFilename(name, maxLen) {
+    maxLen = maxLen || 60;
+    let safe = String(name || '')
+      .replace(/[\\/:*?"<>|]/g, '_')
+      .replace(/[\x00-\x1f\x7f]/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+    if (safe.length > maxLen) safe = safe.substring(0, maxLen).replace(/[\s._-]+$/, '');
+    return safe || 'untitled';
+  }
+
+  function downloadBlob(blob, filename) {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }
+
+  function downloadText(content, filename, mimeType) {
+    downloadBlob(new Blob([content], { type: mimeType || 'text/plain' }), filename);
+  }
+
+  function downloadJSON(data, filename) {
+    downloadText(JSON.stringify(data, null, 2), filename, 'application/json');
+  }
+
+  const ZIP_TEXT_ENCODER = new TextEncoder();
+  const ZIP_CRC32_TABLE = (() => {
+    const table = new Uint32Array(256);
+    for (let i = 0; i < 256; i++) {
+      let c = i;
+      for (let k = 0; k < 8; k++) {
+        c = (c & 1) ? (0xedb88320 ^ (c >>> 1)) : (c >>> 1);
+      }
+      table[i] = c >>> 0;
+    }
+    return table;
+  })();
+
+  function zipCrc32(bytes) {
+    let crc = 0xffffffff;
+    for (let i = 0; i < bytes.length; i++) {
+      crc = ZIP_CRC32_TABLE[(crc ^ bytes[i]) & 0xff] ^ (crc >>> 8);
+    }
+    return (crc ^ 0xffffffff) >>> 0;
+  }
+
+  function zipDosTime(date) {
+    const year = Math.max(1980, date.getFullYear());
+    return {
+      time: (date.getHours() << 11) | (date.getMinutes() << 5) | Math.floor(date.getSeconds() / 2),
+      date: ((year - 1980) << 9) | ((date.getMonth() + 1) << 5) | date.getDate(),
+    };
+  }
+
+  function makeZipBlob(files) {
+    const chunks = [];
+    const central = [];
+    let offset = 0;
+    const now = zipDosTime(new Date());
+
+    for (const file of files) {
+      const nameBytes = ZIP_TEXT_ENCODER.encode(file.name);
+      const contentBytes = typeof file.content === 'string'
+        ? ZIP_TEXT_ENCODER.encode(file.content)
+        : file.content;
+      const crc = zipCrc32(contentBytes);
+
+      const local = new Uint8Array(30 + nameBytes.length);
+      const localView = new DataView(local.buffer);
+      localView.setUint32(0, 0x04034b50, true);
+      localView.setUint16(4, 20, true);
+      localView.setUint16(6, 0x0800, true); // UTF-8 filenames
+      localView.setUint16(8, 0, true);      // store, no compression
+      localView.setUint16(10, now.time, true);
+      localView.setUint16(12, now.date, true);
+      localView.setUint32(14, crc, true);
+      localView.setUint32(18, contentBytes.length, true);
+      localView.setUint32(22, contentBytes.length, true);
+      localView.setUint16(26, nameBytes.length, true);
+      localView.setUint16(28, 0, true);
+      local.set(nameBytes, 30);
+
+      const centralHeader = new Uint8Array(46 + nameBytes.length);
+      const centralView = new DataView(centralHeader.buffer);
+      centralView.setUint32(0, 0x02014b50, true);
+      centralView.setUint16(4, 20, true);
+      centralView.setUint16(6, 20, true);
+      centralView.setUint16(8, 0x0800, true);
+      centralView.setUint16(10, 0, true);
+      centralView.setUint16(12, now.time, true);
+      centralView.setUint16(14, now.date, true);
+      centralView.setUint32(16, crc, true);
+      centralView.setUint32(20, contentBytes.length, true);
+      centralView.setUint32(24, contentBytes.length, true);
+      centralView.setUint16(28, nameBytes.length, true);
+      centralView.setUint16(30, 0, true);
+      centralView.setUint16(32, 0, true);
+      centralView.setUint16(34, 0, true);
+      centralView.setUint16(36, 0, true);
+      centralView.setUint32(38, 0, true);
+      centralView.setUint32(42, offset, true);
+      centralHeader.set(nameBytes, 46);
+
+      chunks.push(local, contentBytes);
+      central.push(centralHeader);
+      offset += local.length + contentBytes.length;
+    }
+
+    const centralSize = central.reduce((sum, item) => sum + item.length, 0);
+    const end = new Uint8Array(22);
+    const endView = new DataView(end.buffer);
+    endView.setUint32(0, 0x06054b50, true);
+    endView.setUint16(4, 0, true);
+    endView.setUint16(6, 0, true);
+    endView.setUint16(8, files.length, true);
+    endView.setUint16(10, files.length, true);
+    endView.setUint32(12, centralSize, true);
+    endView.setUint32(16, offset, true);
+    endView.setUint16(20, 0, true);
+
+    return new Blob([...chunks, ...central, end], { type: 'application/zip' });
+  }
+
+  function downloadZip(files, filename) {
+    downloadBlob(makeZipBlob(files), filename);
+  }
+
+  function getAfterChatWorkspace() {
+    try {
+      const stored = localStorage.getItem('chat-export-afterchat-workspace');
+      if (stored && stored.trim()) return stored.trim();
+    } catch {}
+    return CONFIG.AFTERCHAT_WORKSPACE || '';
+  }
+
+  function base64UrlEncodeUtf8(text) {
+    const bytes = ZIP_TEXT_ENCODER.encode(text);
+    let binary = '';
+    const chunkSize = 0x8000;
+    for (let i = 0; i < bytes.length; i += chunkSize) {
+      const chunk = bytes.subarray(i, i + chunkSize);
+      binary += String.fromCharCode(...chunk);
+    }
+    return btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, '');
+  }
+
+  function buildAfterChatCaptureUrl(title, options) {
+    options = options || {};
+    const workspace = getAfterChatWorkspace();
+    if (!workspace) throw new Error('Missing AfterChat workspace');
+
+    const params = new URLSearchParams();
+    if (workspace) params.set('workspace', workspace);
+    params.set('title', title || 'Web Capture');
+    params.set('source', window.location.href);
+    if (options.clipboard) {
+      params.set('clipboard', '1');
+    } else if (options.content) {
+      params.set('content_b64', base64UrlEncodeUtf8(options.content));
+    }
+    return `afterchat://capture?${params.toString()}`;
+  }
+
+  async function copyTextToClipboard(text) {
+    if (navigator.clipboard?.writeText) {
+      try {
+        await navigator.clipboard.writeText(text);
+        return;
+      } catch (err) {
+        console.warn('Clipboard API failed, falling back to execCommand:', err);
+      }
+    }
+
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', 'readonly');
+    ta.style.cssText = 'position: fixed; top: -9999px; left: -9999px; opacity: 0;';
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    const ok = document.execCommand('copy');
+    document.body.removeChild(ta);
+    if (!ok) throw new Error('Failed to copy markdown to clipboard');
+  }
+
+  function openAfterChatDeepLink(url) {
+    const a = document.createElement('a');
+    a.href = url;
+    a.style.display = 'none';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
+
+  function getChatTitle(data, fallbackTitle) {
+    return data?.store?.rawConversationResponse?.chatName
+      || data?.chat?.name
+      || data?.chatResp?.chat?.name
+      || data?.conversation?.name
+      || data?.conversationInfo?.downlink_body?.get_conv_info_downlink_body?.conversation_info?.name
+      || data?.session?.title
+      || data?.sessionResp?.data?.title
+      || data?.title
+      || data?.chat_session?.title
+      || fallbackTitle
+      || (typeof document !== 'undefined' ? document.title : '')
+      || 'untitled';
+  }
+
+  function normalizeTimestamp(value) {
+    if (value === null || value === undefined || value === '') return null;
+    if (value instanceof Date || Object.prototype.toString.call(value) === '[object Date]') {
+      const ms = value.getTime();
+      return Number.isFinite(ms) ? ms : null;
+    }
+    if (typeof value === 'object' && typeof value?.getTime === 'function') {
+      const ms = value.getTime();
+      return Number.isFinite(ms) ? ms : null;
+    }
+    if (Array.isArray(value) && value.length > 0) {
+      const seconds = Number(value[0]);
+      const nanos = Number(value[1] || 0);
+      if (Number.isFinite(seconds)) return seconds * 1000 + (Number.isFinite(nanos) ? nanos / 1e6 : 0);
+      return null;
+    }
+    if (typeof value === 'number') {
+      if (!Number.isFinite(value)) return null;
+      return value < 10000000000 ? value * 1000 : value;
+    }
+    if (typeof value === 'string') {
+      const numeric = Number(value);
+      if (Number.isFinite(numeric) && value.trim() !== '') {
+        return numeric < 10000000000 ? numeric * 1000 : numeric;
+      }
+      const parsed = Date.parse(value);
+      return Number.isFinite(parsed) ? parsed : null;
+    }
+    return null;
+  }
+
+  function getConversationSortTime(conv) {
+    const candidates = [
+      conv?.updateTimeUtc,
+      conv?.updated_at,
+      conv?.updatedAt,
+      conv?.update_time,
+      conv?.updateTime,
+      conv?.update_ts,
+      conv?.lastEdit,
+      conv?.created_at_ms,
+      conv?.createTimeUtc,
+      conv?.createTime,
+      conv?.created_at,
+      conv?.create_time,
+      conv?.t,
+    ];
+    for (const value of candidates) {
+      const ts = normalizeTimestamp(value);
+      if (ts !== null) return ts;
+    }
+    return null;
+  }
+
+  // ---- 增量导出锚点（localStorage，仅存时间戳元数据，不含对话内容） ----
+  function loadExportAnchor(adapterId) {
+    try {
+      const n = Number(localStorage.getItem('m365-export-anchor-' + adapterId));
+      return Number.isFinite(n) && n > 0 ? n : null;
+    } catch (e) { return null; }
+  }
+
+  function saveExportAnchor(adapterId, conversations, fallbackMs) {
+    try {
+      let maxT = fallbackMs || 0;   // 兜底：本次运行时刻（点击下载时）
+      for (const c of conversations) {
+        const t = getConversationSortTime(c);
+        if (t !== null && t > maxT) maxT = t;
+      }
+      if (maxT > 0) localStorage.setItem('m365-export-anchor-' + adapterId, String(maxT));
+    } catch (e) { /* localStorage 不可用时静默跳过增量 */ }
+  }
+
+  // ---- 增量导出的“本次起点”（一次性）：从某时刻起导出，仅存内存 ----
+  // exportStartOverrideMs = 用户在 hover 句子里点时间改的起点；导出成功即自愈清空，
+  // 下次回到“上次之后”。锚点仍按 adapter 存 localStorage（几十字节元数据）。
+  let exportStartOverrideMs = null;   // ms | null
+
+  function fmtStartStamp(ms) {
+    const d = new Date(ms);
+    const p2 = (n) => String(n).padStart(2, '0');
+    return `${d.getFullYear()}-${p2(d.getMonth() + 1)}-${p2(d.getDate())} ${p2(d.getHours())}:${p2(d.getMinutes())}`;
+  }
+  function fmtStartInputValue(ms) {
+    const d = new Date(ms);
+    const p2 = (n) => String(n).padStart(2, '0');
+    return `${d.getFullYear()}-${p2(d.getMonth() + 1)}-${p2(d.getDate())}T${p2(d.getHours())}:${p2(d.getMinutes())}`;
+  }
+  function parseStartInput(v) {
+    if (!v) return null;
+    const d = new Date(v);
+    return Number.isFinite(d.getTime()) ? d.getTime() : null;
+  }
+
+  function orderConversationsForZip(conversations) {
+    const withIndex = conversations.map((conv, index) => ({
+      conv,
+      index,
+      time: getConversationSortTime(conv),
+    }));
+
+    // 统一排序：有时间按时间降序（最新在前），无时间的垫底（保持原相对顺序）
+    return withIndex
+      .sort((a, b) => {
+        if (a.time === null && b.time === null) return a.index - b.index;
+        if (a.time === null) return 1;
+        if (b.time === null) return -1;
+        return (b.time - a.time) || (a.index - b.index);
+      })
+      .map((item) => item.conv);
+  }
+
+  function makeMarkdownZipFilename(conv, index, total, usedNames) {
+    const title = sanitizeFilename(conv.title || 'untitled', 100);
+    const ts = getConversationSortTime(conv);
+    let prefix;
+    if (ts !== null) {
+      // 本地时间前缀 YYYYMMDD-HHMMSS：跨平台/跨批次文件名天然按时间排序
+      const d = new Date(ts);
+      const p2 = (n) => String(n).padStart(2, '0');
+      prefix = `${d.getFullYear()}${p2(d.getMonth() + 1)}${p2(d.getDate())}-${p2(d.getHours())}${p2(d.getMinutes())}${p2(d.getSeconds())}`;
+    } else {
+      // 拿不到时间：回退序号前缀，保证文件名可区分且不撞名
+      const width = Math.max(String(total).length, 3);
+      prefix = String(index + 1).padStart(width, '0');
+    }
+    const base = `${prefix}-${title}`;
+    let filename = `${base}.md`;
+    let n = 2;
+    while (usedNames.has(filename)) {
+      filename = `${base}-${n}.md`;
+      n++;
+    }
+    usedNames.add(filename);
+    return filename;
+  }
+
+  function buildFailureMarkdown(meta, failures) {
+    const lines = [];
+    lines.push('# Export Failures');
+    lines.push('');
+    lines.push('## Metadata');
+    lines.push('');
+    lines.push(`- **Platform:** \`${meta.platform}\``);
+    lines.push(`- **Export Time:** ${meta.exportTime}`);
+    lines.push(`- **Total Conversations:** ${meta.totalConversations}`);
+    lines.push(`- **Exported:** ${meta.exported}`);
+    lines.push(`- **Failed:** ${meta.failed}`);
+    lines.push('');
+    lines.push('## Failed Conversations');
+    lines.push('');
+    for (const item of failures) {
+      lines.push(`- **${item.title || 'untitled'}**`);
+      lines.push(`  - ID: \`${item.id || 'unknown'}\``);
+      lines.push(`  - Error: ${item.error || 'unknown error'}`);
+    }
+    lines.push('');
+    return lines.join('\n');
+  }
+
+  // ---- SVG 图标（不要改，除非换图标样式） ----
+  const ICONS = {
+    download: '<svg width="18" height="18" viewBox="0 0 24 24" style="width:18px !important;height:18px !important" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>',
+    hourglass: '<svg width="18" height="18" viewBox="0 0 24 24" style="width:18px !important;height:18px !important" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 3 L20 3 L14 10 L20 21 L4 21 L10 10 Z"/></svg>',
+    check: '<svg width="18" height="18" viewBox="0 0 24 24" style="width:18px !important;height:18px !important" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>',
+  };
+
+  // ---- Trusted Types 安全写入 ----
+  // 部分站点（如 Google AI Studio）CSP 要求 TrustedHTML，直接 el.innerHTML 会抛
+  // TypeError，导致按钮图标/进度环渲染失败。优先走 Trusted Types policy，
+  // 页面未启用 Trusted Types 时回退为普通赋值。
+  function setInnerHTML(el, html) {
+    if (
+      window.__m365TTFailed !== true
+      && window.trustedTypes
+      && window.trustedTypes.createPolicy
+      && !window.__m365TTPolicy
+    ) {
+      try {
+        window.__m365TTPolicy = window.trustedTypes.createPolicy('m365-inner-html', {
+          createHTML: (s) => s,
+        });
+      } catch (e) {
+        // CSP 禁止创建自定义 policy（如 trusted-types 'none'）：标记后走普通赋值
+        window.__m365TTFailed = true;
+      }
+    }
+    if (window.__m365TTPolicy) {
+      el.innerHTML = window.__m365TTPolicy.createHTML(html);
+    } else {
+      el.innerHTML = html;
+    }
+  }
+
+  const RING_SVG_SIZE = 36;
+  const RING_CENTER = 18;
+  const RING_RADIUS = 15.5;
+  const RING_CIRCUMFERENCE = 2 * Math.PI * RING_RADIUS;
+
+  function createRingSVG(progress, size) {
+    const sz = size || RING_SVG_SIZE;
+    const offset = progress >= 0
+      ? RING_CIRCUMFERENCE * (1 - Math.min(progress, 100) / 100)
+      : RING_CIRCUMFERENCE * 0.75;
+    const spinAnim = progress < 0
+      ? 'animation: m365-spin 1.2s linear infinite; transform-origin: center;'
+      : 'transition: stroke-dashoffset 0.3s ease;';
+    return `<svg width="${sz}" height="${sz}" viewBox="0 0 ${RING_SVG_SIZE} ${RING_SVG_SIZE}" style="width:${sz}px !important; height:${sz}px !important;">
+      <circle cx="${RING_CENTER}" cy="${RING_CENTER}" r="${RING_RADIUS}" fill="none" stroke="#e8e8e8" stroke-width="2"/>
+      <circle cx="${RING_CENTER}" cy="${RING_CENTER}" r="${RING_RADIUS}" fill="none" stroke="#242424" stroke-width="2" stroke-dasharray="${RING_CIRCUMFERENCE}" stroke-dashoffset="${offset}" transform="rotate(-90 ${RING_CENTER} ${RING_CENTER})" style="${spinAnim}"/>
+    </svg>`;
+  }
+
+  function animateRingOnce(ringEl) {
+    return new Promise((resolve) => {
+      ringEl.style.display = '';
+      setInnerHTML(ringEl, createRingSVG(0, RING_SVG_SIZE));
+      const path = ringEl.querySelector('circle:last-child');
+      if (!path) { resolve(); return; }
+      const duration = 500;
+      const start = performance.now();
+      function tick(now) {
+        const elapsed = now - start;
+        const pct = Math.min(elapsed / duration, 1);
+        path.style.transition = 'none';
+        path.setAttribute('stroke-dashoffset', RING_CIRCUMFERENCE * (1 - pct));
+        if (pct < 1) { requestAnimationFrame(tick); } else { resolve(); }
+      }
+      requestAnimationFrame(tick);
+    });
+  }
+
+  // ---- 按钮状态控制器（不要改） ----
+  // LLM 注意: 这是 UI 状态机，startExportProcess 依赖它的生命周期。
+  // 改它的接口 = 核心导出流程也要跟着改。
+  function createController(btn, ringEl, tooltipEl, container) {
+    let state = 'idle';
+    let doneTimer = null;
+    /** @type {PlatformAdapter|null} */
+    let _adapter = null;
+
+    const ui = {
+      isSingleMode: false,
+
+      /** 控制导出按钮在特定页面路由下的显隐（如 Twitter 离开 Grok 页面时隐藏） */
+      updateVisibility(adapter) {
+        if (adapter) _adapter = adapter;
+        if (!_adapter) return;
+        const target = container || document.getElementById('m365-export-container');
+        if (!target) return;
+        const supported = typeof _adapter.isPageSupported === 'function' ? _adapter.isPageSupported() : true;
+        target.style.display = supported ? '' : 'none';
+      },
+
+      setIcon(name) {
+        setInnerHTML(btn, ICONS[name] || ICONS.download);
+        btn.style.transition = 'none';
+        btn.style.opacity = '0.3';
+        void btn.offsetHeight;
+        btn.style.transition = '';
+        btn.style.opacity = '1';
+      },
+
+      setProgress(pct) {
+        if (pct === null || pct === undefined) { ringEl.style.display = 'none'; return; }
+        if (pct === this._lastPct) return;
+        this._lastPct = pct;
+        ringEl.style.display = '';
+        setInnerHTML(ringEl, createRingSVG(pct));
+      },
+
+      setTooltip(text) {
+        tooltipEl.textContent = text || '';
+        tooltipEl.style.display = text ? '' : 'none';
+      },
+
+      mode: 'all',
+      isSingleMode: false,
+      currentProject: null,
+
+      /** 根据适配器刷新按钮模式（单条/全部/项目）和气泡文字 */
+      updateLabel(adapter) {
+        if (adapter) _adapter = adapter;
+        if (!_adapter) return;
+        const convId = _adapter.getCurrentConversationId ? _adapter.getCurrentConversationId() : null;
+        const project = (!convId && _adapter.getCurrentProject) ? _adapter.getCurrentProject() : null;
+
+        if (convId) {
+          this.mode = 'single';
+          this.isSingleMode = true;
+          this.currentProject = null;
+          tooltipEl.textContent = TXT.exportSingle;
+        } else if (project) {
+          this.mode = 'project';
+          this.isSingleMode = false;
+          this.currentProject = project;
+          const pName = project.name || '';
+          tooltipEl.textContent = TXT.exportProject(pName);
+        } else {
+          this.mode = 'all';
+          this.isSingleMode = false;
+          this.currentProject = null;
+          tooltipEl.textContent = TXT.exportAll;
+        }
+      },
+
+      idle() {
+        if (doneTimer) { clearTimeout(doneTimer); doneTimer = null; }
+        state = 'idle';
+        this.updateLabel();
+        ui.setIcon('download');
+        ui.setProgress(null);
+        tooltipEl.style.display = 'none';
+        btn.disabled = false;
+      },
+
+      start() {
+        state = 'exporting';
+        ui.setIcon('hourglass');
+        ui.setProgress(-1);
+        if (this.isSingleMode) ui.setTooltip('');
+        btn.disabled = true;
+      },
+
+      updateProgress(pct, tooltipText) {
+        if (state !== 'exporting') return;
+        ui.setProgress(pct);
+        if (tooltipText && !this.isSingleMode) {
+          tooltipEl.textContent = tooltipText;
+        }
+      },
+
+      async done(reportText) {
+        if (this.isSingleMode) await animateRingOnce(ringEl);
+        state = 'done';
+        ui.setIcon('check');
+        if (!this.isSingleMode) ui.setProgress(100);
+        btn.disabled = false;
+        if (doneTimer) clearTimeout(doneTimer);
+        if (reportText) {
+          // 完成汇报：显示 tooltip 3s 后 idle（渐进披露的最后一步）
+          ui.setTooltip(reportText);
+          doneTimer = setTimeout(() => { ui.idle(); doneTimer = null; }, 3000);
+        } else {
+          tooltipEl.style.display = 'none';
+          doneTimer = setTimeout(() => { ui.idle(); doneTimer = null; }, 2000);
+        }
+      },
+
+      error(errMsg) {
+        state = 'error';
+        ui.setIcon('check');
+        ui.setProgress(null);
+        ui.setTooltip(errMsg || '');
+        btn.disabled = false;
+        if (doneTimer) clearTimeout(doneTimer);
+        doneTimer = setTimeout(() => { ui.idle(); doneTimer = null; }, 4000);
+      },
+
+      isIdle() { return state === 'idle'; },
+    };
+
+    return ui;
+  }
+
+  // ---- 通用导出流程（不要改） ----
+  // LLM 注意: 这是核心编排逻辑，所有平台共享一份。
+  // 它不知道也无需知道具体平台的 API 细节——那些都在适配器里。
+  // 想调导出行为（如文件格式、限速）去改上面的 CONFIG。
+  // opts.full：本次强制全量（Shift+单击快键）。
+  async function startExportProcess(adapter, ui, opts) {
+    ui.start();
+    let reportText = null;
+
+    try {
+      const conversationId = adapter.getCurrentConversationId ? adapter.getCurrentConversationId() : null;
+      const project = (!conversationId && adapter.getCurrentProject) ? adapter.getCurrentProject() : null;
+
+      if (conversationId) {
+        // ---- 单条导出 ----
+        ui.updateProgress(-1, '');
+
+        const data = await adapter.getConversationDetails(conversationId);
+        if (data?.store) delete data.store.zeroQuery;
+
+        // 从 API 数据中提取标题（各适配器路径不同，统一兜底到 document.title）
+        const chatTitle = getChatTitle(data, '当前对话');
+        const safeTitle = sanitizeFilename(chatTitle);
+
+        if (typeof adapter.toMarkdown === 'function') {
+          const md = adapter.toMarkdown(data, chatTitle, conversationId);
+          downloadText(md, `${safeTitle}.md`);
+        } else {
+          const exportData = {
+            platform: adapter.id,
+            exportTime: formatLocalTime(new Date()),
+            totalConversations: 1,
+            exported: 1,
+            failed: 0,
+            conversations: [{ title: chatTitle, id: conversationId, data }],
+          };
+          downloadJSON(exportData, `${safeTitle}.json`);
+        }
+      } else {
+        // ---- 批量导出（项目导出 OR 全量导出）----
+        const isProjectExport = !!project;
+        let exportProjectName = project?.name || '';
+        let conversations = [];
+
+        if (isProjectExport && typeof adapter.getProjectConversations === 'function') {
+          ui.updateProgress(-1, TXT.fetching(0));
+          const projResult = await adapter.getProjectConversations(project.id, (count) => {
+            ui.updateProgress(-1, TXT.fetching(count));
+          });
+          if (projResult && typeof projResult === 'object' && !Array.isArray(projResult)) {
+            exportProjectName = projResult.name || exportProjectName || project.id;
+            conversations = projResult.conversations || [];
+          } else if (Array.isArray(projResult)) {
+            conversations = projResult;
+          }
+        } else {
+          conversations = await adapter.getAllConversations((count) => {
+            ui.updateProgress(-1, TXT.fetching(count));
+          });
+        }
+
+        if (!conversations || conversations.length === 0) {
+          ui.done();
+          return;
+        }
+
+        // 导出范围 = “从某个时刻起，到现在”：
+        //   无锚点（从没导出过）    → 起点=最早 → 自然全量
+        //   默认（句子时间没改过）   → 起点=上次锚点 → 上次之后，精确续导
+        //   句子点时间改过          → 起点=用户改的时刻（回导/重导），一次性，成功即自愈
+        //   opts.full（Shift+单击） → 本次起点=最早 → 全量快键
+        //   项目导出：默认导出该项目全部对话，不应用时间增量过滤
+        // 拿不到时间的会话保守处理：宁重复不漏，始终导出
+        const runAt = Date.now();    // “本次下载时刻”：锚点下限，保证点完句子时间就前移
+        let freshList = conversations;
+        if (!isProjectExport && CONFIG.INCREMENTAL) {
+          const boundary = opts?.full ? null : (exportStartOverrideMs ?? loadExportAnchor(adapter.id));
+          if (boundary !== null) {
+            freshList = conversations.filter((c) => {
+              const t = getConversationSortTime(c);
+              return t === null || t > boundary;
+            });
+          }
+        }
+
+        if (!freshList || freshList.length === 0) {
+          // 起点之后没有内容：没跳过任何东西，锚点可以安全推进到“本次下载时刻”；
+          // 气泡只提示无新内容；用户手改的起点同样自愈（一次性的）
+          if (!isProjectExport && CONFIG.INCREMENTAL) {
+            saveExportAnchor(adapter.id, conversations, runAt);
+            exportStartOverrideMs = null;
+          }
+          ui.done(TXT.noNew);
+          return;
+        }
+
+        const limitedList = (CONFIG.DEBUG_LIMIT > 0 && freshList.length > CONFIG.DEBUG_LIMIT)
+          ? freshList.slice(0, CONFIG.DEBUG_LIMIT)
+          : freshList;
+        const exportList = limitedList;
+        const zipList = orderConversationsForZip(limitedList);
+
+        const canExportMarkdownZip = typeof adapter.toMarkdown === 'function';
+        const results = [];
+        const markdownById = new Map();
+        const zipFiles = [];
+        const usedZipNames = new Set();
+        const failures = [];
+        let successCount = 0;
+        let failCount = 0;
+        const total = exportList.length;
+
+        for (let i = 0; i < total; i++) {
+          const conv = exportList[i];
+          const pct = Math.round((i / total) * 100);
+          const displayTitle = String(conv.title || conv.id || 'untitled');
+          const shortTitle = displayTitle.substring(0, 8) + (displayTitle.length > 8 ? '…' : '');
+          ui.updateProgress(pct, `${i + 1}/${total}  ${shortTitle}`);
+
+          try {
+            const data = await adapter.getConversationDetails(conv.id);
+            if (data?.store) delete data.store.zeroQuery;
+            const chatTitle = getChatTitle(data, conv.title || conv.id || 'untitled');
+            if (canExportMarkdownZip) {
+              const md = adapter.toMarkdown(data, chatTitle, conv.id);
+              markdownById.set(conv.id, { title: chatTitle, id: conv.id, content: md });
+            } else {
+              results.push({ title: chatTitle, id: conv.id, data });
+            }
+            successCount++;
+          } catch (err) {
+            console.error(`获取对话 ${conv.id} 失败:`, err);
+            const failure = {
+              title: conv.title || 'untitled',
+              id: conv.id,
+              error: err?.message || String(err),
+            };
+            failures.push(failure);
+            if (!canExportMarkdownZip) results.push(failure);
+            failCount++;
+          }
+
+          if (i < total - 1) await sleep(CONFIG.API_DELAY);
+        }
+
+        const exportMeta = {
+          platform: adapter.id,
+          exportTime: formatLocalTime(new Date()),
+          totalConversations: total,
+          exported: successCount,
+          failed: failCount,
+        };
+
+        ui.updateProgress(99, TXT.packing);
+
+        if (canExportMarkdownZip) {
+          for (let i = 0; i < zipList.length; i++) {
+            const conv = zipList[i];
+            const item = markdownById.get(conv.id);
+            if (!item) continue;
+            zipFiles.push({
+              // 传完整 conv（含时间字段），title 用详情标题：文件名前缀用会话时间
+              name: makeMarkdownZipFilename({ ...conv, title: item.title }, i, zipList.length, usedZipNames),
+              content: item.content,
+            });
+          }
+          if (failures.length > 0) {
+            zipFiles.push({
+              name: 'export-failures.md',
+              content: buildFailureMarkdown(exportMeta, failures),
+            });
+          }
+          const zipFilename = isProjectExport
+            ? `${CONFIG.EXPORT_PREFIX}-${adapter.id}-project-${sanitizeFilename(exportProjectName || project.id)}-${Date.now()}.zip`
+            : `${CONFIG.EXPORT_PREFIX}-${adapter.id}-all-${Date.now()}.zip`;
+          downloadZip(zipFiles, zipFilename);
+        } else {
+          const jsonFilename = isProjectExport
+            ? `${CONFIG.EXPORT_PREFIX}-${adapter.id}-project-${sanitizeFilename(exportProjectName || project.id)}-${Date.now()}.json`
+            : `${CONFIG.EXPORT_PREFIX}-${adapter.id}-all-${Date.now()}.json`;
+          downloadJSON(
+            { ...exportMeta, ...(isProjectExport ? { projectName: exportProjectName, projectId: project.id } : {}), conversations: results },
+            jsonFilename
+          );
+        }
+
+        // 增量锚点：仅全量导出且全部成功才推进（项目导出不更新全局时间锚点）
+        // 起点改动也是“一次性”：成功即自愈，下次句子回到“上次之后”
+        // 锚点下限取本次运行时刻：点完下载，hover 句子里的时间就前移
+        if (!isProjectExport && CONFIG.INCREMENTAL && failCount === 0) {
+          saveExportAnchor(adapter.id, conversations, runAt);
+          exportStartOverrideMs = null;
+        }
+
+        // 完成汇报：只报成功条数；起点之后没有内容时上面已经用 noNew 提前返回
+        reportText = TXT.reportExported(successCount);
+      }
+
+      ui.done(reportText);
+    } catch (err) {
+      console.error('导出失败:', err);
+      ui.error(err.message);
+    }
+  }
+
+  async function saveCurrentConversationToAfterChat(adapter, ui) {
+    ui.start();
+
+    try {
+      const conversationId = adapter.getCurrentConversationId();
+      if (!conversationId) throw new Error(TXT.singleOnly);
+      if (typeof adapter.toMarkdown !== 'function') {
+        throw new Error('Current platform does not support Markdown export');
+      }
+
+      ui.updateProgress(-1, TXT.saveAfterChat);
+
+      const data = await adapter.getConversationDetails(conversationId);
+      if (data?.store) delete data.store.zeroQuery;
+
+      const chatTitle = getChatTitle(data, '当前对话');
+      const md = adapter.toMarkdown(data, chatTitle, conversationId);
+      const encoded = base64UrlEncodeUtf8(md);
+      let url = encoded.length <= 30000
+        ? buildAfterChatCaptureUrl(chatTitle, { content: md })
+        : '';
+
+      if (!url) {
+        await copyTextToClipboard(md);
+        url = buildAfterChatCaptureUrl(chatTitle, { clipboard: true });
+      }
+      openAfterChatDeepLink(url);
+
+      ui.done();
+    } catch (err) {
+      console.error('保存到 AfterChat 失败:', err);
+      ui.error(err?.message || String(err));
+    }
+  }
+
+  // ---- SPA 导航监听（不要改） ----
+  // LLM 注意: 劫持 pushState/replaceState 是为了捕获 SPA 路由变化。
+  // 如果平台不是 SPA，这段无副作用；如果是，少了它按钮模式就不刷新。
+  function watchURL(ui, adapter) {
+    let lastUrl = window.location.href;
+    let lastConvId = adapter?.getCurrentConversationId ? adapter.getCurrentConversationId() : null;
+    let lastProjId = adapter?.getCurrentProject ? adapter.getCurrentProject()?.id : null;
+    let lastProjName = adapter?.getCurrentProject ? adapter.getCurrentProject()?.name : null;
+
+    function checkURL() {
+      const currentUrl = window.location.href;
+      const currentConvId = adapter?.getCurrentConversationId ? adapter.getCurrentConversationId() : null;
+      const currentProj = adapter?.getCurrentProject ? adapter.getCurrentProject() : null;
+      const currentProjId = currentProj?.id || null;
+      const currentProjName = currentProj?.name || null;
+
+      if (ui.updateVisibility) ui.updateVisibility(adapter);
+      if (currentUrl === lastUrl && currentConvId === lastConvId && currentProjId === lastProjId && currentProjName === lastProjName) return;
+      lastUrl = currentUrl;
+      lastConvId = currentConvId;
+      lastProjId = currentProjId;
+      lastProjName = currentProjName;
+      if (!ui.isIdle()) return;
+      ui.updateLabel(adapter);
+    }
+
+    // 劫持 pushState / replaceState（M365 Copilot SPA 的核心手段）
+    const origPushState = history.pushState;
+    history.pushState = function (...args) {
+      origPushState.apply(this, args);
+      requestAnimationFrame(checkURL);
+    };
+    const origReplaceState = history.replaceState;
+    history.replaceState = function (...args) {
+      origReplaceState.apply(this, args);
+      requestAnimationFrame(checkURL);
+    };
+
+    window.addEventListener('popstate', () => requestAnimationFrame(checkURL));
+    document.addEventListener('click', () => setTimeout(checkURL, 150), true);
+    // UI 被站点移除后重建时会再次调用 watchURL；清掉旧定时器避免累积
+    if (window.__m365UiTimer) clearInterval(window.__m365UiTimer);
+    window.__m365UiTimer = setInterval(checkURL, 1500);
+  }
+
+  // ---- UI 构建（可以改样式） ----
+  // LLM 注意: 布局、颜色、字体等 cssText 可以随便改。
+  // 但不要改 createController / startExportProcess / watchURL 的调用方式。
+
+  // ---- UI 自愈：部分站点（如 chatgpt.com）应用挂载完成后会重建 body/html 顶层子节点，
+  //      把挂在 body 下的按钮容器一并清掉；用 MutationObserver 监测（只盯 html/body 两层），
+  //      被移除后自动重建。带节流/暂停：避免与持续清节点的站点死磕，也避免过度重建。 ----
+  const UI_HEAL_MIN_INTERVAL = 500;  // 两次重建的最小间隔(ms)
+  const UI_HEAL_MAX_BURST = 8;       // 连续重建次数上限，超过后暂停
+  const UI_HEAL_PAUSE = 30000;       // 暂停时长(ms)
+
+  function ensureUIAlive(adapter) {
+    const win = window;
+    if (win.__m365UiGuard) { win.__m365UiGuard.reattach(); return; }
+
+    let lastHealAt = 0;
+    let burst = 0;
+    let pauseUntil = 0;
+    let pendingTimer = null;
+
+    const heal = () => {
+      pendingTimer = null;
+      if (document.getElementById('m365-export-container')) return;
+      const now = Date.now();
+      if (now < pauseUntil) return;                     // 暂停期:不再自动重建
+      if (now - lastHealAt < UI_HEAL_MIN_INTERVAL) {    // 节流:稍后补一次
+        if (!pendingTimer) pendingTimer = setTimeout(heal, UI_HEAL_MIN_INTERVAL);
+        return;
+      }
+      lastHealAt = now;
+      if (++burst > UI_HEAL_MAX_BURST) {                // 持续被清:降级,避免死磕
+        burst = 0;
+        pauseUntil = now + UI_HEAL_PAUSE;
+        console.warn('[AfterChat] 页面反复移除导出按钮，已暂停自动重建 30s');
+        return;
+      }
+      try { createUI(adapter); } catch (e) { console.error('重建导出按钮失败:', e); }
+    };
+
+    const mo = new MutationObserver(() => heal());
+    const state = {
+      reattach() {
+        try { mo.disconnect(); } catch {}
+        // 只观察两层，不扫全树：站点重建 body 子节点或替换 body 元素都能捕获，
+        // 聊天流式输出的深层变更不会触发回调，避免不必要的开销。
+        try { mo.observe(document.documentElement, { childList: true, subtree: false }); } catch {}
+        try { if (document.body) mo.observe(document.body, { childList: true, subtree: false }); } catch {}
+      },
+    };
+    state.reattach();
+    win.__m365UiGuard = state;
+  }
+
+  function createUI(adapter) {
+    ensureUIAlive(adapter);
+    if (document.getElementById('m365-export-container')) return;
+
+    const container = document.createElement('div');
+    container.id = 'm365-export-container';
+    container.style.cssText = `
+      position: fixed; bottom: 20px; right: 20px; z-index: 999999;
+      font-family: "Segoe Sans", "Segoe UI", sans-serif;
+    `;
+
+    const tooltip = document.createElement('div');
+    tooltip.id = 'm365-export-tooltip';
+    tooltip.style.cssText = `
+      position: absolute; bottom: calc(100% + 10px); right: 0;
+      background: #ffffff; color: #242424;
+      border: 1px solid #e8e8e8;
+      padding: 5px 10px; border-radius: 7px;
+      font-size: 12px; white-space: nowrap;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      display: none; pointer-events: none;
+    `;
+
+    const wrapper = document.createElement('div');
+    wrapper.style.cssText = `
+      position: relative; width: 36px; height: 36px;
+      margin-left: auto;
+    `;
+
+    const ringEl = document.createElement('div');
+    ringEl.id = 'm365-ring';
+    ringEl.style.cssText = `
+      position: absolute; inset: 0;
+      display: none; pointer-events: none;
+    `;
+
+    const btn = document.createElement('button');
+    btn.id = 'm365-export-btn';
+    btn.style.cssText = `
+      width: 36px; height: 36px; border-radius: 50%;
+      background: #ffffff; border: 1px solid #e0e0e0;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      color: #242424;
+      padding: 0;  /* 阻止 AI Studio 等全局 button padding 覆盖 */
+      transition: background 0.15s, border-color 0.15s, opacity 0.15s ease;
+    `;
+
+    btn.onmouseenter = () => {
+      btn.style.background = '#f5f5f5';
+      btn.style.borderColor = '#d0d0d0';
+    };
+    btn.onmouseleave = () => {
+      btn.style.background = '#ffffff';
+      btn.style.borderColor = '#e0e0e0';
+    };
+
+    wrapper.appendChild(ringEl);
+    wrapper.appendChild(btn);
+    container.appendChild(tooltip);
+    container.appendChild(wrapper);
+    document.body.appendChild(container);
+
+    if (!document.getElementById('m365-style-anim')) {
+      const s = document.createElement('style');
+      s.id = 'm365-style-anim';
+      // 防御性规则：部分站点（如 poe.com）全局 svg 规则会改图标/圆环尺寸（!important 优先级最稳）
+      s.textContent =
+        `@keyframes m365-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+#m365-export-btn svg { width: 18px !important; height: 18px !important; max-width: none !important; }
+#m365-ring svg { width: 36px !important; height: 36px !important; max-width: none !important; }`;
+      document.head.appendChild(s);
+    }
+
+    if (!document.getElementById('m365-style-tooltip')) {
+      // 增量导出提示里的“可点时间”与内联编辑器样式
+      const st = document.createElement('style');
+      st.id = 'm365-style-tooltip';
+      st.textContent =
+        `#m365-export-tooltip .m365-start { border-bottom: 1px dashed #b0b0b0; cursor: text; font-weight: 600; }
+#m365-export-tooltip .m365-start:hover { background: #f2f2f2; }
+#m365-export-tooltip .m365-start.m365-pending { color: #8a6d00; border-bottom-color: #c9a227; }
+#m365-export-tooltip input.m365-time-input { font: 12px "Segoe Sans","Segoe UI",sans-serif; width: 158px; padding: 1px 4px; border: 1px solid #ccc; border-radius: 5px; color: #242424; background: #fff; }`;
+      document.head.appendChild(st);
+    }
+
+    const ui = createController(btn, ringEl, tooltip, container);
+    if (ui.updateVisibility) ui.updateVisibility(adapter);
+    ui.updateLabel(adapter);
+    ui.idle();               // 初始化状态 + 渲染下载图标
+
+    // ---- 增量导出提示：列表页 idle 时，tooltip 变成一行可交互的话 ----
+    //   · 无锚点 → “导出全部聊天”
+    //   · 有锚点 → “从 YYYY-MM-DD HH:mm 起导出”，点时间可改成任意起点
+    //   单击按钮 = 按这句话导出；Shift+单击 = 全量快键。
+    const HIDE_DELAY = 250;
+    let bubbleTimer = null;
+    let hoverInside = false;
+    let editingStart = false;
+    let shiftDown = false;             // 按住 Shift 悬停时，句子换成全量快键提示
+
+    function anchorMs() {
+      return CONFIG.INCREMENTAL ? loadExportAnchor(adapter.id) : null;
+    }
+    function canSentence() {
+      return ui.isIdle() && ui.mode === 'all' && CONFIG.INCREMENTAL;
+    }
+    function buildSentenceBubble() {
+      tooltip.textContent = '';
+      const anchor = anchorMs();
+      if (!anchor) {
+        tooltip.style.pointerEvents = 'none';
+        tooltip.textContent = TXT.exportAll;
+        return;
+      }
+      // 按住 Shift：本次单击 = 全量快键，提示跟着换成全量文案（松开即弹回）
+      if (shiftDown) {
+        tooltip.style.pointerEvents = 'none';
+        tooltip.textContent = TXT.shiftFull;
+        return;
+      }
+      tooltip.style.pointerEvents = 'auto';
+      const t = fmtStartStamp(exportStartOverrideMs ?? anchor);
+      if (LANG === 'zh') tooltip.appendChild(document.createTextNode('从 '));
+      else tooltip.appendChild(document.createTextNode('Export from '));
+      const span = document.createElement('span');
+      span.className = 'm365-start' + (exportStartOverrideMs !== null ? ' m365-pending' : '');
+      span.textContent = t;
+      span.title = TXT.editStart;
+      tooltip.appendChild(span);
+      if (LANG === 'zh') tooltip.appendChild(document.createTextNode(' 起导出'));
+    }
+    function showBubble() {
+      if (!ui.isIdle()) return;
+      if (editingStart) return;                 // 编辑器开着，别覆盖
+      tooltip.style.display = 'block';
+      if (canSentence()) {
+        buildSentenceBubble();
+      } else {
+        if (ui.mode === 'project') {
+          const pName = ui.currentProject?.name || '';
+          tooltip.textContent = TXT.exportProject(pName);
+        } else {
+          if (!tooltip.textContent) tooltip.textContent = ui.isSingleMode ? TXT.exportSingle : TXT.exportAll;
+        }
+        tooltip.style.pointerEvents = 'none';
+      }
+    }
+    function scheduleBubbleHide() {
+      clearTimeout(bubbleTimer);
+      bubbleTimer = setTimeout(() => {
+        if (editingStart || !ui.isIdle()) return;   // 编辑/导出/汇报期间不打断
+        tooltip.style.display = 'none';
+      }, HIDE_DELAY);
+    }
+    function refreshBubbleForShift() {
+      if (!hoverInside || editingStart || !ui.isIdle()) return;
+      clearTimeout(bubbleTimer);
+      tooltip.style.display = 'block';
+      if (canSentence()) buildSentenceBubble();
+    }
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Shift' && !shiftDown) { shiftDown = true; refreshBubbleForShift(); }
+    });
+    document.addEventListener('keyup', (e) => {
+      if (e.key === 'Shift' && shiftDown) { shiftDown = false; refreshBubbleForShift(); }
+    });
+    // 焦点离开页面时浏览器会丢 modifier 状态，重置避免“卡在全量提示”
+    window.addEventListener('blur', () => { shiftDown = false; });
+    function openStartEditor() {
+      const anchor = anchorMs();
+      if (!anchor || editingStart) return;
+      editingStart = true;
+      tooltip.textContent = '';
+      const input = document.createElement('input');
+      input.type = 'datetime-local';
+      input.className = 'm365-time-input';
+      input.value = fmtStartInputValue(exportStartOverrideMs ?? anchor);
+      input.max = fmtStartInputValue(Date.now());
+      tooltip.appendChild(input);
+      tooltip.style.display = 'block';
+      tooltip.style.pointerEvents = 'auto';
+      input.focus();
+
+      const finalize = (apply) => {
+        if (!editingStart) return;
+        if (apply) {
+          const ms = parseStartInput(input.value);
+          if (ms !== null) exportStartOverrideMs = ms;
+        }
+        editingStart = false;
+        if (canSentence()) buildSentenceBubble();
+        else tooltip.textContent = '';
+        if (!hoverInside) tooltip.style.display = 'none';
+      };
+      input.addEventListener('change', () => finalize(true));
+      input.addEventListener('blur', () => finalize(true));
+      input.addEventListener('keydown', (ev) => {
+        if (ev.key === 'Escape') finalize(false);   // 取消本次修改
+      });
+    }
+
+    // hover 热区 = 容器（按钮 + 气泡）；移开留 250ms 宽容，编辑中/导出中/汇报中不消失
+    container.addEventListener('mouseenter', (e) => {
+      hoverInside = true;
+      shiftDown = !!e.shiftKey;          // 可能按住 Shift 后才移入页面，keydown 未必触发过
+      clearTimeout(bubbleTimer);
+      if (ui.isIdle()) {
+        ui.updateLabel(adapter);
+        showBubble();
+      } else if (tooltip.textContent) {
+        tooltip.style.display = 'block';           // 导出进度/汇报照常可读
+      }
+    });
+    container.addEventListener('mouseleave', () => {
+      hoverInside = false;
+      if (ui.isIdle()) scheduleBubbleHide();
+    });
+    tooltip.addEventListener('click', (e) => {
+      if (!canSentence()) return;
+      const target = e.target;
+      if (target && target.classList && target.classList.contains('m365-start')) openStartEditor();
+    });
+
+    btn.onclick = async (e) => {
+      if (!ui.isIdle()) return;
+      ui.updateLabel(adapter);
+      // 单击 = 按句子起点导出；Shift+单击 = 全量快键（本次起点=最早）
+      await startExportProcess(adapter, ui, { full: !!(e && e.shiftKey) });
+    };
+
+    btn.oncontextmenu = async (e) => {
+      e.preventDefault();
+      if (!ui.isIdle()) return;
+      ui.updateLabel(adapter);
+      if (!ui.isSingleMode) {
+        ui.error(TXT.singleOnly);
+        return;
+      }
+      await saveCurrentConversationToAfterChat(adapter, ui);
+    };
+
+    watchURL(ui, adapter);
+  }
+
+  // ---- OmniChat 嵌入钩子（新增） ----
+  // 被注入 OmniChat webview 时，宿主会先设置 window.__OMNICHAT_HOST__；
+  // 脚本据此跳过自挂悬浮按钮，改为暴露下面这个 API，供插件用
+  // webview.executeJavaScript() 调用。正常油猴使用时该对象存在但无害。
+  window.__AfterChat = {
+    hasAdapter: () => PLATFORM_ADAPTERS.some((p) => p.detect()),
+    async getCurrentConversationMarkdown() {
+      const adapter = PLATFORM_ADAPTERS.find((p) => p.detect());
+      if (!adapter || typeof adapter.toMarkdown !== 'function') {
+        return { ok: false, reason: 'unsupported' };
+      }
+      let id = null;
+      try {
+        id = adapter.getCurrentConversationId ? adapter.getCurrentConversationId() : null;
+      } catch (e) { id = null; }
+      if (!id) return { ok: false, reason: 'no-conversation' };
+      try {
+        const data = await adapter.getConversationDetails(id);
+        if (data?.store) delete data.store.zeroQuery;
+        const title = getChatTitle(data, '当前对话');
+        const markdown = adapter.toMarkdown(data, title, id);
+        return { ok: true, title, platform: adapter.name, markdown };
+      } catch (err) {
+        return { ok: false, reason: 'error', message: (err && err.message) || String(err) };
+      }
+    },
+  };
+
+  // ---- 启动（不要改） ----
+  // LLM 注意: 自动检测平台、自动挂载 UI。不需要手动调用。
+  function initialize() {
+    if (window.__OMNICHAT_HOST__) return;   // 嵌入 OmniChat：由插件驱动导出，不再自挂按钮
+    const adapter = PLATFORM_ADAPTERS.find((p) => p.detect());
+    if (!adapter) {
+      console.log('通用导出器: 未识别到当前平台');
+      return;
+    }
+    console.log(`通用导出器: 已激活 [${adapter.name}]`);
+
+    if (document.readyState === 'complete') {
+      createUI(adapter);
+    } else {
+      window.addEventListener('load', () => createUI(adapter));
+    }
+  }
+
+  try { initialize(); } catch {}
+
+  // 导出给 Bun 测试（浏览器下 module 不存在，无副作用）
+  if (typeof module !== 'undefined' && module.exports) {
+    module.exports = {
+      PLATFORM_ADAPTERS,
+    };
+  }
+})();

@@ -69,6 +69,8 @@ export default tseslint.config(
 		"version-bump.mjs",
 		"versions.json",
 		"main.js",
+		// Vendored AfterChat userscript (bundled as a string) — not plugin source
+		"ai.js",
 		"package.json",
 		"scripts/**",
 		// Test infrastructure — not part of the plugin source

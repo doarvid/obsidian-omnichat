@@ -1,6 +1,7 @@
 import esbuild from "esbuild";
 import process from "process";
 import { builtinModules } from 'node:module';
+import { readFileSync } from 'node:fs';
 
 const banner =
 `/*
@@ -16,6 +17,16 @@ const context = await esbuild.context({
 		js: banner,
 	},
 	entryPoints: ["src/main.ts"],
+	plugins: [{
+		name: 'afterchat-raw',
+		setup(build) {
+			build.onResolve({ filter: /^afterchat-raw$/ }, () => ({ path: 'afterchat-raw', namespace: 'afterchat' }));
+			build.onLoad({ filter: /.*/, namespace: 'afterchat' }, () => ({
+				contents: `export default ${JSON.stringify(readFileSync(new URL('./ai.js', import.meta.url), 'utf8'))}`,
+				loader: 'js',
+			}));
+		},
+	}],
 	bundle: true,
 	external: [
 		"obsidian",

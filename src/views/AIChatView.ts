@@ -6,6 +6,8 @@ import { ContextSearchModal } from "../modals/ContextSearchModal";
 import { FolderPickerModal } from "../modals/FolderPickerModal";
 import { SaveDestinationModal } from "../modals/SaveDestinationModal";
 import { OAuthLoginModal } from "../modals/OAuthLoginModal";
+import afterchatSource from "afterchat-raw";
+import { buildInjectionScript } from "../afterchat";
 import { OllamaChatUI } from "./OllamaChatUI";
 import {
 	normalizeUrl,
@@ -357,6 +359,11 @@ export class AIChatView extends ItemView {
 		saveBtn.setAttribute("aria-label", "Save AI response to vault");
 		saveBtn.addEventListener("click", () => void this.saveSelection());
 
+		const saveChatBtn = right.createEl("button", { cls: "vc-save-btn", text: "Save chat" });
+		saveChatBtn.title = "Save the whole conversation to your vault (via ai.js)";
+		saveChatBtn.setAttribute("aria-label", "Save whole AI conversation to vault");
+		saveChatBtn.addEventListener("click", () => void this.saveConversation());
+
 		this.updateContextCount();
 	}
 
@@ -400,6 +407,9 @@ export class AIChatView extends ItemView {
 			if (wv.executeJavaScript) {
 				void wv.executeJavaScript(getChromeStealthScript());
 				void wv.executeJavaScript(getWebviewScrollFixScript());
+				void wv.executeJavaScript(buildInjectionScript(afterchatSource)).catch((err) => {
+					console.warn("OmniChat: ai.js injection failed", err);
+				});
 			}
 			if (this.pendingText) void this.flushPendingText();
 		});
@@ -838,6 +848,49 @@ export class AIChatView extends ItemView {
 			this.plugin.settings.useDateSubfolder,
 			sourceLabel,
 			this.plugin.settings.formatAIResponse,
+		).open();
+	}
+
+	async saveConversation(): Promise<void> {
+		if (getServiceKey(this.activeUrl) === "ollama") {
+			new Notice("Saving a whole conversation isn't supported here yet.");
+			return;
+		}
+		if (!this.webview?.executeJavaScript) { new Notice("Chat view isn't ready yet."); return; }
+
+		let res: unknown;
+		try {
+			res = await this.webview.executeJavaScript(
+				"window.__AfterChat && window.__AfterChat.getCurrentConversationMarkdown"
+					+ " ? window.__AfterChat.getCurrentConversationMarkdown() : null",
+			);
+		} catch (err) {
+			console.error("OmniChat: failed to read conversation", err);
+			new Notice("Couldn't read the conversation — see console for details.");
+			return;
+		}
+
+		const r = res as
+			| { ok: true; title: string; platform: string; markdown: string }
+			| { ok: false; reason: string; message?: string }
+			| null;
+
+		if (!r) { new Notice("Open a conversation in a supported AI site first."); return; }
+		if (!r.ok) {
+			if (r.reason === "no-conversation") new Notice("Open a conversation first.");
+			else if (r.reason === "unsupported") new Notice("This site isn't supported for whole-conversation save yet.");
+			else new Notice(r.message || "Couldn't read the conversation.");
+			return;
+		}
+
+		const body = /^#\s/.test(r.markdown) ? r.markdown : `# ${r.title}\n\n${r.markdown}`;
+		new SaveDestinationModal(
+			this.app,
+			body,
+			this.plugin.settings.saveNoteFolder,
+			this.plugin.settings.useDateSubfolder,
+			r.platform || null,
+			false,
 		).open();
 	}
 
